@@ -1,8 +1,9 @@
 // App.cpp : Defines the entry point for the application.
 //
-
 #include "pch.h"
-#include "DeviceResources.h"
+#include "App.h"
+
+#include "Engine_OpenGL/Headers/Renderer.h"
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -24,7 +25,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	DeviceResources instance;
+	//DeviceResources instance;
 
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
@@ -32,7 +33,43 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// TODO: Place code here.
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	BYTE* pLeakTest = new BYTE;
 #endif
+
+	AllocConsole();
+
+	FILE* stream_in;
+	FILE* stream_out;
+	FILE* stream_err;
+
+	freopen_s(&stream_in, "CONIN$", "r", stdin);
+	freopen_s(&stream_out, "CONOUT$", "w", stdout);
+	freopen_s(&stream_err, "CONOUT$", "w", stderr);
+
+	IRenderer* pRenderer = nullptr;
+
+	// Select Graphics Api
+	enum Graphics { DirectX12, OpenGL, Vulkan, Num };
+	INT iGraphics = INT32_MAX;
+	INT iRunResult = INT32_MAX;
+	std::cout << "Select API\n1.DirectX12, 2.OpenGL\n: ";
+	std::cin >> iGraphics;
+	iGraphics -= 1;
+
+	if (iGraphics == DirectX12)
+	{
+		iRunResult = Run_DirectX12();
+	}
+	else if (iGraphics == OpenGL)
+	{
+		pRenderer = new CRenderer(IRenderer::OpenGL());
+		iRunResult = Run_OpenGL();
+	}
+	else if (iGraphics >= Graphics::Num)
+	{
+		return FALSE;
+	}
+	system("cls");
 
 	// Initialize global strings
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -43,6 +80,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	g_hMainWindow = InitInstance(hInstance, nCmdShow);
 	if (!g_hMainWindow)
 	{
+		FreeConsole();
 		return FALSE;
 	}
 
@@ -97,6 +135,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 #ifdef _DEBUG
 	_ASSERT(_CrtCheckMemory());
 #endif
+
+
+
+
+
 	return (int)msg.wParam;
 }
 
@@ -196,6 +239,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case IDM_EXIT:
 			DestroyWindow(hWnd);
+			FreeConsole();
 			break;
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
@@ -237,4 +281,17 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+INT Run_DirectX12()
+{
+	return TRUE;
+}
+
+INT Run_OpenGL()
+{
+	// Init
+
+
+	return TRUE;
 }
