@@ -36,6 +36,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	BYTE* pLeakTest = new BYTE;
 #endif
 
+	// Initialize global strings
+	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+	LoadStringW(hInstance, IDI_APP, szWindowClass, MAX_LOADSTRING);
+	MyRegisterClass(hInstance);
+
 	AllocConsole();
 
 	FILE* stream_in;
@@ -53,8 +58,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	INT iGraphics = INT32_MAX;
 	INT iRunResult = INT32_MAX;
 	std::cout << "Select API\n1.DirectX12, 2.OpenGL\n: ";
-	std::cin >> iGraphics;
-	iGraphics -= 1;
+	//std::cin >> iGraphics;
+	//iGraphics -= 1;
+	iGraphics = OpenGL;
+
+	UINT uiWinX = 1280, uiWinY = 720;
+	
 
 	if (iGraphics == DirectX12)
 	{
@@ -62,7 +71,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 	else if (iGraphics == OpenGL)
 	{
-		pRenderer = new CRenderer(IRenderer::OpenGL());
+		char strTitle[MAX_LOADSTRING];
+		WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
+		strcat_s(strTitle, MAX_LOADSTRING, " - OpenGL");
+		pRenderer = new CRenderer(IRenderer::OpenGL(), uiWinX, uiWinY, strTitle);
 		iRunResult = Run_OpenGL();
 	}
 	else if (iGraphics >= Graphics::Num)
@@ -71,10 +83,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 	system("cls");
 
-	// Initialize global strings
-	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadStringW(hInstance, IDI_APP, szWindowClass, MAX_LOADSTRING);
-	MyRegisterClass(hInstance);
 
 	// Perform application initialization:
 	g_hMainWindow = InitInstance(hInstance, nCmdShow);
@@ -199,7 +207,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 HWND InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 	hInst = hInstance; // Store instance handle in our global variable
-
+	
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 

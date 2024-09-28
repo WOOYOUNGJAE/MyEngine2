@@ -4,18 +4,20 @@
 // However, files listed here are ALL re-compiled if any one of them is updated between builds.
 // Do not add files here that you will be updating frequently as this negates the performance advantage.
 
-#ifndef PCH_H
-#define PCH_H
+#ifndef ENGINEOPENGLPCH_H
+#define ENGINEOPENGLPCH_H
 
 // add headers that you want to pre-compile here
 #include "framework.h"
 
 // Engine Common
+#include "Engine_Common/pch.h"
 #include "Macros.h"
 
 // OpenGL
 #pragma comment(lib, "glfw3.lib")
+#include "Extlibs/glad/glad/glad.h"
 #include "glfw3.h"
 
 #pragma comment(lib, "Engine_Common.lib")
-#endif //PCH_H
+#endif //ENGINEOPENGLPCH_H

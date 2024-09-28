@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Extlibs">
+      <UniqueIdentifier>{7d56ae8c-f337-4e97-b9a6-c798bc7d25dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -30,6 +33,12 @@
     <ClInclude Include="Headers\Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Extlibs\glad\glad\glad.h">
+      <Filter>Extlibs</Filter>
+    </ClInclude>
+    <ClInclude Include="Extlibs\glad\KHR\khrplatform.h">
+      <Filter>Extlibs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -37,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Renderer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Extlibs\glad\glad.c">
+      <Filter>Extlibs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
