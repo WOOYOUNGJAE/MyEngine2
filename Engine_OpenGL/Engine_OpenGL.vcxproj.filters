@@ -9,12 +9,17 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Extlibs">
       <UniqueIdentifier>{7d56ae8c-f337-4e97-b9a6-c798bc7d25dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{248f02ce-aaa4-4486-9ab7-b301e64d72e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Viewer">
+      <UniqueIdentifier>{a3e7a4de-d03b-40b8-8d94-f7ac6e6a2867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{6d6d2659-a1c8-49ae-9e04-88cdb7e4f3d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,13 +29,7 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EngineConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Extlibs\glad\glad\glad.h">
@@ -39,16 +38,31 @@
     <ClInclude Include="Extlibs\glad\KHR\khrplatform.h">
       <Filter>Extlibs</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Viewer.h">
+      <Filter>Engine\Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\RenderTarget.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Extlibs\glad\glad.c">
       <Filter>Extlibs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Viewer.cpp">
+      <Filter>Engine\Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\RenderTarget.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

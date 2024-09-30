@@ -3,7 +3,7 @@
 #include "pch.h"
 #include "App.h"
 
-#include "Engine_OpenGL/Headers/Renderer.h"
+#include "Engine_OpenGL/Headers/Engine.h"
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -51,7 +51,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	freopen_s(&stream_out, "CONOUT$", "w", stdout);
 	freopen_s(&stream_err, "CONOUT$", "w", stderr);
 
-	IRenderer* pRenderer = nullptr;
+	IEngine* pEngine = nullptr;
 
 	// Select Graphics Api
 	enum Graphics { DirectX12, OpenGL, Vulkan, Num };
@@ -68,13 +68,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	if (iGraphics == DirectX12)
 	{
 		iRunResult = Run_DirectX12();
+
+		// Perform application initialization:
+		g_hMainWindow = InitInstance(hInstance, nCmdShow);
+		if (!g_hMainWindow)
+		{
+			FreeConsole();
+			return FALSE;
+		}
 	}
 	else if (iGraphics == OpenGL)
 	{
 		char strTitle[MAX_LOADSTRING];
 		WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
 		strcat_s(strTitle, MAX_LOADSTRING, " - OpenGL");
-		pRenderer = new CRenderer(IRenderer::OpenGL(), uiWinX, uiWinY, strTitle);
+		pEngine = new CEngine(IEngine::OpenGL(), uiWinX, uiWinY, strTitle);
 		iRunResult = Run_OpenGL();
 	}
 	else if (iGraphics >= Graphics::Num)
@@ -83,33 +91,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 	system("cls");
 
-
-	// Perform application initialization:
-	g_hMainWindow = InitInstance(hInstance, nCmdShow);
-	if (!g_hMainWindow)
-	{
-		FreeConsole();
-		return FALSE;
-	}
-
-	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDI_APP));
-
-	MSG msg;
+	//HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDI_APP));
 
 	/*g_pRenderer = new CD3D12Renderer;
 	g_pRenderer->Initialize(g_hMainWindow, TRUE, TRUE);*/
 
+	MSG msg;
 	// Main message loop:
-	//while (GetMessage(&msg, nullptr, 0, 0))
-	//{
-	//	if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-	//	{
-	//		TranslateMessage(&msg);
-	//		DispatchMessage(&msg);
-	//	}
-	//}
-	// Main message loop:
-	while (1)
+	while (true)
 	{
 		// call WndProc
 		//g_bCanUseWndProc == FALSE이면 DefWndProc호출
@@ -123,15 +112,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				break;
 			}
 
-
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-
-
 		}
 		else
 		{
-			RunGame();
+			pEngine->Engine_Tick();
 		}
 	}
 
@@ -140,14 +126,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		delete g_pRenderer;
 		g_pRenderer = nullptr;
 	}*/
+
+	if (pEngine)
+	{
+		DELETE_INSTANCE(pEngine);
+	}
+
 #ifdef _DEBUG
 	_ASSERT(_CrtCheckMemory());
 #endif
-
-
-
-
-
 	return (int)msg.wParam;
 }
 
@@ -262,6 +249,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		EndPaint(hWnd, &ps);
 	}
 	break;
+	case WM_KEYDOWN:
+		switch (wParam)
+		{
+		case VK_ESCAPE: // EXIT
+			DestroyWindow(hWnd);
+			break;
+		}
+
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;

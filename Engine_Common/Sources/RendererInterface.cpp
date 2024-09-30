@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "RendererInterface.h"
+#include "EngineInterface.h"
 
-IRenderer::IRenderer()
+IEngine::IEngine()
 {
 }
