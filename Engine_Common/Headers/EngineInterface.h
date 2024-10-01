@@ -11,6 +11,6 @@ public:
 	IEngine();
 	virtual ~IEngine() = default;
 public:
-	virtual void Engine_Tick(FLOAT fDeltaTime = 0.2f) = 0;
+	virtual INT Engine_Tick(BOOL bShouldClose, FLOAT fDeltaTime = 0.2f) = 0;
 };
 

@@ -60,15 +60,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	std::cout << "Select API\n1.DirectX12, 2.OpenGL\n: ";
 	//std::cin >> iGraphics;
 	//iGraphics -= 1;
+	system("cls");
 	iGraphics = OpenGL;
 
 	UINT uiWinX = 1280, uiWinY = 720;
 	
 
+	MSG msg; // For Window App
 	if (iGraphics == DirectX12)
 	{
-		iRunResult = Run_DirectX12();
-
 		// Perform application initialization:
 		g_hMainWindow = InitInstance(hInstance, nCmdShow);
 		if (!g_hMainWindow)
@@ -76,6 +76,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			FreeConsole();
 			return FALSE;
 		}
+
+		iRunResult = Run_DirectX12(msg);
 	}
 	else if (iGraphics == OpenGL)
 	{
@@ -83,49 +85,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
 		strcat_s(strTitle, MAX_LOADSTRING, " - OpenGL");
 		pEngine = new CEngine(IEngine::OpenGL(), uiWinX, uiWinY, strTitle);
-		iRunResult = Run_OpenGL();
+		iRunResult = Run_OpenGL(pEngine);
 	}
 	else if (iGraphics >= Graphics::Num)
 	{
 		return FALSE;
 	}
-	system("cls");
 
-	//HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDI_APP));
 
-	/*g_pRenderer = new CD3D12Renderer;
-	g_pRenderer->Initialize(g_hMainWindow, TRUE, TRUE);*/
-
-	MSG msg;
-	// Main message loop:
-	while (true)
-	{
-		// call WndProc
-		//g_bCanUseWndProc == FALSE이면 DefWndProc호출
-
-		BOOL	bHasMsg = PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE);
-
-		if (bHasMsg)
-		{
-			if (msg.message == WM_QUIT)
-			{
-				break;
-			}
-
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		else
-		{
-			pEngine->Engine_Tick();
-		}
-	}
-
-	/*if (g_pRenderer)
-	{
-		delete g_pRenderer;
-		g_pRenderer = nullptr;
-	}*/
 
 	if (pEngine)
 	{
@@ -135,6 +102,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 #ifdef _DEBUG
 	_ASSERT(_CrtCheckMemory());
 #endif
+
+	BOOL	bHasMsg = PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE);
+
+	if (bHasMsg)
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 	return (int)msg.wParam;
 }
 
@@ -287,15 +262,54 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	return (INT_PTR)FALSE;
 }
 
-INT Run_DirectX12()
+INT Run_DirectX12(MSG& msg)
 {
+
+	//HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDI_APP));
+
+	/*g_pRenderer = new CD3D12Renderer;
+	g_pRenderer->Initialize(g_hMainWindow, TRUE, TRUE);*/
+
+	// Main message loop:
+	while (true)
+	{
+		// call WndProc
+		//g_bCanUseWndProc == FALSE이면 DefWndProc호출
+
+		BOOL	bHasMsg = PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE);
+
+		if (bHasMsg)
+		{
+			if (msg.message == WM_QUIT)
+			{
+				break;
+			}
+
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			//pEngine->Engine_Tick();
+		}
+	}
 	return TRUE;
 }
 
-INT Run_OpenGL()
+INT Run_OpenGL(IEngine* pEngine)
 {
-	// Init
+	BOOL bShouldClose = FALSE; // Result of Prev EngineTick
+	while (true)
+	{
+		// Some Acting Change ShouldClose
 
+		// Tick, Render, ...
+		bShouldClose = 
+			pEngine->Engine_Tick(bShouldClose, 0.2f);
+
+		if (bShouldClose)
+			break;
+	}
 
 	return TRUE;
 }

@@ -32,9 +32,13 @@ ClassName* ClassName::Get_Instance()					\
 	return m_pInstance;									\
 }
 
-
-
 // Error Message
 #define ERROR_MESSAGE(MESSAGE) \
 	MessageBox(0, TEXT(MESSAGE), TEXT("Error"), MB_OK);\
 	__debugbreak();
+
+
+// PTR
+# define CLASS_PTR(ClassName)			\
+public:										\
+	typedef std::unique_ptr<ClassName>	UPtr;

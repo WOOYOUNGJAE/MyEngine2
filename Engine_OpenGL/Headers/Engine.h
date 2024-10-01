@@ -1,9 +1,10 @@
 #pragma once
 #include "Engine_OpenGL/EngineConfig.h"
-#include "Defines.h"
 #include "EngineInterface.h"
+#include "Viewer.h"
 
 class CViewer;
+struct GLFWwindow;
 /**
  * @brief Top-level class
  */
@@ -14,8 +15,12 @@ public:
 	CEngine(IEngine::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle);
 	~CEngine() override;
 public:
-	void Engine_Tick(FLOAT fDeltaTime) override;
+	/**
+	 * @return If WindowShouldClose
+	 */
+	INT Engine_Tick(BOOL bShouldClose, FLOAT fDeltaTime) override;
 
 private:
+	GLFWwindow* m_pWindow = nullptr;
 	CViewer* m_pViewer = nullptr;
 };
