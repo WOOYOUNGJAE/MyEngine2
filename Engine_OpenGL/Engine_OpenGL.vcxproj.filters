@@ -21,6 +21,21 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{6d6d2659-a1c8-49ae-9e04-88cdb7e4f3d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{f435d504-014c-4c5f-bc65-2365c641d93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\RenderTarget">
+      <UniqueIdentifier>{11f0f81e-042b-416d-a62c-baabd5c76a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\ShaderObject">
+      <UniqueIdentifier>{2a74e530-2b19-4e70-ae25-ad5730de22f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Renderer">
+      <UniqueIdentifier>{68425b72-4fec-4116-9a28-952636716dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\MeshObject">
+      <UniqueIdentifier>{6482c2a0-7feb-4f06-8e73-82a4f7a1e1ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -45,7 +60,19 @@
       <Filter>Engine\Viewer</Filter>
     </ClInclude>
     <ClInclude Include="Headers\RenderTarget.h">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ShaderObject.h">
+      <Filter>Graphics\ShaderObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Renderer.h">
+      <Filter>Engine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\MeshObject.h">
+      <Filter>Objects\MeshObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +89,16 @@
       <Filter>Engine\Viewer</Filter>
     </ClCompile>
     <ClCompile Include="Sources\RenderTarget.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ShaderObject.cpp">
+      <Filter>Graphics\ShaderObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Renderer.cpp">
+      <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MeshObject.cpp">
+      <Filter>Objects\MeshObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

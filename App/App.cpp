@@ -96,7 +96,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	if (pEngine)
 	{
-		DELETE_INSTANCE(pEngine);
+		pEngine->Release();
 	}
 
 #ifdef _DEBUG
@@ -305,7 +305,7 @@ INT Run_OpenGL(IEngine* pEngine)
 
 		// Tick, Render, ...
 		bShouldClose = 
-			pEngine->Engine_Tick(bShouldClose, 0.2f);
+			pEngine->Engine_Tick(0.2f);
 
 		if (bShouldClose)
 			break;

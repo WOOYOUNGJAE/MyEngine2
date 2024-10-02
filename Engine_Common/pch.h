@@ -21,6 +21,9 @@
 
 #include <initguid.h>
 
+#include <combaseapi.h>
+
+
 // C RunTime Header Files
 #include <stdlib.h>
 #include <malloc.h>
