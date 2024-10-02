@@ -12,12 +12,18 @@
 
 // Engine Common
 #include "Engine_Common/pch.h"
-#include "Macros.h"
+#include "Engine_Common/Headers/Macros.h"
 
 // OpenGL
 #pragma comment(lib, "glfw3.lib")
 #include "Extlibs/glad/glad/glad.h"
 #include "glfw3.h"
+#include "Extlibs/glm/glm.hpp"
+
+
+// My
+#include "Engine_OpenGL/Headers/Macros.h"
+#include "Engine_OpenGL/Headers/Typedefs.h"
 
 #pragma comment(lib, "Engine_Common.lib")
 #endif //ENGINEOPENGLPCH_H

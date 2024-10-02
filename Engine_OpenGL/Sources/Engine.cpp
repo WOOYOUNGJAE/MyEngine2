@@ -2,6 +2,8 @@
 #include "Engine.h"
 #include "Viewer.h"
 
+IMPL_COM_FUNC(CEngine)
+
 CViewer* g_pViewer;
 void On_Resize_Window(GLFWwindow* pWindow, INT winX, INT winY);
 
@@ -19,7 +21,7 @@ CEngine::CEngine(IEngine::OpenGL identifier, UINT uiWinX, UINT uiWinY, const cha
     // Init GL
     if (!glfwInit())
     {
-        ERROR_MESSAGE("Init GLFW Failed");
+        ERROR_BOX("Init GLFW Failed");
         return;
     }
 
@@ -36,7 +38,7 @@ CEngine::CEngine(IEngine::OpenGL identifier, UINT uiWinX, UINT uiWinY, const cha
     // Init GLAD
     if (gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) == false)
     {
-        ERROR_MESSAGE("Init GLAD Failed");
+        ERROR_BOX("Init GLAD Failed");
         return;
     }
 
@@ -53,17 +55,20 @@ CEngine::~CEngine()
     DELETE_INSTANCE(m_pViewer);
 }
 
-INT CEngine::Engine_Tick(BOOL bShouldClose, FLOAT fDeltaTime)
+HRESULT CEngine::Initialize(void*)
 {
-    if (bShouldClose)
-    {
-        glfwTerminate();
-        return TRUE;
-    }
+    HRESULT hr = S_OK;
+
+
+    return hr;
+}
+
+INT CEngine::Engine_Tick(FLOAT fDeltaTime)
+{
 
     if (m_pViewer == nullptr)
     {
-        ERROR_MESSAGE("Viewer is Null");
+        ERROR_BOX("Viewer is Null");
         __debugbreak();
         return TRUE;
     }
@@ -82,4 +87,21 @@ INT CEngine::Engine_Tick(BOOL bShouldClose, FLOAT fDeltaTime)
     m_pViewer->EndRender(m_pWindow);
 
     return glfwWindowShouldClose(m_pWindow);
+}
+
+void CEngine::BeginRender()
+{
+}
+
+void CEngine::MainRender()
+{
+}
+
+void CEngine::EndRender()
+{
+}
+
+IMeshObject* CEngine::Create_EmptyColoredMesh(void* pData)
+{
+    return nullptr;
 }

@@ -21,14 +21,26 @@
 
 #include <initguid.h>
 
+#include <combaseapi.h>
+
+
 // C RunTime Header Files
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
 
+// STL
+#include <vector>
+#include <list>
+
 // Engine Common
 #include "Macros.h"
 
+// DirectX for Common
+#include <SimpleMath.h>
+#include <VertexTypes.h>
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
 
 #endif //ENGINECOMMON_PCH_H
