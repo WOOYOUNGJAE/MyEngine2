@@ -24,6 +24,8 @@ public:
 	void BeginRender() override;
 	void MainRender() override;
 	void EndRender() override;
+
+	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 private:
 	GLFWwindow* m_pWindow = nullptr;
 	CViewer* m_pViewer = nullptr;

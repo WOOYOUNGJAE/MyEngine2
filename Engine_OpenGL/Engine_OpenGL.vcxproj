@@ -173,12 +173,14 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\
     <ClInclude Include="Extlibs\glad\glad\glad.h" />
     <ClInclude Include="Extlibs\glad\KHR\khrplatform.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Headers\ColoredMesh.h" />
     <ClInclude Include="Headers\Engine.h" />
     <ClInclude Include="Headers\Macros.h" />
     <ClInclude Include="Headers\MeshObject.h" />
     <ClInclude Include="Headers\Renderer.h" />
     <ClInclude Include="Headers\RenderTarget.h" />
     <ClInclude Include="Headers\ShaderObject.h" />
+    <ClInclude Include="Headers\Typedefs.h" />
     <ClInclude Include="Headers\Viewer.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -193,6 +195,7 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Sources\ColoredMesh.cpp" />
     <ClCompile Include="Sources\Engine.cpp" />
     <ClCompile Include="Sources\MeshObject.cpp" />
     <ClCompile Include="Sources\Renderer.cpp" />
@@ -200,7 +203,17 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\
     <ClCompile Include="Sources\ShaderObject.cpp" />
     <ClCompile Include="Sources\Viewer.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets" Condition="Exists('..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets'))" />
+  </Target>
 </Project>

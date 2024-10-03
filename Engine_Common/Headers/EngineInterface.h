@@ -1,8 +1,13 @@
 #pragma once
 #include "Engine_Common/EngineConfig.h"
 
+interface ENGINECOMMON_DLL IVertex {};
+
+
 interface ENGINECOMMON_DLL IMeshObject : public IUnknown
 {
+	virtual void Begin_CreateMesh(void* pData = nullptr) = 0;
+	virtual void End_CreateMesh(void* pData = nullptr) = 0;
 };
 
 interface ENGINECOMMON_DLL IEngine : public IUnknown
@@ -16,4 +21,7 @@ interface ENGINECOMMON_DLL IEngine : public IUnknown
 	virtual void BeginRender() = 0;
 	virtual void MainRender() = 0;
 	virtual void EndRender() = 0;
+
+	// Create Mesh
+	virtual IMeshObject* Create_EmptyColoredMesh(void* pData = nullptr) = 0;
 };

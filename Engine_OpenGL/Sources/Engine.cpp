@@ -100,3 +100,8 @@ void CEngine::MainRender()
 void CEngine::EndRender()
 {
 }
+
+IMeshObject* CEngine::Create_EmptyColoredMesh(void* pData)
+{
+    return nullptr;
+}

@@ -36,6 +36,9 @@
     <Filter Include="Objects\MeshObject">
       <UniqueIdentifier>{6482c2a0-7feb-4f06-8e73-82a4f7a1e1ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\MeshObject\ColoredMesh">
+      <UniqueIdentifier>{458201e0-e2d1-44ba-9b2d-fb7c6be6ab43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -74,6 +77,12 @@
     <ClInclude Include="Headers\MeshObject.h">
       <Filter>Objects\MeshObject</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\ColoredMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -100,5 +109,11 @@
     <ClCompile Include="Sources\MeshObject.cpp">
       <Filter>Objects\MeshObject</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\ColoredMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

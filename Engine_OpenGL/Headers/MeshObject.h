@@ -12,12 +12,13 @@ public:
 	~CMeshObject() = default;
 public:
 	void Initialize(CRenderer* pRenderer);
-	
-private:
+	void Begin_CreateMesh(void* pData) override;
+	void End_CreateMesh(void* pData) override{};
+protected:
 	string m_strName = "";
 	GLuint m_VBO = 0;
 	GLuint m_VAO = 0;
 	CShaderObject* m_pShaderObj = nullptr;
-private: // pointer
+protected: // pointer
 	CRenderer* m_pRenderer = nullptr;
 };
