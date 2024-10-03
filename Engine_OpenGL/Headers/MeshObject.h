@@ -4,6 +4,10 @@
 class CShaderObject;
 class CRenderer;
 using std::string;
+
+/**
+ * @brief Inherit Based on Vertex Type
+ */
 class CMeshObject : public IMeshObject
 {
 	COM_IMPL
