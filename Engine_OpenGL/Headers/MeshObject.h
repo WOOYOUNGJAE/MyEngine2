@@ -1,6 +1,6 @@
 #pragma once
 #include "EngineInterface.h"
-
+#include "Engine_OpenGL/EngineConfig.h"
 class CShaderObject;
 class CRenderer;
 using std::string;
@@ -8,7 +8,7 @@ using std::string;
 /**
  * @brief Inherit Based on Vertex Type
  */
-class CMeshObject : public IMeshObject
+class ENGINEOPENGL_DLL CMeshObject : public IMeshObject
 {
 	COM_FUNC
 public:

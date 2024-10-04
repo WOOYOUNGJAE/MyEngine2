@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine_Common/EngineConfig.h"
+#include "EngineConfig.h"
 
 interface ENGINECOMMON_DLL IVertex {};
 

@@ -50,12 +50,6 @@
     <ClInclude Include="EngineConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Extlibs\glad\glad\glad.h">
-      <Filter>Extlibs</Filter>
-    </ClInclude>
-    <ClInclude Include="Extlibs\glad\KHR\khrplatform.h">
-      <Filter>Extlibs</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Engine.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -83,13 +77,16 @@
     <ClInclude Include="Headers\ColoredMesh.h">
       <Filter>Objects\MeshObject\ColoredMesh</Filter>
     </ClInclude>
+    <ClInclude Include="..\Extlibs\glad\KHR\khrplatform.h">
+      <Filter>Extlibs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extlibs\glad\glad.h">
+      <Filter>Extlibs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Extlibs\glad\glad.c">
-      <Filter>Extlibs</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Engine.cpp">
       <Filter>Engine</Filter>
