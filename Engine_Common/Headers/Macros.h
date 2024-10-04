@@ -9,7 +9,8 @@
 	}
 
 // IUnknown Interface
-#define COM_IMPL														\
+#define COM_FUNC														\
+public:																	\
 	HRESULT QueryInterface(const IID& riid, void** ppvObject) override; \
 	ULONG AddRef() override;											\
 	ULONG Release() override;											\
@@ -31,23 +32,6 @@ ULONG ClassName::Release()											\
 	if (!m_dwRefCount)												\
 		delete this;												\
 	return dwRef_count;												\
-}
-
-#define IMPL_COM_FUNC(ClassName)										 \
-HRESULT ClassName::QueryInterface(const IID& riid, void** ppvObject)\
-{																	\
-	return E_NOINTERFACE;											\
-}																	\
-ULONG ClassName::AddRef()											\
-{																	\
-	return ++m_dwRefCount;										\
-}\
-ULONG ClassName::Release()\
-{\
-	DWORD	dwRef_count = --m_dwRefCount;\
-	if (!m_dwRefCount)\
-		delete this;\
-	return dwRef_count;\
 }
 
 // Prevent Copy Constructor

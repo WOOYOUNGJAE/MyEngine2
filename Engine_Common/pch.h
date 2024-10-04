@@ -40,6 +40,7 @@
 // DirectX for Common
 #include <SimpleMath.h>
 #include <VertexTypes.h>
+#include <DirectXColors.h>
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 

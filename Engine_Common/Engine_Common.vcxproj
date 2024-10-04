@@ -164,6 +164,7 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\
     <ClInclude Include="Headers\Macros.h" />
     <ClInclude Include="Headers\EngineInterface.h" />
     <ClInclude Include="Headers\Defines.h" />
+    <ClInclude Include="Headers\PrimitiveGeomtryGenerator.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

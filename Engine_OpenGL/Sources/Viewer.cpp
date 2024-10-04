@@ -12,7 +12,7 @@ CViewer::~CViewer()
 
 void CViewer::BeginRender()
 {
-	glViewport(0, 0, (INT)m_uiWinX, (INT)m_uiWinY);
+	glViewport(0, 0, (UINT)m_uiWinX, (UINT)m_uiWinY);
 
 	glClearColor(37.f / 255.f, 37.f / 255.f, 38.f / 255.f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);

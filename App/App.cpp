@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "App.h"
 
+#include "Game.h"
 #include "Engine_OpenGL/Headers/Engine.h"
 #define MAX_LOADSTRING 100
 
@@ -52,6 +53,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	freopen_s(&stream_err, "CONOUT$", "w", stderr);
 
 	IEngine* pEngine = nullptr;
+	CGame* pGame = new CGame();
 
 	// Select Graphics Api
 	enum Graphics { DirectX12, OpenGL, Vulkan, Num };
@@ -64,39 +66,44 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	iGraphics = OpenGL;
 
 	UINT uiWinX = 1280, uiWinY = 720;
-	
+
+	char strTitle[MAX_LOADSTRING];
+	WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
+	pGame->Initialize(std::string(strTitle));
+	pGame->Run();
+
 
 	MSG msg; // For Window App
-	if (iGraphics == DirectX12)
-	{
-		// Perform application initialization:
-		g_hMainWindow = InitInstance(hInstance, nCmdShow);
-		if (!g_hMainWindow)
-		{
-			FreeConsole();
-			return FALSE;
-		}
+	//if (iGraphics == DirectX12)
+	//{
+	//	// Perform application initialization:
+	//	g_hMainWindow = InitInstance(hInstance, nCmdShow);
+	//	if (!g_hMainWindow)
+	//	{
+	//		FreeConsole();
+	//		return FALSE;
+	//	}
 
-		iRunResult = Run_DirectX12(msg);
-	}
-	else if (iGraphics == OpenGL)
-	{
-		char strTitle[MAX_LOADSTRING];
-		WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
-		strcat_s(strTitle, MAX_LOADSTRING, " - OpenGL");
-		pEngine = new CEngine(IEngine::OpenGL(), uiWinX, uiWinY, strTitle);
-		iRunResult = Run_OpenGL(pEngine);
-	}
-	else if (iGraphics >= Graphics::Num)
-	{
-		return FALSE;
-	}
+	//	iRunResult = Run_DirectX12(msg);
+	//}
+	//else if (iGraphics == OpenGL)
+	//{
+	//	char strTitle[MAX_LOADSTRING];
+	//	WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
+	//	strcat_s(strTitle, MAX_LOADSTRING, " - OpenGL");
+	//	pEngine = new CEngine(IEngine::OpenGL(), uiWinX, uiWinY, strTitle);
+	//	iRunResult = Run_OpenGL(pEngine);
+	//}
+	//else if (iGraphics >= Graphics::Num)
+	//{
+	//	return FALSE;
+	//}
 
 
 
-	if (pEngine)
+	if (pGame)
 	{
-		pEngine->Release();
+		pGame->Release();
 	}
 
 #ifdef _DEBUG

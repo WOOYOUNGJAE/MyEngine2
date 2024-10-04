@@ -10,7 +10,7 @@ struct GLFWwindow;
  */
 class ENGINEOPENGL_DLL CEngine final : public IEngine
 {
-	COM_IMPL
+	COM_FUNC
 public:
 	CEngine() = delete;
 	CEngine(IEngine::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle);
@@ -24,7 +24,7 @@ public:
 	void BeginRender() override;
 	void MainRender() override;
 	void EndRender() override;
-
+	
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 private:
 	GLFWwindow* m_pWindow = nullptr;

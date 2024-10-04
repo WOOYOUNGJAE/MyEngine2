@@ -63,7 +63,7 @@ HRESULT CEngine::Initialize(void*)
     return hr;
 }
 
-INT CEngine::Engine_Tick(FLOAT fDeltaTime)
+int32 CEngine::Engine_Tick(FLOAT fDeltaTime)
 {
 
     if (m_pViewer == nullptr)

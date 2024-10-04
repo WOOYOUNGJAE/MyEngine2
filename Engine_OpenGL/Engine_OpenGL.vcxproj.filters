@@ -77,11 +77,11 @@
     <ClInclude Include="Headers\MeshObject.h">
       <Filter>Objects\MeshObject</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\ColoredMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Typedefs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ColoredMesh.h">
+      <Filter>Objects\MeshObject\ColoredMesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +110,7 @@
       <Filter>Objects\MeshObject</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ColoredMesh.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Objects\MeshObject\ColoredMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

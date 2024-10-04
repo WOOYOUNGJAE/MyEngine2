@@ -10,7 +10,7 @@ using std::string;
  */
 class CMeshObject : public IMeshObject
 {
-	COM_IMPL
+	COM_FUNC
 public:
 	CMeshObject() = default;
 	~CMeshObject() = default;
@@ -22,7 +22,10 @@ protected:
 	string m_strName = "";
 	GLuint m_VBO = 0;
 	GLuint m_VAO = 0;
+	GLuint m_EBO = 0;
 	CShaderObject* m_pShaderObj = nullptr;
+protected: // Vertex Info
+	GLsizei m_iVertexStride = 0;
 protected: // pointer
 	CRenderer* m_pRenderer = nullptr;
 };
