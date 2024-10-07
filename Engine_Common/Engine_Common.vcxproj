@@ -163,7 +163,6 @@ xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine_OpenGL\Sources\pch.cpp" />
     <ClCompile Include="Sources\EngineInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
