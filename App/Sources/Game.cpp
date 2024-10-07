@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Game.h"
 
-#include "Engine_OpenGL/Headers/Engine.h"
-#include "Engine_Common/Headers/PrimitiveGeomtryGenerator.h"
+#include "Engine_OpenGL/Includes/Engine.h"
+#include "Engine_Common/Includes/PrimitiveGeomtryGenerator.h"
 
 IMPL_COM_FUNC(CGame)
 

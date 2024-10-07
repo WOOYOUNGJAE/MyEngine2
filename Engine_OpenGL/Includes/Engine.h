@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine_OpenGL/EngineConfig.h"
+#include "EngineConfig.h"
 #include "EngineInterface.h"
 #include "Viewer.h"
 

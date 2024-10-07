@@ -1,6 +1,6 @@
 #pragma once
 #include "EngineInterface.h"
-#include "Engine_OpenGL/EngineConfig.h"
+#include "EngineConfig.h"
 class CShaderObject;
 class CRenderer;
 using std::string;

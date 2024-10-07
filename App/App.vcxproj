@@ -116,12 +116,13 @@
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\Engine_Common/Headers\;$(SolutionDir)\Engine_OpenGL/Headers\;$(ProjectDir);$(ProjectDir)Headers\;../Engine_DX12/Headers\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)Libs\;$(SolutionDir)Libs\Engine_Common\Includes\;$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\;$(SolutionDir)Libs\Engine_OpenGL\Includes\;$(SolutionDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Engine_Common\bin\output\$(Platform)\$(Configuration);$(SolutionDir)Engine_OpenGL\bin\output\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Engine_Common\bin\;$(SolutionDir)Libs\Engine_OpenGL\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Engine_Common_$(Platform)_$(Configuration).lib;Engine_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,40 +135,17 @@
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\Engine_Common/Headers\;$(SolutionDir)\Engine_OpenGL/Headers\;$(ProjectDir);$(ProjectDir)Headers\;../Engine_DX12/Headers\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)Libs\;$(SolutionDir)Libs\Engine_Common\Includes\;$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\;$(SolutionDir)Libs\Engine_OpenGL\Includes\;$(SolutionDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Engine_Common\bin\output\$(Platform)\$(Configuration);$(SolutionDir)Engine_OpenGL\bin\output\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Engine_Common\bin\;$(SolutionDir)Libs\Engine_OpenGL\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Engine_Common_$(Platform)_$(Configuration).lib;Engine_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="App.h" />
-    <ClInclude Include="Headers\Game.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="Headers\GameObject.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Sources\Game.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Sources\GameObject.cpp" />
-  </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="App.rc" />
   </ItemGroup>
@@ -177,6 +155,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\App.cpp" />
+    <ClCompile Include="Sources\Game.cpp" />
+    <ClCompile Include="Sources\GameObject.cpp" />
+    <ClCompile Include="Sources\pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Includes\App.h" />
+    <ClInclude Include="Includes\Game.h" />
+    <ClInclude Include="Includes\GameObject.h" />
+    <ClInclude Include="Includes\pch.h" />
+    <ClInclude Include="Includes\Resource.h" />
+    <ClInclude Include="Includes\targetver.h" />
+    <ClInclude Include="Resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

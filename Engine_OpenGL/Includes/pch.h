@@ -11,22 +11,22 @@
 #include "framework.h"
 
 // Engine Common
-#include "Engine_Common/Headers/pch.h"
-#include "Engine_Common/Headers/Macros.h"
+#include "Engine_Common/Includes/pch.h"
+#include "Engine_Common/Includes/Macros.h"
 
 // OpenGL
-#pragma comment(lib, "../Extlibs/GLFW/glfw3.lib")
-#include "Extlibs/glad/glad.h"
-#include "Extlibs/GLFW/glfw3.h"
-#include "Extlibs/glm/glm.hpp"
+//#pragma comment(lib, "../Libs/GLFW/glfw3.lib")
+#include "Libs/glad/glad.h"
+#include "Libs/GLFW/glfw3.h"
+#include "Libs/glm/glm.hpp"
 
 
 // My
-#include "Engine_OpenGL/Headers/Macros.h"
-#include "Engine_OpenGL/Headers/Typedefs.h"
+#include "Engine_OpenGL/Includes/Macros.h"
+#include "Engine_OpenGL/Includes/Typedefs.h"
 
 // My
-#include "Engine_OpenGL/Headers/Macros.h"lp
+#include "Engine_OpenGL/Includes/Macros.h"
 
-#pragma comment(lib, "../Engine_Common.lib")
+#pragma comment(lib, "Engine_Common_x64_Debug.lib")
 #endif //ENGINEOPENGLPCH_H

@@ -74,11 +74,14 @@
     <OutDir>$(ProjectDir)bin\output\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(ProjectDir)Extlibs\;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+    <LinkIncremental />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\output\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(ProjectDir)Extlibs\;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -120,25 +123,24 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;ENGINEOPENGL_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir);$(SolutionDir)Engine_Common\Headers\;$(ProjectDir)Extlibs\GLFW\;./Headers/;$(ProjectDir)Extlibs\glad\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir);$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\;$(SolutionDir)Libs\Engine_Common\Includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\GLFW\glfw3.lib;.\Engine_Common\bin\Engine_Common_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /y "$(OutDir)$(TargetName).bin" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,9 +151,9 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platfor
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;ENGINEOPENGL_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir);$(SolutionDir)Engine_Common\Headers\;$(ProjectDir)Extlibs\GLFW\;./Headers/;$(ProjectDir)Extlibs\glad\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir);$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\;$(SolutionDir)Libs\Engine_Common\Includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -159,40 +161,36 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platfor
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)Engine_Common\bin\output\$(Platform)\$(Configuration)\;$(ProjectDir)Extlibs\GLFW\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\GLFW\glfw3.lib;.\Engine_Common\bin\Engine_Common_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /y "$(OutDir)$(TargetName).bin" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Extlibs\glad\glad.h" />
-    <ClInclude Include="..\Extlibs\glad\KHR\khrplatform.h" />
-    <ClInclude Include="EngineConfig.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="Headers\ColoredMesh.h" />
-    <ClInclude Include="Headers\Engine.h" />
-    <ClInclude Include="Headers\Macros.h" />
-    <ClInclude Include="Headers\MeshObject.h" />
-    <ClInclude Include="Headers\Renderer.h" />
-    <ClInclude Include="Headers\RenderTarget.h" />
-    <ClInclude Include="Headers\ShaderObject.h" />
-    <ClInclude Include="Headers\Typedefs.h" />
-    <ClInclude Include="Headers\Viewer.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="Includes\ColoredMesh.h" />
+    <ClInclude Include="Includes\Engine.h" />
+    <ClInclude Include="Includes\EngineConfig.h" />
+    <ClInclude Include="Includes\framework.h" />
+    <ClInclude Include="Includes\Macros.h" />
+    <ClInclude Include="Includes\MeshObject.h" />
+    <ClInclude Include="Includes\pch.h" />
+    <ClInclude Include="Includes\Renderer.h" />
+    <ClInclude Include="Includes\RenderTarget.h" />
+    <ClInclude Include="Includes\ShaderObject.h" />
+    <ClInclude Include="Includes\Typedefs.h" />
+    <ClInclude Include="Includes\Viewer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    <ClCompile Include="..\Libs\glad\glad.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Sources\ColoredMesh.cpp" />
     <ClCompile Include="Sources\Engine.cpp" />

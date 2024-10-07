@@ -73,10 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)bin\output\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\output\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -120,7 +122,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Headers\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Includes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,10 +131,9 @@
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /y "$(OutDir)$(TargetName).bin" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,9 +145,8 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platfor
       <PreprocessorDefinitions>NDEBUG;ENGINECOMMON_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>../Headers/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Includes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,26 +157,26 @@ xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platfor
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)App\bin\output\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"
-xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)DLL\$(TargetName)\$(Platform)\$(Configuration)\"</Command>
+      <Command>xcopy /y "$(OutDir)$(TargetName).bin" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)Libs\$(ProjectName)\bin\"
+xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\EngineConfig.h" />
-    <ClInclude Include="Headers\framework.h" />
-    <ClInclude Include="Headers\Macros.h" />
-    <ClInclude Include="Headers\EngineInterface.h" />
-    <ClInclude Include="Headers\Defines.h" />
-    <ClInclude Include="Headers\pch.h" />
-    <ClInclude Include="Headers\PrimitiveGeomtryGenerator.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="..\Engine_OpenGL\Sources\pch.cpp" />
     <ClCompile Include="Sources\EngineInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Includes\Defines.h" />
+    <ClInclude Include="Includes\EngineConfig.h" />
+    <ClInclude Include="Includes\EngineInterface.h" />
+    <ClInclude Include="Includes\framework.h" />
+    <ClInclude Include="Includes\Macros.h" />
+    <ClInclude Include="Includes\pch.h" />
+    <ClInclude Include="Includes\PrimitiveGeomtryGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

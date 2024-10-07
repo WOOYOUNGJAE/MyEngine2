@@ -41,53 +41,44 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="Includes\ColoredMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Includes\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineConfig.h">
+    <ClInclude Include="Includes\EngineConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Engine.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Viewer.h">
-      <Filter>Engine\Viewer</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\RenderTarget.h">
-      <Filter>Graphics\RenderTarget</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ShaderObject.h">
-      <Filter>Graphics\ShaderObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Macros.h">
+    <ClInclude Include="Includes\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Renderer.h">
-      <Filter>Engine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MeshObject.h">
-      <Filter>Objects\MeshObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Typedefs.h">
+    <ClInclude Include="Includes\Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\ColoredMesh.h">
-      <Filter>Objects\MeshObject\ColoredMesh</Filter>
+    <ClInclude Include="Includes\MeshObject.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extlibs\glad\KHR\khrplatform.h">
-      <Filter>Extlibs</Filter>
+    <ClInclude Include="Includes\pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extlibs\glad\glad.h">
-      <Filter>Extlibs</Filter>
+    <ClInclude Include="Includes\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\RenderTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\ShaderObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Viewer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -108,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="Sources\ColoredMesh.cpp">
       <Filter>Objects\MeshObject\ColoredMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Libs\glad\glad.c">
+      <Filter>Extlibs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
