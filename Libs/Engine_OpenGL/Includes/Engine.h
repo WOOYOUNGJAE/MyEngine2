@@ -25,9 +25,13 @@ public:
 	void MainRender() override;
 	void EndRender() override;
 
+	// getter
+	IRenderer* Get_Renderer() override;
+
 	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 private:
 	GLFWwindow* m_pWindow = nullptr;
 	CViewer* m_pViewer = nullptr;
+	IRenderer* m_pRenderer = nullptr;
 };

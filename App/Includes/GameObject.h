@@ -1,20 +1,24 @@
 #pragma once
 
 interface IMeshObject;
+interface IRenderMachine;
+interface IRenderer;
+class CGame;
 class CGameObject : public IUnknown
 {
 	COM_FUNC
 public:
 	CGameObject() = default;
-	~CGameObject() = default;
+	virtual ~CGameObject() = default;
 
 public:
-	HRESULT Initialize();
-	void Tick(FLOAT fDeltaTime);
-	void Late_Tick(FLOAT fDeltaTime);
-	void Render();
+	virtual void Initialize(CGame* pGame) = 0;
+	virtual void Tick(FLOAT fDeltaTime) = 0;
+	virtual void Late_Tick(FLOAT fDeltaTime) = 0;
+	virtual void Render() = 0;
 
-private:
+protected: // Pointer
 	IMeshObject* m_pMeshObj = nullptr;
+	IRenderMachine* m_pRenderMachine = nullptr;
 };
 

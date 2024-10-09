@@ -4,7 +4,7 @@
 #include "App.h"
 
 #include "Game.h"
-#include "Engine_OpenGL/Includes/Engine.h"
+#include "Renderer_OpenGL/Includes/Renderer.h"
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -52,7 +52,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	freopen_s(&stream_err, "CONOUT$", "w", stderr);
 
 
-	IEngine* pEngine = nullptr;
+	IRenderer* pRenderer = nullptr;
 	CGame* pGame = new CGame();
 
 	// Select Graphics Api
@@ -91,8 +91,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//	char strTitle[MAX_LOADSTRING];
 	//	WideCharToMultiByte(CP_UTF8, 0, szTitle, -1, strTitle, MAX_LOADSTRING, NULL, NULL);
 	//	strcat_s(strTitle, MAX_LOADSTRING, " - OpenGL");
-	//	pEngine = new CEngine(IEngine::OpenGL(), uiWinX, uiWinY, strTitle);
-	//	iRunResult = Run_OpenGL(pEngine);
+	//	pRenderer = new CRenderer(IRenderer::OpenGL(), uiWinX, uiWinY, strTitle);
+	//	iRunResult = Run_OpenGL(pRenderer);
 	//}
 	//else if (iGraphics >= Graphics::Num)
 	//{
@@ -123,17 +123,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 void RunGame()
 {
 	//// begin
-	//g_pRenderer->BeginRender();
+	//g_pRenderMachine->BeginRender();
 
 	//// game business logic
 
 	//// rendering objects
 
 	//// end
-	//g_pRenderer->EndRender();
+	//g_pRenderMachine->EndRender();
 
 	//// Present
-	//g_pRenderer->Present();
+	//g_pRenderMachine->Present();
 
 }
 
@@ -274,8 +274,8 @@ INT Run_DirectX12(MSG& msg)
 
 	//HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDI_APP));
 
-	/*g_pRenderer = new CD3D12Renderer;
-	g_pRenderer->Initialize(g_hMainWindow, TRUE, TRUE);*/
+	/*g_pRenderMachine = new CD3D12RenderMachine;
+	g_pRenderMachine->Initialize(g_hMainWindow, TRUE, TRUE);*/
 
 	// Main message loop:
 	while (true)
@@ -297,22 +297,22 @@ INT Run_DirectX12(MSG& msg)
 		}
 		else
 		{
-			//pEngine->Engine_Tick();
+			//pRenderer->Renderer_Tick();
 		}
 	}
 	return TRUE;
 }
 
-INT Run_OpenGL(IEngine* pEngine)
+INT Run_OpenGL(IRenderer* pRenderer)
 {
-	BOOL bShouldClose = FALSE; // Result of Prev EngineTick
+	BOOL bShouldClose = FALSE; // Result of Prev RendererTick
 	while (true)
 	{
 		// Some Acting Change ShouldClose
 
 		// Tick, Render, ...
 		bShouldClose = 
-			pEngine->Engine_Tick(0.2f);
+			pRenderer->Renderer_Tick(0.2f);
 
 		if (bShouldClose)
 			break;

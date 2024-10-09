@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine_Common/Includes/EngineInterface.h"
 #include "EngineConfig.h"
+
 class CShaderObject;
 class CRenderer;
 using std::string;
@@ -18,8 +19,12 @@ public:
 	void Initialize(CRenderer* pRenderer);
 	void Begin_CreateMesh(void* pData) override;
 	void End_CreateMesh(void* pData) override;
+public: // getter
+	GLuint VBO() { return m_VBO; }
+	GLuint VAO() { return m_VAO; }
+	GLuint EBO() { return m_EBO; }
 protected:
-	string m_strName = "";
+	string m_strName;
 	GLuint m_VBO = 0;
 	GLuint m_VAO = 0;
 	GLuint m_EBO = 0;

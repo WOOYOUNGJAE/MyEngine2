@@ -1,6 +1,9 @@
 #pragma once
 
-struct IEngine;
+interface IRenderer;
+interface IRenderMachine;
+class CGameObject;
+
 class CGame : public IUnknown
 {
 	COM_FUNC
@@ -11,7 +14,10 @@ public:
 	HRESULT Initialize(std::string& strTitle);
 	void Run();
 
+public:
+	IRenderer* m_pRenderer = nullptr;
+	IRenderMachine* m_pRenderMachine = nullptr;
 private:
-	IEngine* m_pEngine = nullptr;
+	std::list<CGameObject*> m_GameObjList;
 };
 

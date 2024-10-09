@@ -1,18 +1,20 @@
 #include "pch.h"
 #include "Game.h"
 
-#include "Engine_OpenGL/Includes/Engine.h"
-#include "Engine_Common/Includes/PrimitiveGeomtryGenerator.h"
-#include "Engine_Common/Includes/Structs.h"
+#include "Renderer_OpenGL/Includes/Renderer.h"
+#include "Renderer_Common/Includes/PrimitiveGeomtryGenerator.h"
+#include "Renderer_Common/Includes/Structs.h"
+#include "TestGameObj.h"
 
 IMPL_COM_FUNC(CGame)
-
+CTestGameObj* pTestObj;
 CGame::~CGame()
 {
-	if (m_pEngine)
+	for (auto& iterGameObj : m_GameObjList)
 	{
-		m_pEngine->Release();
+		RELEASE_INSTANCE(iterGameObj);
 	}
+	RELEASE_INSTANCE(m_pRenderer);
 }
 
 HRESULT CGame::Initialize(std::string& strTitle)
@@ -35,7 +37,7 @@ HRESULT CGame::Initialize(std::string& strTitle)
 	if (iGraphics == OpenGL)
 	{
 		strTitle += " - OpenGL";
-		m_pEngine = new CEngine(IEngine::OpenGL(), uiWinX, uiWinY, strTitle.c_str());
+		m_pRenderer = new CRenderer(IRenderer::OpenGL(), uiWinX, uiWinY, strTitle.c_str());
 	}
 	else if (iGraphics >= Graphics::Num)
 	{
@@ -44,43 +46,52 @@ HRESULT CGame::Initialize(std::string& strTitle)
 
 
 	// Init Scene (Temp)
-	IMeshObject* pCubeMeshObj = m_pEngine->Create_EmptyBasicMesh(); // Empty
+	pTestObj = new CTestGameObj();
+	pTestObj->Initialize(this);
+	m_GameObjList.push_back(pTestObj);
 
-	using namespace Engine_Common;
+#pragma region MyRegion0
+	IMeshObject* pCubeMeshObj = m_pRenderer->Create_EmptyBasicMesh(); // Empty
+
+	using namespace Renderer_Common;
 	CREATE_MESHES_DESC createMeshDescInstance{};
 	MESH_DESC_BASIC* basicMeshDescArr = new MESH_DESC_BASIC[1];
 	::Fill_BasicMesh_Cube(basicMeshDescArr[0]);
-	
+
 	createMeshDescInstance.pBasicMeshDataArrPtr = &basicMeshDescArr;
 	createMeshDescInstance.uiNumBasicMeshData = 1;
 
-	pCubeMeshObj->Begin_CreateMesh(&createMeshDescInstance); // TODO: pBasicMeshDescArr[0] is ??, 1 is 1
+	pCubeMeshObj->Begin_CreateMesh(&createMeshDescInstance);
+	pCubeMeshObj->End_CreateMesh();
 
-	//if (createMeshDescInstance.pBasicMeshDataArr)
-	//{								
-	//	delete[] createMeshDescInstance.pBasicMeshDataArr;
-	//	createMeshDescInstance.pBasicMeshDataArr = nullptr;
-	//}
 
 	DELETE_ARRAY(basicMeshDescArr)
-	DELETE_INSTANCE(pCubeMeshObj); // TODO TEMP
+		DELETE_INSTANCE(pCubeMeshObj); // TODO TEMP  
+#pragma endregion
+
+
 
 	return hr;
 }
 
 void CGame::Run()
 {
-	BOOL bShouldClose = FALSE; // Result of Prev EngineTick
+	BOOL bShouldClose = FALSE; // Result of Prev RendererTick
 
 	while (true)
 	{
 		// Some Acting Change ShouldClose
 
-		// Tick, Render, ...
-		bShouldClose =
-			m_pEngine->Engine_Tick(0.2f);
+		m_pRenderer->BeginRender();
 
+		// Tick, Render, ...
+
+
+		bShouldClose =
+			m_pRenderer->Renderer_Tick(0.2f);
 		if (bShouldClose)
 			break;
+
+		m_pRenderer->EndRender();
 	}
 }

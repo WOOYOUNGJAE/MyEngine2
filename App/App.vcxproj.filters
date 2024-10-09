@@ -19,6 +19,9 @@
     <Filter Include="Game\GameObject">
       <UniqueIdentifier>{5d0ab45d-ee55-48eb-a673-95d08d1ef97a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\GameObject\Test">
+      <UniqueIdentifier>{025a47ac-c722-4622-9939-8958f582a1d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="App.rc">
@@ -43,11 +46,14 @@
     <ClCompile Include="Sources\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\pch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameObject.cpp">
+      <Filter>Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TestGameObj.cpp">
+      <Filter>Game\GameObject\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,9 +61,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\pch.h">
@@ -71,6 +74,12 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObject.h">
+      <Filter>Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\TestGameObj.h">
+      <Filter>Game\GameObject\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

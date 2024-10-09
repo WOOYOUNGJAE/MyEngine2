@@ -8,14 +8,29 @@ interface ENGINECOMMON_DLL IMeshObject : public IUnknown
 {
 	IMeshObject() = default;
 	virtual ~IMeshObject() = default;
+
 	virtual void Begin_CreateMesh(void* pData = nullptr) = 0;
 	virtual void End_CreateMesh(void* pData = nullptr) = 0;
+};
+
+interface ENGINECOMMON_DLL IRenderer : public IUnknown
+{
+	IRenderer() = default;
+	virtual ~IRenderer() = default;
+
+	// Render Func
+	virtual void BeginRender() = 0;
+	virtual void Render_MeshObject(IMeshObject* pMeshObj) = 0;
+	virtual void EndRender() = 0;
 };
 
 interface ENGINECOMMON_DLL IEngine : public IUnknown
 {
 	class OpenGL {};
 	class DirectX12 {};
+
+	// getter
+	virtual IRenderer* Get_Renderer() = 0;
 
 	virtual HRESULT Initialize(void*) = 0;
 	virtual INT Engine_Tick(FLOAT fDeltaTime = 0.2f) = 0;
