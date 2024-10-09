@@ -6,6 +6,8 @@ interface ENGINECOMMON_DLL IVertex {};
 
 interface ENGINECOMMON_DLL IMeshObject : public IUnknown
 {
+	IMeshObject() = default;
+	virtual ~IMeshObject() = default;
 	virtual void Begin_CreateMesh(void* pData = nullptr) = 0;
 	virtual void End_CreateMesh(void* pData = nullptr) = 0;
 };
@@ -22,6 +24,7 @@ interface ENGINECOMMON_DLL IEngine : public IUnknown
 	virtual void MainRender() = 0;
 	virtual void EndRender() = 0;
 
-	// Create Mesh
-	virtual IMeshObject* Create_EmptyColoredMesh(void* pData = nullptr) = 0;
+	// Create Only Empty Mesh, Mesh Calls Actual Init Itself.
+	virtual IMeshObject* Create_EmptyColoredMesh(void* pData = nullptr) = 0; // TODO: delete
+	virtual IMeshObject* Create_EmptyBasicMesh(void* pData = nullptr) = 0;
 };

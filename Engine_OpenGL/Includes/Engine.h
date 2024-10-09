@@ -1,6 +1,6 @@
 #pragma once
 #include "EngineConfig.h"
-#include "EngineInterface.h"
+#include "Engine_Common/Includes/EngineInterface.h"
 #include "Viewer.h"
 
 class CViewer;
@@ -24,7 +24,8 @@ public:
 	void BeginRender() override;
 	void MainRender() override;
 	void EndRender() override;
-	
+
+	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 private:
 	GLFWwindow* m_pWindow = nullptr;

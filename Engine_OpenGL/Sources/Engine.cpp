@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Engine.h"
+
+#include "BasicMesh.h"
 #include "Viewer.h"
 
 IMPL_COM_FUNC(CEngine)
@@ -99,6 +101,11 @@ void CEngine::MainRender()
 
 void CEngine::EndRender()
 {
+}
+
+IMeshObject* CEngine::Create_EmptyBasicMesh(void* pData)
+{
+    return new CBasicMesh;
 }
 
 IMeshObject* CEngine::Create_EmptyColoredMesh(void* pData)

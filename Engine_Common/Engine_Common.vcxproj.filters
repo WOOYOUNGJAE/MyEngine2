@@ -19,7 +19,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\Defines.h">
+    <ClInclude Include="Includes\Structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\EngineConfig.h">

@@ -77,6 +77,12 @@
     <ClInclude Include="Includes\Viewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\BasicMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Util_Funcs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Engine.cpp">
@@ -102,6 +108,12 @@
     </ClCompile>
     <ClCompile Include="..\Libs\glad\glad.c">
       <Filter>Extlibs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BasicMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Util_Funcs.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

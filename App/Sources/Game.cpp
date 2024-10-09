@@ -3,6 +3,7 @@
 
 #include "Engine_OpenGL/Includes/Engine.h"
 #include "Engine_Common/Includes/PrimitiveGeomtryGenerator.h"
+#include "Engine_Common/Includes/Structs.h"
 
 IMPL_COM_FUNC(CGame)
 
@@ -43,8 +44,26 @@ HRESULT CGame::Initialize(std::string& strTitle)
 
 
 	// Init Scene (Temp)
-	auto cubeVertexArr = Cube_Vertices();
-	m_pEngine->Create_EmptyColoredMesh();
+	IMeshObject* pCubeMeshObj = m_pEngine->Create_EmptyBasicMesh(); // Empty
+
+	using namespace Engine_Common;
+	CREATE_MESHES_DESC createMeshDescInstance{};
+	MESH_DESC_BASIC* basicMeshDescArr = new MESH_DESC_BASIC[1];
+	::Fill_BasicMesh_Cube(basicMeshDescArr[0]);
+	
+	createMeshDescInstance.pBasicMeshDataArrPtr = &basicMeshDescArr;
+	createMeshDescInstance.uiNumBasicMeshData = 1;
+
+	pCubeMeshObj->Begin_CreateMesh(&createMeshDescInstance); // TODO: pBasicMeshDescArr[0] is ??, 1 is 1
+
+	//if (createMeshDescInstance.pBasicMeshDataArr)
+	//{								
+	//	delete[] createMeshDescInstance.pBasicMeshDataArr;
+	//	createMeshDescInstance.pBasicMeshDataArr = nullptr;
+	//}
+
+	DELETE_ARRAY(basicMeshDescArr)
+	DELETE_INSTANCE(pCubeMeshObj); // TODO TEMP
 
 	return hr;
 }

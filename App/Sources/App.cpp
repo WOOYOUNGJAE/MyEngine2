@@ -12,7 +12,6 @@ HINSTANCE hInst = nullptr;                                // current instance
 HWND g_hMainWindow = nullptr;
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
-
 void RunGame();
 
 // Forward declarations of functions included in this code module:
@@ -51,6 +50,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	freopen_s(&stream_in, "CONIN$", "r", stdin);
 	freopen_s(&stream_out, "CONOUT$", "w", stdout);
 	freopen_s(&stream_err, "CONOUT$", "w", stderr);
+
 
 	IEngine* pEngine = nullptr;
 	CGame* pGame = new CGame();

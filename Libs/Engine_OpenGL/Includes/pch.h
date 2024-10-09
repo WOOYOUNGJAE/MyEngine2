@@ -28,5 +28,5 @@
 // My
 #include "Engine_OpenGL/Includes/Macros.h"
 
-#pragma comment(lib, "Engine_Common_x64_Debug.lib")
+//#pragma comment(lib, "Engine_Common_x64_Debug.lib")
 #endif //ENGINEOPENGLPCH_H

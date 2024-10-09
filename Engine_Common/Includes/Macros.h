@@ -7,6 +7,12 @@
 		delete (pInstance);			\
 		(pInstance) = nullptr;		\
 	}
+#define DELETE_ARRAY(array)  \
+	if (array)					\
+	{								\
+		delete[] (array);			\
+		(array) = nullptr;		\
+	}
 
 // IUnknown Interface
 #define COM_FUNC														\

@@ -9,14 +9,15 @@ typedef std::vector<glm::vec2> TEXCOORDS;
 
 namespace GL
 {
+	interface VertexType{};
 	using namespace glm;
-	struct VertexPositionNormalColor
+	struct VertexPositionNormalColor : public VertexType
 	{
 		vec3 position;
 		vec3 normal;
 		vec4 color;
 	};
-	struct VertexPositionNormalColorTexture
+	struct VertexPositionNormalColorTexture : public VertexType
 	{
 		vec3 position;
 		vec3 normal;

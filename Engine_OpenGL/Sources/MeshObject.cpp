@@ -5,6 +5,13 @@
 
 IMPL_COM_FUNC(CMeshObject)
 
+CMeshObject::~CMeshObject()
+{
+	DELETE_GL_BUFFER_OBJECT(m_EBO);
+	DELETE_GL_VERTEX_ARRAY(m_VAO);
+	DELETE_GL_BUFFER_OBJECT(m_VBO);
+}
+
 void CMeshObject::Begin_CreateMesh(void* pData)
 {
 	// 삼각형 개수, 버텍스 타입, 인덱스 어레이, 
@@ -13,4 +20,9 @@ void CMeshObject::Begin_CreateMesh(void* pData)
 		
 
 	};
+}
+
+void CMeshObject::End_CreateMesh(void* pData)
+{
+	glBindVertexArray(0); // Unbind VAO
 }
