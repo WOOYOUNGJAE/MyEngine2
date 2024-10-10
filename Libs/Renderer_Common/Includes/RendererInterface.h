@@ -34,10 +34,9 @@ interface RENDERERCOMMON_DLL IRenderer : public IUnknown
 	//virtual IRenderMachine* Get_RenderMachine() = 0;
 
 	virtual HRESULT Initialize(void*) = 0;
-	virtual INT Renderer_Tick(FLOAT fDeltaTime = 0.2f) = 0;
+	virtual INT MainRender(FLOAT fDeltaTime = 0.2f) = 0;
 	// Render Func
 	virtual void BeginRender() = 0;
-	virtual void MainRender() = 0;
 	virtual void Render_MeshObject(IMeshObject* pMeshObj) = 0;
 	virtual void EndRender() = 0;
 

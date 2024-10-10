@@ -20,9 +20,8 @@ public:
 	/**
 	 * @return If WindowShouldClose
 	 */
-	INT Renderer_Tick(FLOAT fDeltaTime) override;
+	INT MainRender(FLOAT fDeltaTime) override;
 	void BeginRender() override;
-	void MainRender() override;
 	void Render_MeshObject(IMeshObject* pMeshObj) override;
 	void EndRender() override;
 

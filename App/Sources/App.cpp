@@ -297,7 +297,7 @@ INT Run_DirectX12(MSG& msg)
 		}
 		else
 		{
-			//pRenderer->Renderer_Tick();
+			//pRenderer->MainRender();
 		}
 	}
 	return TRUE;
@@ -312,7 +312,7 @@ INT Run_OpenGL(IRenderer* pRenderer)
 
 		// Tick, Render, ...
 		bShouldClose = 
-			pRenderer->Renderer_Tick(0.2f);
+			pRenderer->MainRender(0.2f);
 
 		if (bShouldClose)
 			break;

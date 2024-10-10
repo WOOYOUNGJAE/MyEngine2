@@ -65,34 +65,29 @@ HRESULT CRenderer::Initialize(void*)
     return hr;
 }
 
-int32 CRenderer::Renderer_Tick(FLOAT fDeltaTime)
+int32 CRenderer::MainRender(FLOAT fDeltaTime)
 {
 
     if (m_pViewer == nullptr)
     {
         ERROR_BOX("Viewer is Null");
         __debugbreak();
-        return TRUE;
+        return FALSE;
     }
     if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
-        glfwSetWindowShouldClose(m_pWindow, true);
+        glfwSetWindowShouldClose(m_pWindow, TRUE);
         glfwTerminate();
-        return TRUE;
+        return FALSE;
     }
 
 
     glfwPollEvents();
 
-    return glfwWindowShouldClose(m_pWindow);
+    return !glfwWindowShouldClose(m_pWindow);
 }
 
 void CRenderer::BeginRender()
-{
-    m_pViewer->BeginRender();
-}
-
-void CRenderer::MainRender()
 {
     m_pViewer->BeginRender();
 }

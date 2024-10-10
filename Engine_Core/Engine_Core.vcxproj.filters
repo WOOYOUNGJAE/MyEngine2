@@ -16,6 +16,15 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{b914d283-1c02-44c7-a962-621f28f7793e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{b9b58407-fddc-4be8-9295-b35a06188779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\GameObject">
+      <UniqueIdentifier>{9328aedd-c60c-4c7a-8f8a-b7244f8e8b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine_Core">
+      <UniqueIdentifier>{4c53069d-3c6f-405c-8792-237ed6ef6fe7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\dllmain.cpp">
@@ -26,6 +35,12 @@
     </ClCompile>
     <ClCompile Include="Sources\GameObject.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameObjectManager.cpp">
+      <Filter>Managers\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Engine_Core.cpp">
+      <Filter>Engine_Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +54,15 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Includes\EngineConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjectManager.h">
+      <Filter>Managers\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Engine_Core.h">
+      <Filter>Engine_Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

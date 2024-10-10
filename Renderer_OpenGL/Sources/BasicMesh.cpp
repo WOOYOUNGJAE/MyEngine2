@@ -6,6 +6,7 @@
 
 CBasicMesh::CBasicMesh()
 {
+	m_iVertexStride = sizeof(GL::VertexPositionNormalColorTexture);
 }
 
 void CBasicMesh::Begin_CreateMesh(void* pData)
@@ -28,16 +29,6 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 	GL::VertexPositionNormalColorTexture* pCastedVertexArr = reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr);
 #endif
 
-	/*for (uint i = 0; i < pCurMeshData->uiNumVertices; ++i)
-	{
-		GL::VertexPositionNormalColorTexture& vertex = reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr)[i];
-
-		vertex.position = vec3(pCurMeshData->fPositionArr[uiPosArrIndex++], pCurMeshData->fPositionArr[uiPosArrIndex++], pCurMeshData->fPositionArr[uiPosArrIndex++]);
-		vertex.normal = vec3(pCurMeshData->fPositionArr[uiNormalArrIndex++], pCurMeshData->fPositionArr[uiNormalArrIndex++], pCurMeshData->fPositionArr[uiNormalArrIndex++]);
-		vertex.color = vec4(pCurMeshData->fColorArr[uiColorArrIndex++], pCurMeshData[uiColorArrIndex++], pCurMeshData->fColorArr[uiColorArrIndex++], pCurMeshData->fColorArr[uiColorArrIndex++]);
-		vertex.textureCoordinate = vec2(pCurMeshData->fTexCoordArr[uiTexCoordArrIndex++], pCurMeshData->fTexCoordArr[uiTexCoordArrIndex++]);
-	}*/
-
 
 	glGenBuffers(1, &m_VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
@@ -58,7 +49,7 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 
 
 	// EBO
-	glGenVertexArrays(1, &m_EBO);
+	glGenBuffers(1, &m_EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * pCurMeshData->uiNumIndices, pCurMeshData->indexArr, GL_STATIC_DRAW);
 

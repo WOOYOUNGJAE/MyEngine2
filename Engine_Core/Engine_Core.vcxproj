@@ -20,13 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\dllmain.cpp" />
+    <ClCompile Include="Sources\Engine_Core.cpp" />
     <ClCompile Include="Sources\GameObject.cpp" />
+    <ClCompile Include="Sources\GameObjectManager.cpp" />
     <ClCompile Include="Sources\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\EngineConfig.h" />
+    <ClInclude Include="Includes\Engine_Core.h" />
+    <ClInclude Include="Includes\Enums.h" />
     <ClInclude Include="Includes\framework.h" />
     <ClInclude Include="Includes\GameObject.h" />
+    <ClInclude Include="Includes\GameObjectManager.h" />
     <ClInclude Include="Includes\pch.h" />
   </ItemGroup>
   <ItemGroup>

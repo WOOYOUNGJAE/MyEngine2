@@ -33,6 +33,9 @@
 // STL
 #include <vector>
 #include <list>
+using std::vector;
+using std::list;
+
 
 // Renderer Common
 #include "Macros.h"

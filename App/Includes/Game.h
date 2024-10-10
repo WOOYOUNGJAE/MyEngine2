@@ -1,6 +1,6 @@
 #pragma once
 
-interface IRenderer;
+class CEngine_Core;
 class CGameObject;
 
 class CGame : public IUnknown
@@ -14,8 +14,7 @@ public:
 	void Run();
 
 public:
-	IRenderer* m_pRenderer = nullptr;
+	CEngine_Core* m_pEngine = nullptr;
 private:
-	std::list<CGameObject*> m_GameObjList;
 };
 

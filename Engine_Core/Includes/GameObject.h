@@ -4,6 +4,7 @@
 
 interface IMeshObject;
 interface IRenderer;
+class CEngine_Core;
 class CGame;
 class ENGINECORE_DLL CGameObject : public IUnknown
 {
@@ -13,7 +14,7 @@ public:
 	virtual ~CGameObject() = default;
 
 public:
-	virtual void Initialize(CGame* pGame) = 0;
+	virtual void Initialize(CEngine_Core* pEngine) = 0;
 	virtual void Tick(FLOAT fDeltaTime) = 0;
 	virtual void Late_Tick(FLOAT fDeltaTime) = 0;
 	virtual void Render() = 0;
