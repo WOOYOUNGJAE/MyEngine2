@@ -23,15 +23,16 @@ public:
 	INT Renderer_Tick(FLOAT fDeltaTime) override;
 	void BeginRender() override;
 	void MainRender() override;
+	void Render_MeshObject(IMeshObject* pMeshObj) override;
 	void EndRender() override;
 
 	// getter
-	IRenderMachine* Get_RenderMachine() override;
+	//IRenderMachine* Get_RenderMachine() override;
 
 	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 private:
 	GLFWwindow* m_pWindow = nullptr;
 	CViewer* m_pViewer = nullptr;
-	IRenderMachine* m_pRenderMachine = nullptr;
+	//IRenderMachine* m_pRenderer = nullptr;
 };

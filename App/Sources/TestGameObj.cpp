@@ -15,7 +15,7 @@ CTestGameObj::~CTestGameObj()
 
 void CTestGameObj::Initialize(CGame* pGame)
 {
-	m_pRenderMachine = pGame->m_pRenderMachine;
+	m_pRenderer = pGame->m_pRenderer;
 
 	m_pMeshObj = pGame->m_pRenderer->Create_EmptyBasicMesh(); // Empty
 
@@ -45,5 +45,5 @@ void CTestGameObj::Late_Tick(FLOAT fDeltaTime)
 
 void CTestGameObj::Render()
 {
-	m_pRenderMachine->Render_MeshObject(m_pMeshObj);
+	m_pRenderer->Render_MeshObject(m_pMeshObj);
 }

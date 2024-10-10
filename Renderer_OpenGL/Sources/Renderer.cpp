@@ -45,7 +45,7 @@ CRenderer::CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, con
     }
 
     // Create Viewer
-    m_pViewer = new CViewer(uiWinX, uiWinY, m_pRenderMachine);
+    m_pViewer = new CViewer(uiWinX, uiWinY, this);
     g_pViewer = m_pViewer;
 
     // Register Callback win Resizing Func
@@ -97,14 +97,15 @@ void CRenderer::MainRender()
     m_pViewer->BeginRender();
 }
 
+void CRenderer::Render_MeshObject(IMeshObject* pMeshObj)
+{
+    CMeshObject* pCastedMeshObj = reinterpret_cast<CMeshObject*>(pMeshObj);
+    //pCastedMeshObj->VAO()
+}
+
 void CRenderer::EndRender()
 {
     m_pViewer->EndRender(m_pWindow);
-}
-
-IRenderMachine* CRenderer::Get_RenderMachine()
-{
-    return m_pRenderMachine;
 }
 
 IMeshObject* CRenderer::Create_EmptyBasicMesh(void* pData)

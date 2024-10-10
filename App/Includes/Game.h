@@ -1,7 +1,6 @@
 #pragma once
 
 interface IRenderer;
-interface IRenderMachine;
 class CGameObject;
 
 class CGame : public IUnknown
@@ -16,7 +15,6 @@ public:
 
 public:
 	IRenderer* m_pRenderer = nullptr;
-	IRenderMachine* m_pRenderMachine = nullptr;
 private:
 	std::list<CGameObject*> m_GameObjList;
 };

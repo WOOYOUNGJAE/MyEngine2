@@ -3,9 +3,8 @@
 #include "RenderTarget.h"
 #include "RenderMachine.h"
 
-CViewer::CViewer(UINT uiWinX, UINT uiWinY, IRenderMachine* pInRenderMachine) : m_uiWinX(uiWinX), m_uiWinY(uiWinY)
+CViewer::CViewer(UINT uiWinX, UINT uiWinY, CRenderer* pRenderer) : m_uiWinX(uiWinX), m_uiWinY(uiWinY), m_pRenderer(pRenderer)
 {
-	m_pRenderMachine = reinterpret_cast<CRenderMachine*>(pInRenderMachine);
 }
 
 CViewer::~CViewer()

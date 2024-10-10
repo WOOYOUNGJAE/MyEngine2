@@ -2,23 +2,24 @@
 
 class CRenderTarget;
 struct GLFWwindow;
-interface IRenderMachine;
-class CRenderMachine;
+class CRenderer;
+//interface IRenderMachine;
+//class CRenderMachine;
 /**
- * Member: Scene, RenderMachine, RenderTargets \n
+ * Member: Scene, Renderer, RenderTargets \n
  * Func: Bind, Unbind, OnRender, ...
  */
 class CViewer
 {
 public:
-	CViewer(UINT uiWinX, UINT uiWinY, IRenderMachine* pInRenderMachine);
+	CViewer(UINT uiWinX, UINT uiWinY, CRenderer* pRenderer);
 	~CViewer();
 
 public:
 	void BeginRender();
 	void EndRender(GLFWwindow* pWindow);
 public: // getter
-	//IRenderMachine* Get_RenderMachine() { return m_pRenderMachine; }
+	//IRenderMachine* Get_RenderMachine() { return m_pRenderer; }
 public:
 	void On_Resize_Window(UINT uiWinX, UINT uiWinY);
 private:
@@ -26,6 +27,7 @@ private:
 	UINT m_uiWinY = 0;
 	CRenderTarget* m_pRenderTarget = nullptr;
 private: // pointer
-	CRenderMachine* m_pRenderMachine = nullptr;
+	CRenderer* m_pRenderer = nullptr;
+	//CRenderMachine* m_pRenderer = nullptr;
 };
 

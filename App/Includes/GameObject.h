@@ -1,7 +1,6 @@
 #pragma once
 
 interface IMeshObject;
-interface IRenderMachine;
 interface IRenderer;
 class CGame;
 class CGameObject : public IUnknown
@@ -19,6 +18,6 @@ public:
 
 protected: // Pointer
 	IMeshObject* m_pMeshObj = nullptr;
-	IRenderMachine* m_pRenderMachine = nullptr;
+	IRenderer* m_pRenderer = nullptr;
 };
 

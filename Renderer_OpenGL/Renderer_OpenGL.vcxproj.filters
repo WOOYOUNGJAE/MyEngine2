@@ -83,9 +83,6 @@
     <ClInclude Include="Includes\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\RenderMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Renderer.cpp">
@@ -119,9 +116,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\RendererMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
