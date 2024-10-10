@@ -1,8 +1,8 @@
 #pragma once
 
 
-#ifdef RendererOPENGL_EXPORTS
-#define RendererOPENGL_DLL _declspec(dllexport)
+#ifdef RENDEREROPENGL_EXPORTS
+#define RENDEREROPENGL_DLL _declspec(dllexport)
 #else
-#define RendererOPENGL_DLL _declspec(dllimport)
+#define RENDEREROPENGL_DLL _declspec(dllimport)
 #endif

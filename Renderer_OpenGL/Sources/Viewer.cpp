@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Viewer.h"
 #include "RenderTarget.h"
-#include "RenderMachine.h"
+#include "Renderer.h"
 
 CViewer::CViewer(UINT uiWinX, UINT uiWinY, CRenderer* pRenderer) : m_uiWinX(uiWinX), m_uiWinY(uiWinY), m_pRenderer(pRenderer)
 {

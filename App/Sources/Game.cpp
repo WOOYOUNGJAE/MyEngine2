@@ -4,9 +4,11 @@
 #include "Renderer_OpenGL/Includes/Renderer.h"
 #include "Renderer_Common/Includes/PrimitiveGeomtryGenerator.h"
 #include "Renderer_Common/Includes/Structs.h"
+#include "Renderer_Common/Includes/RendererInterface.h"
 #include "TestGameObj.h"
 
 IMPL_COM_FUNC(CGame)
+
 CTestGameObj* pTestObj;
 CGame::~CGame()
 {
@@ -66,7 +68,7 @@ HRESULT CGame::Initialize(std::string& strTitle)
 
 
 	DELETE_ARRAY(basicMeshDescArr)
-		DELETE_INSTANCE(pCubeMeshObj); // TODO TEMP  
+	DELETE_INSTANCE(pCubeMeshObj); // TODO TEMP  
 #pragma endregion
 
 

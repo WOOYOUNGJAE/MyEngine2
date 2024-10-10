@@ -8,9 +8,9 @@ struct GLFWwindow;
 /**
  * @brief Top-level class
  */
-class RendererOPENGL_DLL CRenderer final : public IRenderer
+class RENDEREROPENGL_DLL CRenderer final : public IRenderer
 {
-	COM_FUNC
+	COM_BASE
 public:
 	CRenderer() = delete;
 	CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle);
@@ -28,7 +28,7 @@ public:
 
 	// getter
 	//IRenderMachine* Get_RenderMachine() override;
-
+	
 	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 private:

@@ -1,11 +1,13 @@
 #pragma once
 
+#include "EngineConfig.h"
+
 interface IMeshObject;
 interface IRenderer;
 class CGame;
-class CGameObject : public IUnknown
+class ENGINECORE_DLL CGameObject : public IUnknown
 {
-	COM_FUNC
+	COM_BASE
 public:
 	CGameObject() = default;
 	virtual ~CGameObject() = default;

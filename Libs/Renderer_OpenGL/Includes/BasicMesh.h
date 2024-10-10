@@ -6,7 +6,6 @@
  */
 class CBasicMesh : public CMeshObject
 {
-	COM_FUNC
 public:
 	CBasicMesh();
 	~CBasicMesh() override = default;

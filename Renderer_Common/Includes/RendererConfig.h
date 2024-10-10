@@ -1,7 +1,7 @@
 #pragma once
 
-#ifdef RendererCOMMON_EXPORTS
-#define RendererCOMMON_DLL _declspec(dllexport)
+#ifdef RENDERERCOMMON_EXPORTS
+#define RENDERERCOMMON_DLL _declspec(dllexport)
 #else
-#define RendererCOMMON_DLL _declspec(dllimport)
+#define RENDERERCOMMON_DLL _declspec(dllimport)
 #endif

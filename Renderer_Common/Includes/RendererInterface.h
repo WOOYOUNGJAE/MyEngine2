@@ -1,10 +1,10 @@
 #pragma once
 #include "RendererConfig.h"
 
-interface RendererCOMMON_DLL IVertex {};
+interface RENDERERCOMMON_DLL IVertex {};
 
 
-interface RendererCOMMON_DLL IMeshObject : public IUnknown
+interface RENDERERCOMMON_DLL IMeshObject : public IUnknown
 {
 	IMeshObject() = default;
 	virtual ~IMeshObject() = default;
@@ -13,7 +13,7 @@ interface RendererCOMMON_DLL IMeshObject : public IUnknown
 	virtual void End_CreateMesh(void* pData = nullptr) = 0;
 };
 
-//interface RendererCOMMON_DLL IRenderMachine : public IUnknown
+//interface RENDERERCOMMON_DLL IRenderMachine : public IUnknown
 //{
 //	IRenderMachine() = default;
 //	virtual ~IRenderMachine() = default;
@@ -23,7 +23,7 @@ interface RendererCOMMON_DLL IMeshObject : public IUnknown
 //	virtual void EndRender() = 0;
 //};
 
-interface RendererCOMMON_DLL IRenderer : public IUnknown
+interface RENDERERCOMMON_DLL IRenderer : public IUnknown
 {
 	IRenderer() = default;
 	virtual ~IRenderer() = default;

@@ -123,8 +123,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;.\Engine_Core_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,8 +144,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;.\Engine_Core_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -161,14 +161,12 @@
   <ItemGroup>
     <ClCompile Include="Sources\App.cpp" />
     <ClCompile Include="Sources\Game.cpp" />
-    <ClCompile Include="Sources\GameObject.cpp" />
     <ClCompile Include="Sources\pch.cpp" />
     <ClCompile Include="Sources\TestGameObj.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\App.h" />
     <ClInclude Include="Includes\Game.h" />
-    <ClInclude Include="Includes\GameObject.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\Resource.h" />
     <ClInclude Include="Includes\targetver.h" />

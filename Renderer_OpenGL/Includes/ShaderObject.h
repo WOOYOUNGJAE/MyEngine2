@@ -3,7 +3,7 @@
 using std::string;
 class CShaderObject : public IUnknown
 {
-	COM_FUNC
+	COM_BASE
 
 public:
 	/**

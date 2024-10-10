@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "ColoredMesh.h"
 
-IMPL_COM_FUNC(CColoredMesh)
 
 CColoredMesh::CColoredMesh()
 {

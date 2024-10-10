@@ -1,12 +1,11 @@
 #pragma once
-#include "GameObject.h"
+#include "Engine_Core/Includes/GameObject.h"
 class CTestGameObj : public CGameObject
 {
-	COM_FUNC
 public:
 	CTestGameObj() = default;
 	virtual ~CTestGameObj();
-
+	
 public:
 	void Initialize(CGame* pGame) override;
 	void Tick(FLOAT fDeltaTime) override;

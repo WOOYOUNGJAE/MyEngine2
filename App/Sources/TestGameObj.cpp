@@ -6,7 +6,6 @@
 #include "PrimitiveGeomtryGenerator.h"
 #include "Structs.h"
 
-IMPL_COM_FUNC(CTestGameObj)
 
 CTestGameObj::~CTestGameObj()
 {

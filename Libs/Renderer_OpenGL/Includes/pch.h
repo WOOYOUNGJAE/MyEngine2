@@ -4,8 +4,8 @@
 // However, files listed here are ALL re-compiled if any one of them is updated between builds.
 // Do not add files here that you will be updating frequently as this negates the performance advantage.
 
-#ifndef RendererOPENGLPCH_H
-#define RendererOPENGLPCH_H
+#ifndef RENDEREROPENGLPCH_H
+#define RENDEREROPENGLPCH_H
 
 // add headers that you want to pre-compile here
 #include "framework.h"

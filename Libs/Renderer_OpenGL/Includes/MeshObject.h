@@ -3,20 +3,20 @@
 #include "RendererConfig.h"
 
 class CShaderObject;
-class CRenderMachine;
+class CRenderer;
 using std::string;
 
 /**
  * @brief Inherit Based on Vertex Type
  */
-class RendererOPENGL_DLL CMeshObject : public IMeshObject
+class RENDEREROPENGL_DLL CMeshObject : public IMeshObject
 {
-	COM_FUNC
+	COM_BASE
 public:
 	CMeshObject() = default;
 	~CMeshObject() override;
 public:
-	void Initialize(CRenderMachine* pRenderMachine);
+	void Initialize(CRenderer* pRenderer);
 	void Begin_CreateMesh(void* pData) override;
 	void End_CreateMesh(void* pData) override;
 public: // getter
@@ -33,5 +33,5 @@ protected: // Vertex Info
 	GL::VertexType* m_pVertexArr;
 	GLsizei m_iVertexStride = 0;
 protected: // pointer
-	CRenderMachine* m_pRenderMachine = nullptr;
+	CRenderer* m_pRenderer = nullptr;
 };

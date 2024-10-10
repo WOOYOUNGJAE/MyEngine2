@@ -4,8 +4,8 @@
 // However, files listed here are ALL re-compiled if any one of them is updated between builds.
 // Do not add files here that you will be updating frequently as this negates the performance advantage.
 
-#ifndef RendererCOMMON_PCH_H
-#define RendererCOMMON_PCH_H
+#ifndef RENDERERCOMMON_PCH_H
+#define RENDERERCOMMON_PCH_H
 
 // add headers that you want to pre-compile here
 #include "framework.h"
@@ -44,4 +44,4 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-#endif //RendererCOMMON_PCH_H
+#endif //RENDERERCOMMON_PCH_H

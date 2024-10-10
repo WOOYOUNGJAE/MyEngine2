@@ -5,7 +5,7 @@ class CGameObject;
 
 class CGame : public IUnknown
 {
-	COM_FUNC
+	COM_BASE
 public:
 	CGame() = default;
 	~CGame();

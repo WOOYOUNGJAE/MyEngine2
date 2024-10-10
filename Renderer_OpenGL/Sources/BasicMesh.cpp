@@ -3,7 +3,6 @@
 #include "Renderer_Common/Includes/Structs.h"
 #include "Util_Funcs.h"
 
-IMPL_COM_FUNC(CBasicMesh)
 
 CBasicMesh::CBasicMesh()
 {

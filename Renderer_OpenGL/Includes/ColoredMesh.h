@@ -7,7 +7,6 @@
  */
 class CColoredMesh : public CMeshObject
 {
-	COM_FUNC
 public:
 	CColoredMesh();
 	~CColoredMesh() = default;

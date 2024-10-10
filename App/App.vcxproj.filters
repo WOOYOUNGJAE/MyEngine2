@@ -49,9 +49,6 @@
     <ClCompile Include="Sources\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\GameObject.cpp">
-      <Filter>Game\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\TestGameObj.cpp">
       <Filter>Game\GameObject\Test</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\GameObject.h">
-      <Filter>Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Includes\TestGameObj.h">
       <Filter>Game\GameObject\Test</Filter>

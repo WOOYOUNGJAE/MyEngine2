@@ -19,8 +19,10 @@
 		(array) = nullptr;		\
 	}
 
-// IUnknown Interface
-#define COM_FUNC														\
+/**
+ * @brief IUnknown Interface, Only Use for First Derived Class from IUnknown Interface
+ */
+#define COM_BASE														\
 public:																	\
 	HRESULT QueryInterface(const IID& riid, void** ppvObject) override; \
 	ULONG AddRef() override;											\
