@@ -17,11 +17,6 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 	MESH_DESC_BASIC** pMeshDataArr = pCastedData->pBasicMeshDataArrPtr;
 	MESH_DESC_BASIC* pCurMeshData = pMeshDataArr[0];
 
-	uint uiPosArrIndex = 0;
-	uint uiNormalArrIndex = 0;
-	uint uiColorArrIndex = 0;
-	uint uiTexCoordArrIndex = 0;
-
 	m_pVertexArr = new GL::VertexPositionNormalColorTexture[pCurMeshData->uiNumVertices];
 	::Move_MeshDesc_Basic(reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr), pCurMeshData);
 
@@ -49,6 +44,7 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 
 
 	// EBO
+	m_iNumIndices = pCurMeshData->uiNumIndices;
 	glGenBuffers(1, &m_EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * pCurMeshData->uiNumIndices, pCurMeshData->indexArr, GL_STATIC_DRAW);
@@ -56,6 +52,7 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 	// Release Desc Data
 	CHECK_GL_ERROR;
 
+	m_eShaderType = Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE;
 }
 
 void CBasicMesh::End_CreateMesh(void* pData)

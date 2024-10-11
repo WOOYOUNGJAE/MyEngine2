@@ -39,11 +39,20 @@
     <Filter Include="Objects\MeshObject\ColoredMesh">
       <UniqueIdentifier>{458201e0-e2d1-44ba-9b2d-fb7c6be6ab43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\MeshObject\BasicMesh">
+      <UniqueIdentifier>{8b803402-f048-47df-958d-18437a361418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{b042bbf4-ad26-40f9-97d2-09857d8bd18e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Shader_Loader">
+      <UniqueIdentifier>{8fbed46b-94e9-4721-a1a2-26faaa9c1f8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{88b25efd-c9a3-4f21-99fc-91801a43434e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\ColoredMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\RendererConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -59,35 +68,41 @@
     <ClInclude Include="Includes\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\RenderTarget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\ShaderObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\Typedefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Viewer.h">
+    <ClInclude Include="Includes\Renderer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Viewer.h">
+      <Filter>Renderer\Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Renderer.h">
+      <Filter>Renderer\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Includes\BasicMesh.h">
-      <Filter>Header Files</Filter>
+      <Filter>Objects\MeshObject\BasicMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\ColoredMesh.h">
+      <Filter>Objects\MeshObject\ColoredMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\RenderTarget.h">
+      <Filter>Graphics\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\ShaderObject.h">
+      <Filter>Graphics\ShaderObject</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Util_Funcs.h">
-      <Filter>Header Files</Filter>
+      <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Renderer.h">
-      <Filter>Renderer</Filter>
+    <ClInclude Include="Includes\ShaderManager.h">
+      <Filter>Util\Shader_Loader</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Renderer.h">
+    <ClInclude Include="Includes\enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Renderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Viewer.cpp">
       <Filter>Renderer\Viewer</Filter>
     </ClCompile>
@@ -109,17 +124,29 @@
     <ClCompile Include="..\Libs\glad\glad.c">
       <Filter>Extlibs</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\BasicMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Util_Funcs.cpp">
+    <ClCompile Include="Sources\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Renderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Renderer\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BasicMesh.cpp">
+      <Filter>Objects\MeshObject\BasicMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Util_Funcs.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ShaderManager.cpp">
+      <Filter>Util\Shader_Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Shaders\VS_Simple.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\FS_Simple.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

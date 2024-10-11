@@ -1,7 +1,10 @@
 #pragma once
 
-enum GAME_OBJ_LIST_TYPE
+namespace Engine_Core
 {
-	DEFAULT,
-	NUM
-};
+	enum GAME_OBJ_LIST_TYPE
+	{
+		DEFAULT,
+		NUM
+	};
+}
