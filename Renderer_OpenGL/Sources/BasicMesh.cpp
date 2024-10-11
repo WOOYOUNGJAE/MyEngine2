@@ -49,13 +49,13 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 
 
 	// EBO
+	m_iNumIndices = pCurMeshData->uiNumIndices;
 	glGenBuffers(1, &m_EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * pCurMeshData->uiNumIndices, pCurMeshData->indexArr, GL_STATIC_DRAW);
 
 	// Release Desc Data
 	CHECK_GL_ERROR;
-
 }
 
 void CBasicMesh::End_CreateMesh(void* pData)

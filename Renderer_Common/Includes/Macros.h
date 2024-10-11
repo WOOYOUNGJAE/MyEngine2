@@ -83,3 +83,6 @@ std::cerr << "##  ERROR  ##:\tFILE " << __FILE__  << "\n\t\t\tLINE " << __LINE__
 # define CLASS_PTR(ClassName)			\
 public:										\
 	typedef std::unique_ptr<ClassName>	UPtr;
+
+#define STR_CAT(DST, SRC)\
+	strcat_s(DST, strlen(SRC), SRC);

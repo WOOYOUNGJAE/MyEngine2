@@ -1,11 +1,6 @@
 #include "pch.h"
 #include "Game.h"
 
-#include "Renderer_OpenGL/Includes/Renderer.h"
-#include "Renderer_Common/Includes/PrimitiveGeomtryGenerator.h"
-#include "Renderer_Common/Includes/Structs.h"
-#include "Renderer_Common/Includes/RendererInterface.h"
-
 #include "Engine_Core/Includes/Engine_Core.h"
 #include "Engine_Core/Includes/Enums.h"
 
@@ -40,7 +35,7 @@ HRESULT CGame::Initialize(std::string& strTitle)
 	pTestObj = new CTestGameObj();
 	pTestObj->Initialize(m_pEngine);
 
-	m_pEngine->Add_GameObj(GAME_OBJ_LIST_TYPE::DEFAULT, pTestObj);
+	m_pEngine->Add_GameObj(Engine_Core::GAME_OBJ_LIST_TYPE::DEFAULT, pTestObj);
 	return hr;
 }
 
