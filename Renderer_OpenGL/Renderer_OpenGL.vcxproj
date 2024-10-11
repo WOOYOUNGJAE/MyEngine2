@@ -127,6 +127,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir);$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -142,6 +143,7 @@
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
 xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)Libs\$(ProjectName)\bin\"
 xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes\"
+xcopy /y "$(ProjectDir)Shaders\*.*" "$(SolutionDir)Libs\$(ProjectName)\Shaders\"
 xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -156,6 +158,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir);$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -173,12 +176,14 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
 xcopy /y "$(OutDir)$(TargetName).lib" "$(SolutionDir)Libs\$(ProjectName)\bin\"
 xcopy /y "$(ProjectDir)Includes\*.*" "$(SolutionDir)Libs\$(ProjectName)\Includes\"
+xcopy /y "$(ProjectDir)Shaders\*.*" "$(SolutionDir)Libs\$(ProjectName)\Shaders\"
 xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Includes\BasicMesh.h" />
     <ClInclude Include="Includes\ColoredMesh.h" />
+    <ClInclude Include="Includes\enums.h" />
     <ClInclude Include="Includes\Renderer.h" />
     <ClInclude Include="Includes\RendererConfig.h" />
     <ClInclude Include="Includes\framework.h" />
@@ -186,6 +191,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <ClInclude Include="Includes\MeshObject.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\RenderTarget.h" />
+    <ClInclude Include="Includes\ShaderManager.h" />
     <ClInclude Include="Includes\ShaderObject.h" />
     <ClInclude Include="Includes\Typedefs.h" />
     <ClInclude Include="Includes\Util_Funcs.h" />
@@ -201,12 +207,15 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <ClCompile Include="Sources\Renderer.cpp" />
     <ClCompile Include="Sources\MeshObject.cpp" />
     <ClCompile Include="Sources\RenderTarget.cpp" />
+    <ClCompile Include="Sources\ShaderManager.cpp" />
     <ClCompile Include="Sources\ShaderObject.cpp" />
     <ClCompile Include="Sources\Util_Funcs.cpp" />
     <ClCompile Include="Sources\Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Shaders\FS_Simple.glsl" />
+    <None Include="Shaders\VS_Simple.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

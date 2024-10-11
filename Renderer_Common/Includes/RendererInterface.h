@@ -33,7 +33,7 @@ interface RENDERERCOMMON_DLL IRenderer : public IUnknown
 	// getter
 	//virtual IRenderMachine* Get_RenderMachine() = 0;
 
-	virtual HRESULT Initialize(void*) = 0;
+	virtual void Initialize(void* = nullptr) = 0;
 	virtual INT MainRender(FLOAT fDeltaTime = 0.2f) = 0;
 	// Render Func
 	virtual void BeginRender() = 0;

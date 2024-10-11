@@ -3,10 +3,11 @@
 #include "Renderer_Common/Includes/RendererInterface.h"
 #include "Viewer.h"
 
-class CViewer;
 struct GLFWwindow;
+class CViewer;
+class CShaderManager;
 /**
- * @brief Top-level class
+ * @brief Top-level class. All GL-Dependant Classes should be in this project
  */
 class RENDEREROPENGL_DLL CRenderer final : public IRenderer
 {
@@ -16,7 +17,7 @@ public:
 	CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle);
 	~CRenderer();
 public:
-	HRESULT Initialize(void*) override;
+	void Initialize(void*) override;
 	/**
 	 * @return If WindowShouldClose
 	 */
@@ -33,5 +34,6 @@ public:
 private:
 	GLFWwindow* m_pWindow = nullptr;
 	CViewer* m_pViewer = nullptr;
-	//IRenderMachine* m_pRenderer = nullptr;
+private: //Managers
+	CShaderManager* m_pShaderManager = nullptr;
 };

@@ -22,6 +22,6 @@ public: // getter
 private:
 	GLuint      m_Shader = 0;
 	std::string m_strName = "";
-	bool        m_Active = false;
+	bool        m_bActive = false;
 };
 

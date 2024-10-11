@@ -3,6 +3,8 @@
 
 #include "BasicMesh.h"
 #include "Viewer.h"
+#include "ShaderManager.h"
+#include "enums.h"
 
 IMPL_COM_FUNC(CRenderer)
 
@@ -50,19 +52,20 @@ CRenderer::CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, con
 
     // Register Callback win Resizing Func
     glfwSetFramebufferSizeCallback(m_pWindow, On_Resize_Window);
+
+    // Create Manager
+    m_pShaderManager = new CShaderManager();
 }
 
 CRenderer::~CRenderer()
 {
+    RELEASE_INSTANCE(m_pShaderManager);
     DELETE_INSTANCE(m_pViewer);
 }
 
-HRESULT CRenderer::Initialize(void*)
+void CRenderer::Initialize(void*)
 {
-    HRESULT hr = S_OK;
-
-
-    return hr;
+    m_pShaderManager->Load_Shader(GL_SHADER_PROGRAM_TYPE::SIMPLE, "Simple");
 }
 
 int32 CRenderer::MainRender(FLOAT fDeltaTime)

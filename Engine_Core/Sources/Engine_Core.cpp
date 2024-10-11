@@ -37,6 +37,7 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 	{
 		return;
 	}
+	m_pRenderer->Initialize();
 #pragma endregion
 
 	m_pGameObjManager = new CGameObjectManager();
