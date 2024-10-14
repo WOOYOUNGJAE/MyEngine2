@@ -50,6 +50,7 @@ BOOL CEngine_Core::Run()
 	// Tick, Render, ...
 	m_pGameObjManager->Tick(0.2f);
 	m_pGameObjManager->Late_Tick(0.2f);
+	m_pGameObjManager->Render();
 
 	if (m_pRenderer->MainRender(0.2f) == FALSE)
 		return FALSE;
@@ -61,5 +62,5 @@ BOOL CEngine_Core::Run()
 
 void CEngine_Core::Add_GameObj(UINT eType, CGameObject* pInstance)
 {
-	m_pGameObjManager->Add_GameObj((GAME_OBJ_LIST_TYPE)eType, pInstance);
+	m_pGameObjManager->Add_GameObj((Engine_Core::GAME_OBJ_LIST_TYPE)eType, pInstance);
 }

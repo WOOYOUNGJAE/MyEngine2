@@ -65,7 +65,7 @@ CRenderer::~CRenderer()
 
 void CRenderer::Initialize(void*)
 {
-    m_pShaderManager->Load_Shader(GL_SHADER_PROGRAM_TYPE::SIMPLE, "Simple");
+    m_pShaderManager->Load_Shader(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE, "Simple");
 }
 
 int32 CRenderer::MainRender(FLOAT fDeltaTime)
@@ -95,10 +95,26 @@ void CRenderer::BeginRender()
     m_pViewer->BeginRender();
 }
 
-void CRenderer::Render_MeshObject(IMeshObject* pMeshObj)
+void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj)
 {
-    CMeshObject* pCastedMeshObj = reinterpret_cast<CMeshObject*>(pMeshObj);
-    //pCastedMeshObj->VAO()
+    CMeshObject* pCastedMeshObj = static_cast<CMeshObject*>(pMeshObj);
+    m_RenderQueueArr[pCastedMeshObj->ShaderType()].push_back(pCastedMeshObj);
+}
+
+void CRenderer::MainRender()
+{
+    for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
+    {
+        GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
+        glUseProgram(curShaderProgram); // Bind Shader Program
+        for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
+        {
+            glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
+            glDrawElements(GL_TRIANGLES, iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
+            glBindVertexArray(0); // Unbind VAO
+        }
+        m_RenderQueueArr[eShaderType].clear();
+    }
 }
 
 void CRenderer::EndRender()

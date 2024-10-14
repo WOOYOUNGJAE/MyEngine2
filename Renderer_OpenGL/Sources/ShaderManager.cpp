@@ -38,15 +38,15 @@ bool CShaderManager::Load_Shader(UINT eShaderProgramType, const char* szShaderNa
 	GLuint program = glCreateProgram();
 
 	// Only Use VS, FS
-	if (eShaderProgramType < (UINT)GL_SHADER_PROGRAM_TYPE::VS_FS_AND_MORE_NO_USE_YET)
+	if (eShaderProgramType < (UINT)Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::VS_FS_AND_MORE_NO_USE_YET)
 	{
 		GLenum  shaderType = GL_VERTEX_SHADER;
 		GLchar* source =  nullptr;
-		char szFilePath[256]{};
-		sprintf_s(szFilePath, 256, szShaderAssetPath);
 
 		for (UINT i = 0; i < 2; ++i)
 		{
+			char szFilePath[256]{};
+			sprintf_s(szFilePath, 256, szShaderAssetPath);
 			GLuint shader = 0;
 			char szRealFileName[64]{};
 			if (i == 0) // VS
@@ -62,10 +62,13 @@ bool CShaderManager::Load_Shader(UINT eShaderProgramType, const char* szShaderNa
 			sprintf_s(szFilePath, 256, "%s%s", szFilePath, szRealFileName);
 			source = readShaderSource(szFilePath);
 			glShaderSource(shader,1, (const GLchar**)&source, NULL);
+			CHECK_GL_ERROR
 			glCompileShader(shader);
+			CHECK_GL_ERROR
 
 			GLint  compiled;
 			glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+			CHECK_GL_ERROR
 			if (!compiled) {
 				std::cerr << szFilePath << " failed to compile:" << std::endl;
 				GLint  logSize;
@@ -75,16 +78,21 @@ bool CShaderManager::Load_Shader(UINT eShaderProgramType, const char* szShaderNa
 				std::cerr << logMsg << std::endl;
 				delete[] logMsg;
 
+				delete[] source;
 				return FALSE;
 			}
+			glAttachShader(program, shader);
+			delete[] source;
 		}
 	}
-
+	CHECK_GL_ERROR
 	/* link  and error check */
 	glLinkProgram(program);
+	CHECK_GL_ERROR
 
 	GLint  linked;
 	glGetProgramiv(program, GL_LINK_STATUS, &linked);
+	CHECK_GL_ERROR
 	if (!linked) {
 		std::cerr << "Shader program failed to link" << std::endl;
 		GLint  logSize;
@@ -97,7 +105,7 @@ bool CShaderManager::Load_Shader(UINT eShaderProgramType, const char* szShaderNa
 		return FALSE;
 	}
 
-	m_ShaderPrograms[(GL_SHADER_PROGRAM_TYPE)eShaderProgramType] = program;
+	m_ShaderPrograms[(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE)eShaderProgramType] = program;
 
 	return TRUE;
 }

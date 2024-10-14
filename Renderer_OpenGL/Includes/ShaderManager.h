@@ -14,8 +14,9 @@ public:
 private:
 	char* readShaderSource(const char* szFilePath);
 
+public:
+	GLuint m_ShaderPrograms[Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM]{};
 private:
 	static const char* szShaderAssetPath; // Relative path from "App" Dir
-	GLuint m_ShaderPrograms[GL_SHADER_PROGRAM_TYPE::NUM]{};
 };
 

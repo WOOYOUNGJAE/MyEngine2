@@ -2,10 +2,12 @@
 #include "RendererConfig.h"
 #include "Renderer_Common/Includes/RendererInterface.h"
 #include "Viewer.h"
+#include "enums.h"
 
 struct GLFWwindow;
 class CViewer;
 class CShaderManager;
+class CMeshObject;
 /**
  * @brief Top-level class. All GL-Dependant Classes should be in this project
  */
@@ -23,7 +25,11 @@ public:
 	 */
 	INT MainRender(FLOAT fDeltaTime) override;
 	void BeginRender() override;
-	void Render_MeshObject(IMeshObject* pMeshObj) override;
+	/**
+	 * Called from External Renderer, Just Add to RenderQueue
+	 */
+	void Render_MeshObject_External(IMeshObject* pMeshObj) override;
+	void MainRender() override;
 	void EndRender() override;
 
 	// getter
@@ -36,4 +42,9 @@ private:
 	CViewer* m_pViewer = nullptr;
 private: //Managers
 	CShaderManager* m_pShaderManager = nullptr;
+private:
+	/**
+	 * @brief RenderQueue List Distributed by Shader Type
+	 */
+	std::list<CMeshObject*> m_RenderQueueArr[Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM]{};
 };
