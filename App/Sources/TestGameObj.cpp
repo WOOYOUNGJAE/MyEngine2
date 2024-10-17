@@ -22,17 +22,19 @@ void CTestGameObj::Initialize(CEngine_Core* pEngine)
 
 	using namespace Renderer_Common;
 	CREATE_MESHES_DESC createMeshDescInstance{};
-	MESH_DESC_BASIC* basicMeshDescArr = new MESH_DESC_BASIC[1];
+	MESH_DESC_BASIC* basicMeshDescArr = new MESH_DESC_BASIC[2];
 	::Fill_BasicMesh_Cube(basicMeshDescArr[0]);
+	::Fill_BasicMesh_Quad(basicMeshDescArr[1]);
 
+	//createMeshDescInstance.pBasicMeshDataArrPtr = &basicMeshDescArr;
 	createMeshDescInstance.pBasicMeshDataArrPtr = &basicMeshDescArr;
-	createMeshDescInstance.uiNumBasicMeshData = 1;
+	createMeshDescInstance.uiNumBasicMeshData = 2;
 
 	m_pMeshObj->Begin_CreateMesh(&createMeshDescInstance);
 	m_pMeshObj->End_CreateMesh();
 
 
-	DELETE_ARRAY(basicMeshDescArr)
+	DELETE_ARRAY(basicMeshDescArr);
 }
 
 void CTestGameObj::Tick(FLOAT fDeltaTime)

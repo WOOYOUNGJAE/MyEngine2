@@ -14,25 +14,35 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 	using namespace Renderer_Common;
 
 	CREATE_MESHES_DESC* pCastedData = reinterpret_cast<CREATE_MESHES_DESC*>(pData);
-	MESH_DESC_BASIC** pMeshDataArr = pCastedData->pBasicMeshDataArrPtr;
-	MESH_DESC_BASIC* pCurMeshData = pMeshDataArr[0];
+	MESH_DESC_BASIC* pMeshDataArr = *(pCastedData->pBasicMeshDataArrPtr);
+	MESH_DESC_BASIC& refCurMeshData = pMeshDataArr[0];
+	//refCurMeshData = pMeshDataArr[1];
 
-	m_pVertexArr = new GL::VertexPositionNormalColorTexture[pCurMeshData->uiNumVertices];
-	::Move_MeshDesc_Basic(reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr), pCurMeshData);
-
+	m_pVertexArr = new GL::VertexPositionNormalColorTexture[refCurMeshData.uiNumVertices];
+	::Copy_MeshDesc_Basic(reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr), &refCurMeshData);
 #if _DEBUG
+	auto a = reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr);
 	GL::VertexPositionNormalColorTexture* pCastedVertexArr = reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr);
 #endif
-
-
+	// Gen VAO VBO EBO
+	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-	glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)sizeof(GL::VertexPositionNormalColorTexture) * pCurMeshData->uiNumVertices, m_pVertexArr, GL_STATIC_DRAW); // 메모리 할당과 저장
+	glGenBuffers(1, &m_EBO);
 
 	// VAO
-	glGenVertexArrays(1, &m_VAO);
 	glBindVertexArray(m_VAO);
 
+	// VBO
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)sizeof(GL::VertexPositionNormalColorTexture) * refCurMeshData.uiNumVertices, m_pVertexArr, GL_STATIC_DRAW); // 메모리 할당과 저장
+	CHECK_GL_ERROR;
+
+
+	// EBO
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (GLsizeiptr)sizeof(uint) * refCurMeshData.uiNumIndices, refCurMeshData.indexArr, GL_STATIC_DRAW);
+
+	// Vertex Attrib
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, m_iVertexStride, (void*)0); // POSITION
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, m_iVertexStride, (void*)(0 + sizeof(vec3))); // NORMAL
@@ -43,16 +53,10 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 	glEnableVertexAttribArray(3);
 
 
-	// EBO
-	m_iNumIndices = pCurMeshData->uiNumIndices;
-	glGenBuffers(1, &m_EBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * pCurMeshData->uiNumIndices, pCurMeshData->indexArr, GL_STATIC_DRAW);
 
-	// Release Desc Data
-	CHECK_GL_ERROR;
-
+	glBindVertexArray(0);
 	m_eShaderType = Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE;
+	m_iNumIndices = refCurMeshData.uiNumIndices;
 }
 
 void CBasicMesh::End_CreateMesh(void* pData)

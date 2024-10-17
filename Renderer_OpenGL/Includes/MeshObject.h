@@ -25,7 +25,7 @@ public: // getter
 	GLuint VAO() { return m_VAO; }
 	GLuint EBO() { return m_EBO; }
 	UINT ShaderType() { return m_eShaderType; }
-	UINT NumIndices() { return NumIndices(); }
+	UINT NumIndices() { return m_iNumIndices; }
 protected:
 	string m_strName;
 	GLuint m_VBO = 0;

@@ -7,7 +7,7 @@ namespace Renderer_Common
 }
 
 
-inline void Move_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexArr, Renderer_Common::MESH_DESC_BASIC* pMeshDesc)
+inline void Copy_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexArr, Renderer_Common::MESH_DESC_BASIC* pMeshDesc)
 {
 	UINT uiNumVertices = pMeshDesc->uiNumVertices;
 	size_t ullVertexSize = sizeof(GL::VertexPositionNormalColorTexture);
@@ -19,9 +19,9 @@ inline void Move_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexA
 	for (UINT i = 0; i < uiNumVertices; ++i)
 	{
 		BYTE* byCurDst = byDstStart + ullVertexSize * i;
-		memcpy_s(byCurDst + uiPositionOffset, sizeof(vec3), pMeshDesc->fPositionArr + sizeof(FLOAT) * 3 * i, sizeof(vec3));
-		memcpy_s(byCurDst + uiNormalOffset, sizeof(vec3), pMeshDesc->fNormalArr + sizeof(FLOAT) * 3 * i, sizeof(vec3));
-		memcpy_s(byCurDst + uiColorOffset, sizeof(vec4), pMeshDesc->fColorArr + sizeof(FLOAT) * 4 * i, sizeof(vec2));
-		memcpy_s(byCurDst + uiTexCoordOffset, sizeof(vec2), pMeshDesc->fTexCoordArr + sizeof(FLOAT) * 2 * i, sizeof(vec2));
+		memcpy_s(byCurDst + uiPositionOffset, sizeof(vec3), (BYTE*)pMeshDesc->fPositionArr + sizeof(vec3) * i, sizeof(vec3));
+		memcpy_s(byCurDst + uiNormalOffset, sizeof(vec3), (BYTE*)pMeshDesc->fNormalArr + sizeof(vec3) * i, sizeof(vec3));
+		memcpy_s(byCurDst + uiColorOffset, sizeof(vec4), (BYTE*)pMeshDesc->fColorArr + sizeof(vec4) * i, sizeof(vec4));
+		memcpy_s(byCurDst + uiTexCoordOffset, sizeof(vec2), (BYTE*)pMeshDesc->fTexCoordArr + sizeof(vec2) * i, sizeof(vec2));
 	}
 }

@@ -1,0 +1,1 @@
+xcopy /y "C:\Users\azn2w\Git\MyEngine2\Renderer_OpenGL\Shaders\*.*" "C:\Users\azn2w\Git\MyEngine2\Libs\Renderer_OpenGL\Shaders\"

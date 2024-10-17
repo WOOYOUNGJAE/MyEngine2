@@ -2,8 +2,6 @@
 
 namespace Renderer_Common
 {
-
-
 	// Vertex(Position, Normal, Color, Texcoord), Index(uint16)
 	struct MESH_DESC_BASIC
 	{
@@ -24,8 +22,8 @@ namespace Renderer_Common
 		FLOAT* fTexCoordArr = nullptr; // UV: uv * numVertices
 
 		// Indices
-		UINT uiNumIndices = 0;
-		UINT16* indexArr = nullptr;
+		UINT16 uiNumIndices = 0;
+		UINT32* indexArr = nullptr;
 	};
 
 	/**
@@ -41,4 +39,5 @@ namespace Renderer_Common
 		MESH_DESC_BASIC** pBasicMeshDataArrPtr = nullptr;
 		UINT uiNumBasicMeshData = 0;
 	};
+
 }

@@ -48,10 +48,12 @@ BOOL CEngine_Core::Run()
 	m_pRenderer->BeginRender();
 
 	// Tick, Render, ...
+	// Obj Manger Render
 	m_pGameObjManager->Tick(0.2f);
 	m_pGameObjManager->Late_Tick(0.2f);
 	m_pGameObjManager->Render();
 
+	// Renderer Render
 	if (m_pRenderer->MainRender(0.2f) == FALSE)
 		return FALSE;
 

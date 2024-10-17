@@ -87,6 +87,24 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
 
     glfwPollEvents();
 
+
+    for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
+    {
+        GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
+        glUseProgram(curShaderProgram); // Bind Shader Program
+        for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
+        {
+            glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
+            CHECK_GL_ERROR
+            glDrawElements(GL_TRIANGLES, iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
+            CHECK_GL_ERROR
+            glBindVertexArray(0); // Unbind VAO
+            CHECK_GL_ERROR
+        }
+        m_RenderQueueArr[eShaderType].clear();
+    }
+
+
     return !glfwWindowShouldClose(m_pWindow);
 }
 
@@ -103,18 +121,18 @@ void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj)
 
 void CRenderer::MainRender()
 {
-    for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
-    {
-        GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
-        glUseProgram(curShaderProgram); // Bind Shader Program
-        for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
-        {
-            glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
-            glDrawElements(GL_TRIANGLES, iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
-            glBindVertexArray(0); // Unbind VAO
-        }
-        m_RenderQueueArr[eShaderType].clear();
-    }
+    //for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
+    //{
+    //    GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
+    //    glUseProgram(curShaderProgram); // Bind Shader Program
+    //    for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
+    //    {
+    //        glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
+    //        glDrawElements(GL_TRIANGLES, iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
+    //        glBindVertexArray(0); // Unbind VAO
+    //    }
+    //    m_RenderQueueArr[eShaderType].clear();
+    //}
 }
 
 void CRenderer::EndRender()

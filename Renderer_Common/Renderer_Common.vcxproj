@@ -170,6 +170,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\PrimitiveGeomtryGenerator.cpp" />
     <ClCompile Include="Sources\RendererInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
