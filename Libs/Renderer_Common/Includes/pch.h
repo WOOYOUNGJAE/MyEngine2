@@ -37,14 +37,17 @@ using std::vector;
 using std::list;
 
 
+// DirectX for Common
+#include <VertexTypes.h>
+//#include <DirectXColors.h>
+#include <DirectXMath.h>
+//#include <SimpleMath.h>
+using namespace DirectX;
+//using namespace DirectX::SimpleMath;
+
+
 // Renderer Common
 #include "Macros.h"
-
-// DirectX for Common
-#include <SimpleMath.h>
-#include <VertexTypes.h>
-#include <DirectXColors.h>
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
+#include "Colors.h"
 
 #endif //RENDERERCOMMON_PCH_H

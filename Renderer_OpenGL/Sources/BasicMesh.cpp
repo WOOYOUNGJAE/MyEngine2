@@ -20,10 +20,7 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 
 	m_pVertexArr = new GL::VertexPositionNormalColorTexture[refCurMeshData.uiNumVertices];
 	::Copy_MeshDesc_Basic(reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr), &refCurMeshData);
-#if _DEBUG
-	auto a = reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr);
-	GL::VertexPositionNormalColorTexture* pCastedVertexArr = reinterpret_cast<GL::VertexPositionNormalColorTexture*>(m_pVertexArr);
-#endif
+
 	// Gen VAO VBO EBO
 	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);

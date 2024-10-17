@@ -96,7 +96,7 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
         {
             glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
             CHECK_GL_ERROR
-            glDrawElements(GL_TRIANGLES, iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
+            glDrawElements(GL_TRIANGLES, (GLsizei)iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
             CHECK_GL_ERROR
             glBindVertexArray(0); // Unbind VAO
             CHECK_GL_ERROR

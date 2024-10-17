@@ -11,6 +11,11 @@ interface RENDERERCOMMON_DLL IMeshObject : public IUnknown
 
 	virtual void Begin_CreateMesh(void* pData = nullptr) = 0;
 	virtual void End_CreateMesh(void* pData = nullptr) = 0;
+
+	XMFLOAT4X4 WorldMat() { return m_WorldMat; }
+protected:
+	XMFLOAT4X4 m_WorldMat; // DirectX Math
+
 };
 
 //interface RENDERERCOMMON_DLL IRenderMachine : public IUnknown

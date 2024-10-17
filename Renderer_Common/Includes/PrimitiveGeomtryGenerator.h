@@ -14,35 +14,36 @@ inline void Fill_BasicMesh_Cube(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
 	refMeshDesc.fPositionArr = new FLOAT[3 * uiNumVertices]
 	{
 		// front
-		-1.0f, -1.0f, -1.0f,
-		-1.0f, +1.0f, -1.0f,
-		+1.0f, +1.0f, -1.0f,
-		+1.0f, -1.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, +0.5f, -0.5f,
+		+0.5f, +0.5f, -0.5f,
+		+0.5f, -0.5f, -0.5f,
 		// back
-		-1.0f, -1.0f, +1.0f,
-		-1.0f, +1.0f, +1.0f,
-		+1.0f, +1.0f, +1.0f,
-		+1.0f, -1.0f, +1.0f,
+		-0.5f, -0.5f, +0.5f,
+		-0.5f, +0.5f, +0.5f,
+		+0.5f, +0.5f, +0.5f,
+		+0.5f, -0.5f, +0.5f,
 		// top
-		-1.0f, +1.0f, -1.0f,
-		-1.0f, +1.0f, +1.0f,
-		+1.0f, +1.0f, +1.0f,
-		+1.0f, +1.0f, -1.0f,
+		-0.5f, +0.5f, -0.5f,
+		-0.5f, +0.5f, +0.5f,
+		+0.5f, +0.5f, +0.5f,
+		+0.5f, +0.5f, -0.5f,
 		// bottom
-		-1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f, +1.0f,
-		+1.0f, -1.0f, +1.0f,
-		+1.0f, -1.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, +0.5f,
+		+0.5f, -0.5f, +0.5f,
+		+0.5f, -0.5f, -0.5f,
 		// left
-		-1.0f, -1.0f, +1.0f,
-		-1.0f, +1.0f, +1.0f,
-		-1.0f, +1.0f, -1.0f,
-		-1.0f, -1.0f, -1.0f,
+		-0.5f, -0.5f, +0.5f,
+		-0.5f, +0.5f, +0.5f,
+		-0.5f, +0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
 		// right
-		+1.0f, -1.0f, -1.0f,
-		+1.0f, +1.0f, -1.0f,
-		+1.0f, +1.0f, +1.0f,
-		+1.0f, -1.0f, +1.0f
+		+0.5f, -0.5f, -0.5f,
+		+0.5f, +0.5f, -0.5f,
+		+0.5f, +0.5f, +0.5f,
+		+0.5f, -0.5f, +0.5f
+
 	};
 
 	refMeshDesc.fNormalArr = new FLOAT[3 * uiNumVertices]
@@ -80,35 +81,35 @@ inline void Fill_BasicMesh_Cube(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
 
 	refMeshDesc.fColorArr = new FLOAT[4 * uiNumVertices]
 	{
-		Colors::Yellow.f[0], Colors::Yellow.f[1], Colors::Yellow.f[2], Colors::Yellow.f[3],
-		Colors::White.f[0], Colors::White.f[1], Colors::White.f[2], Colors::White.f[3],
-		Colors::Cyan.f[0], Colors::Cyan.f[1], Colors::Cyan.f[2], Colors::Cyan.f[3],
-		Colors::Green.f[0], Colors::Green.f[1], Colors::Green.f[2], Colors::Green.f[3],
+		Colors::Yellow.x, Colors::Yellow.y, Colors::Yellow.z, Colors::Yellow.w,
+		Colors::White.x, Colors::White.y, Colors::White.z, Colors::White.w,
+		Colors::Cyan.x, Colors::Cyan.y, Colors::Cyan.z, Colors::Cyan.w,
+		Colors::Green.x, Colors::Green.y, Colors::Green.z, Colors::Green.w,
 
-		Colors::Red.f[0], Colors::Red.f[1], Colors::Red.f[2], Colors::Red.f[3],
-		Colors::Magenta.f[0], Colors::Magenta.f[1], Colors::Magenta.f[2], Colors::Magenta.f[3],
-		Colors::Blue.f[0], Colors::Blue.f[1], Colors::Blue.f[2], Colors::Blue.f[3],
-		Colors::Black.f[0], Colors::Black.f[1], Colors::Black.f[2], Colors::Black.f[3],
+		Colors::Red.x, Colors::Red.y, Colors::Red.z, Colors::Red.w,
+		Colors::Magenta.x, Colors::Magenta.y, Colors::Magenta.z, Colors::Magenta.w,
+		Colors::Blue.x, Colors::Blue.y, Colors::Blue.z, Colors::Blue.w,
+		Colors::Black.x, Colors::Black.y, Colors::Black.z, Colors::Black.w,
 
-		Colors::White.f[0], Colors::White.f[1], Colors::White.f[2], Colors::White.f[3],
-		Colors::Magenta.f[0], Colors::Magenta.f[1], Colors::Magenta.f[2], Colors::Magenta.f[3],
-		Colors::Blue.f[0], Colors::Blue.f[1], Colors::Blue.f[2], Colors::Blue.f[3],
-		Colors::Cyan.f[0], Colors::Cyan.f[1], Colors::Cyan.f[2], Colors::Cyan.f[3],
+		Colors::White.x, Colors::White.y, Colors::White.z, Colors::White.w,
+		Colors::Magenta.x, Colors::Magenta.y, Colors::Magenta.z, Colors::Magenta.w,
+		Colors::Blue.x, Colors::Blue.y, Colors::Blue.z, Colors::Blue.w,
+		Colors::Cyan.x, Colors::Cyan.y, Colors::Cyan.z, Colors::Cyan.w,
 
-		Colors::Yellow.f[0], Colors::Yellow.f[1], Colors::Yellow.f[2], Colors::Yellow.f[3],
-		Colors::Red.f[0], Colors::Red.f[1], Colors::Red.f[2], Colors::Red.f[3],
-		Colors::Black.f[0], Colors::Black.f[1], Colors::Black.f[2], Colors::Black.f[3],
-		Colors::Green.f[0], Colors::Green.f[1], Colors::Green.f[2], Colors::Green.f[3],
+		Colors::Yellow.x, Colors::Yellow.y, Colors::Yellow.z, Colors::Yellow.w,
+		Colors::Red.x, Colors::Red.y, Colors::Red.z, Colors::Red.w,
+		Colors::Black.x, Colors::Black.y, Colors::Black.z, Colors::Black.w,
+		Colors::Green.x, Colors::Green.y, Colors::Green.z, Colors::Green.w,
 
-		Colors::Red.f[0], Colors::Red.f[1], Colors::Red.f[2], Colors::Red.f[3],
-		Colors::Magenta.f[0], Colors::Magenta.f[1], Colors::Magenta.f[2], Colors::Magenta.f[3],
-		Colors::White.f[0], Colors::White.f[1], Colors::White.f[2], Colors::White.f[3],
-		Colors::Yellow.f[0], Colors::Yellow.f[1], Colors::Yellow.f[2], Colors::Yellow.f[3],
+		Colors::Red.x, Colors::Red.y, Colors::Red.z, Colors::Red.w,
+		Colors::Magenta.x, Colors::Magenta.y, Colors::Magenta.z, Colors::Magenta.w,
+		Colors::White.x, Colors::White.y, Colors::White.z, Colors::White.w,
+		Colors::Yellow.x, Colors::Yellow.y, Colors::Yellow.z, Colors::Yellow.w,
 
-		Colors::Green.f[0], Colors::Green.f[1], Colors::Green.f[2], Colors::Green.f[3],
-		Colors::Cyan.f[0], Colors::Cyan.f[1], Colors::Cyan.f[2], Colors::Cyan.f[3],
-		Colors::Blue.f[0], Colors::Blue.f[1], Colors::Blue.f[2], Colors::Blue.f[3],
-		Colors::Black.f[0], Colors::Black.f[1], Colors::Black.f[2], Colors::Black.f[3],
+		Colors::Green.x, Colors::Green.y, Colors::Green.z, Colors::Green.w,
+		Colors::Cyan.x, Colors::Cyan.y, Colors::Cyan.z, Colors::Cyan.w,
+		Colors::Blue.x, Colors::Blue.y, Colors::Blue.z, Colors::Blue.w,
+		Colors::Black.x, Colors::Black.y, Colors::Black.z, Colors::Black.w,
 	};
 
 	refMeshDesc.fTexCoordArr = new FLOAT[2 * uiNumVertices]
@@ -202,10 +203,10 @@ inline void Fill_BasicMesh_Quad(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
 
 	refMeshDesc.fColorArr = new FLOAT[4 * uiNumVertices]
 	{
-		Colors::Yellow.f[0], Colors::Yellow.f[1], Colors::Yellow.f[2], Colors::Yellow.f[3],
-		Colors::White.f[0], Colors::White.f[1], Colors::White.f[2], Colors::White.f[3],
-		Colors::Cyan.f[0], Colors::Cyan.f[1], Colors::Cyan.f[2], Colors::Cyan.f[3],
-		Colors::Green.f[0], Colors::Green.f[1], Colors::Green.f[2], Colors::Green.f[3],
+		Colors::Yellow.x, Colors::Yellow.y, Colors::Yellow.z, Colors::Yellow.w,
+		Colors::White.x, Colors::White.y, Colors::White.z, Colors::White.w,
+		Colors::Cyan.x, Colors::Cyan.y, Colors::Cyan.z, Colors::Cyan.w,
+		Colors::Green.x, Colors::Green.y, Colors::Green.z, Colors::Green.w,
 	};
 
 	refMeshDesc.fTexCoordArr = new FLOAT[2 * uiNumVertices]
@@ -234,40 +235,40 @@ struct STATIC_CUBE_BASIC_VERTEX
 	DirectX::VertexPositionNormalColorTexture basicVertexArr[24]
 	{
 		// front
-		VertexPositionNormalColorTexture(Vector3(-1, -1, -1), Vector3(0.0f, 0.0f, -1.0f), Colors::Yellow, Vector2(0.0f, 1.0f)),
-		VertexPositionNormalColorTexture(Vector3(-1, +1, -1), Vector3(0.0f, 0.0f, -1.0f), Colors::White, Vector2(0.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, +1, -1), Vector3(0.0f, 0.0f, -1.0f), Colors::Cyan, Vector2(1.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, -1, -1), Vector3(0.0f, 0.0f, -1.0f), Colors::Green, Vector2(1.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, -1, -1), XMFLOAT3(0.0f, 0.0f, -1.0f), (XMFLOAT4)Colors::Yellow, XMFLOAT2(0.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, +1, -1), XMFLOAT3(0.0f, 0.0f, -1.0f), Colors::White, XMFLOAT2(0.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, +1, -1), XMFLOAT3(0.0f, 0.0f, -1.0f), Colors::Cyan, XMFLOAT2(1.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, -1, -1), XMFLOAT3(0.0f, 0.0f, -1.0f), Colors::Green, XMFLOAT2(1.0f, 1.0f)),
 
 		// back
-		VertexPositionNormalColorTexture(Vector3(-1, -1, +1), Vector3(0.0f, 0.0f, 1.0f),Colors::Red,Vector2(1.0f, 1.0f)),
-		VertexPositionNormalColorTexture(Vector3(-1, +1, +1), Vector3(0.0f, 0.0f, 1.0f),Colors::Magenta, Vector2(1.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, +1, +1), Vector3(0.0f, 0.0f, 1.0f),Colors::Blue, Vector2(0.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, -1, +1), Vector3(0.0f, 0.0f, 1.0f),Colors::Black, Vector2(0.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, -1, +1), XMFLOAT3(0.0f, 0.0f, 1.0f),Colors::Red,XMFLOAT2(1.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, +1, +1), XMFLOAT3(0.0f, 0.0f, 1.0f),Colors::Magenta, XMFLOAT2(1.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, +1, +1), XMFLOAT3(0.0f, 0.0f, 1.0f),Colors::Blue, XMFLOAT2(0.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, -1, +1), XMFLOAT3(0.0f, 0.0f, 1.0f),Colors::Black, XMFLOAT2(0.0f, 1.0f)),
 
 		// top
-		VertexPositionNormalColorTexture(Vector3(-1, +1, -1), Vector3(0.0f, 1.0f, 0.0f),Colors::White,Vector2(0.0f, 1.0f)),
-		VertexPositionNormalColorTexture(Vector3(-1, +1, +1), Vector3(0.0f, 1.0f, 0.0f),Colors::Magenta, Vector2(0.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, +1, +1), Vector3(0.0f, 1.0f, 0.0f),Colors::Blue, Vector2(1.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, +1, -1), Vector3(0.0f, 1.0f, 0.0f),Colors::Cyan, Vector2(1.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, +1, -1), XMFLOAT3(0.0f, 1.0f, 0.0f),Colors::White,XMFLOAT2(0.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, +1, +1), XMFLOAT3(0.0f, 1.0f, 0.0f),Colors::Magenta, XMFLOAT2(0.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, +1, +1), XMFLOAT3(0.0f, 1.0f, 0.0f),Colors::Blue, XMFLOAT2(1.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, +1, -1), XMFLOAT3(0.0f, 1.0f, 0.0f),Colors::Cyan, XMFLOAT2(1.0f, 1.0f)),
 
 		// bottom
-		VertexPositionNormalColorTexture(Vector3(-1, -1, -1), Vector3(0.0f, -1.0f, 0.0f),Colors::Yellow,Vector2(1.0f, 1.0f)),
-		VertexPositionNormalColorTexture(Vector3(-1, -1, +1), Vector3(0.0f, -1.0f, 0.0f),Colors::Red, Vector2(1.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, -1, +1), Vector3(0.0f, -1.0f, 0.0f),Colors::Black, Vector2(0.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(+1, -1, -1), Vector3(0.0f, -1.0f, 0.0f),Colors::Green, Vector2(0.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, -1, -1), XMFLOAT3(0.0f, -1.0f, 0.0f),Colors::Yellow,XMFLOAT2(1.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, -1, +1), XMFLOAT3(0.0f, -1.0f, 0.0f),Colors::Red, XMFLOAT2(1.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, -1, +1), XMFLOAT3(0.0f, -1.0f, 0.0f),Colors::Black, XMFLOAT2(0.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(+1, -1, -1), XMFLOAT3(0.0f, -1.0f, 0.0f),Colors::Green, XMFLOAT2(0.0f, 1.0f)),
 
 		// left
-		VertexPositionNormalColorTexture(Vector3(-1, -1, +1), Vector3(-1.0f, 0.0f, 0.0f),Colors::Red,Vector2(0.0f, 1.0f)),  // 
-		VertexPositionNormalColorTexture(Vector3(-1, +1, +1), Vector3(-1.0f, 0.0f, 0.0f),Colors::Magenta, Vector2(0.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(-1, +1, -1), Vector3(-1.0f, 0.0f, 0.0f),Colors::White, Vector2(1.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(-1, -1, -1), Vector3(-1.0f, 0.0f, 0.0f),Colors::Yellow, Vector2(1.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, -1, +1), XMFLOAT3(-1.0f, 0.0f, 0.0f),Colors::Red,XMFLOAT2(0.0f, 1.0f)),  // 
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, +1, +1), XMFLOAT3(-1.0f, 0.0f, 0.0f),Colors::Magenta, XMFLOAT2(0.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, +1, -1), XMFLOAT3(-1.0f, 0.0f, 0.0f),Colors::White, XMFLOAT2(1.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(-1, -1, -1), XMFLOAT3(-1.0f, 0.0f, 0.0f),Colors::Yellow, XMFLOAT2(1.0f, 1.0f)),
 
 		// right
-		VertexPositionNormalColorTexture(Vector3(1, -1, -1), Vector3(1.0f, 0.0f, 0.0f), Colors::Green,Vector2(0.0f, 1.0f)),
-		VertexPositionNormalColorTexture(Vector3(1, +1, -1), Vector3(1.0f, 0.0f, 0.0f), Colors::Cyan, Vector2(0.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(1, +1, +1), Vector3(1.0f, 0.0f, 0.0f), Colors::Blue, Vector2(1.0f, 0.0f)),
-		VertexPositionNormalColorTexture(Vector3(1, -1, +1), Vector3(1.0f, 0.0f, 0.0f), Colors::Black, Vector2(1.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(1, -1, -1), XMFLOAT3(1.0f, 0.0f, 0.0f), Colors::Green,XMFLOAT2(0.0f, 1.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(1, +1, -1), XMFLOAT3(1.0f, 0.0f, 0.0f), Colors::Cyan, XMFLOAT2(0.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(1, +1, +1), XMFLOAT3(1.0f, 0.0f, 0.0f), Colors::Blue, XMFLOAT2(1.0f, 0.0f)),
+		VertexPositionNormalColorTexture(XMFLOAT3(1, -1, +1), XMFLOAT3(1.0f, 0.0f, 0.0f), Colors::Black, XMFLOAT2(1.0f, 1.0f)),
 
 	};
 	UINT32 indexArr[36]
