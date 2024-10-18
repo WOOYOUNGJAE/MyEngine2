@@ -13,4 +13,8 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
+// Math Lib : Engine Core Uses SimpleMath(Vector3), Renderer Uses DirectXMath(FLOAT3)
+#include <SimpleMath.h>
+using namespace DirectX::SimpleMath;
+
 #endif //ENGINECORE_PCH_H

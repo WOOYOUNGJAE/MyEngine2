@@ -5,6 +5,7 @@ interface IRenderer;
 interface IMeshObject;
 class CGameObject;
 class CGameObjectManager;
+class CCamera;
 class ENGINECORE_DLL CEngine_Core : public IUnknown
 {
 	COM_BASE
@@ -19,11 +20,14 @@ public:
 	BOOL Run();
 public: // Manger Funcs
 	void Add_GameObj(UINT eType, CGameObject* pInstance);
-
+	void Activate_Camera(const std::string& cameraTag);
+	void Activate_Camera(CGameObject* pCameraInstance); // Activate Directly
 public:
 	IRenderer* m_pRenderer = nullptr;
 private:
 	CGameObjectManager* m_pGameObjManager = nullptr;
+private: // pointer
+	CCamera* m_pCamera = nullptr;
 
 };
 

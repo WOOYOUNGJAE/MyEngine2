@@ -5,6 +5,7 @@ namespace Engine_Core
 	enum GAME_OBJ_LIST_TYPE
 	{
 		DEFAULT,
+		CAMERA,
 		NUM
 	};
 }

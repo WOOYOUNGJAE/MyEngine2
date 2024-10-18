@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Engine_Core.h"
 
+#include "Camera.h"
 #include "Renderer_Common/Includes/PrimitiveGeomtryGenerator.h"
 #include "Renderer_Common/Includes/Structs.h"
 #include "Renderer_Common/Includes/RendererInterface.h"
@@ -41,6 +42,8 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 #pragma endregion
 
 	m_pGameObjManager = new CGameObjectManager();
+
+	
 }
 
 BOOL CEngine_Core::Run()
@@ -54,6 +57,7 @@ BOOL CEngine_Core::Run()
 	m_pGameObjManager->Render();
 
 	// Renderer Render
+	m_pRenderer->Update_CameraInfo(m_pCamera->m_pTransform.WorldMatrix(), m_pCamera->m_CamDesc);
 	if (m_pRenderer->MainRender(0.2f) == FALSE)
 		return FALSE;
 
@@ -65,4 +69,14 @@ BOOL CEngine_Core::Run()
 void CEngine_Core::Add_GameObj(UINT eType, CGameObject* pInstance)
 {
 	m_pGameObjManager->Add_GameObj((Engine_Core::GAME_OBJ_LIST_TYPE)eType, pInstance);
+}
+
+void CEngine_Core::Activate_Camera(const std::string& cameraTag)
+{
+	m_pCamera = m_pGameObjManager->Activate_Camera(cameraTag);	
+}
+
+void CEngine_Core::Activate_Camera(CGameObject* pCameraInstance)
+{
+	m_pCamera = m_pGameObjManager->Activate_Camera(pCameraInstance);
 }

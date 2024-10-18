@@ -25,6 +25,12 @@
     <Filter Include="Engine_Core">
       <UniqueIdentifier>{4c53069d-3c6f-405c-8792-237ed6ef6fe7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Camera">
+      <UniqueIdentifier>{907ecbb1-0f95-49b6-a154-a44b0332f2a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transform">
+      <UniqueIdentifier>{3344b392-650f-4afc-8fd4-3fb4f28100d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\dllmain.cpp">
@@ -41,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Engine_Core.cpp">
       <Filter>Engine_Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Camera.cpp">
+      <Filter>GameObject\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Transform.cpp">
+      <Filter>Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +75,15 @@
       <Filter>Engine_Core</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Camera.h">
+      <Filter>GameObject\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Transform.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

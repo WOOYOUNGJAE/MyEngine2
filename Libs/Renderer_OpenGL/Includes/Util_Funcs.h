@@ -25,3 +25,15 @@ inline void Copy_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexA
 		memcpy_s(byCurDst + uiTexCoordOffset, sizeof(vec2), (BYTE*)pMeshDesc->fTexCoordArr + sizeof(vec2) * i, sizeof(vec2));
 	}
 }
+
+inline void Convert_Matrix_DXtoGL(XMFLOAT4X4& mat)
+{
+	// Convert Look Direction
+	mat._31 *= -1;
+	mat._32 *= -1;
+	mat._33 *= -1;
+	mat._34 *= -1;
+
+	// Convert Position Z
+	mat._43 *= -1;
+}

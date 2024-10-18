@@ -24,11 +24,12 @@ public:
 	 * @return If WindowShouldClose
 	 */
 	INT MainRender(FLOAT fDeltaTime) override;
+	void Update_CameraInfo(XMFLOAT4X4& matCameraWorld, CAMERA_DESC& cameraDesc) override;
 	void BeginRender() override;
 	/**
 	 * Called from External Renderer, Just Add to RenderQueue
 	 */
-	void Render_MeshObject_External(IMeshObject* pMeshObj) override;
+	void Render_MeshObject_External(IMeshObject* pMeshObj, XMFLOAT4X4& matWorld) override;
 	void MainRender() override;
 	void EndRender() override;
 
@@ -47,4 +48,10 @@ private:
 	 * @brief RenderQueue List Distributed by Shader Type
 	 */
 	std::list<CMeshObject*> m_RenderQueueArr[Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM]{};
+private:
+	mat4x4 m_matCameraWorld;
+	mat4x4 m_matView;
+	mat4x4 m_matProj;
+	mat4x4 m_matViewProj;
+
 };

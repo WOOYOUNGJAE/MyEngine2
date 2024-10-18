@@ -19,13 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Camera.cpp" />
     <ClCompile Include="Sources\dllmain.cpp" />
     <ClCompile Include="Sources\Engine_Core.cpp" />
     <ClCompile Include="Sources\GameObject.cpp" />
     <ClCompile Include="Sources\GameObjectManager.cpp" />
     <ClCompile Include="Sources\pch.cpp" />
+    <ClCompile Include="Sources\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Includes\Camera.h" />
     <ClInclude Include="Includes\EngineConfig.h" />
     <ClInclude Include="Includes\Engine_Core.h" />
     <ClInclude Include="Includes\Enums.h" />
@@ -33,6 +36,8 @@
     <ClInclude Include="Includes\GameObject.h" />
     <ClInclude Include="Includes\GameObjectManager.h" />
     <ClInclude Include="Includes\pch.h" />
+    <ClInclude Include="Includes\Structs.h" />
+    <ClInclude Include="Includes\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -138,7 +143,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;ENGINECORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)</AdditionalIncludeDirectories>
@@ -165,7 +170,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;ENGINECORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)Libs\;$(SolutionDir);$(SolutionDir)Libs\Renderer_Common\Includes\;$(SolutionDir)Libs\GLFW\;$(SolutionDir)Libs\glad\;$(SolutionDir)Libs\Renderer_OpenGL\Includes\</AdditionalIncludeDirectories>

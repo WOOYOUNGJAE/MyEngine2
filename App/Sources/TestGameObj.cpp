@@ -44,9 +44,10 @@ void CTestGameObj::Tick(FLOAT fDeltaTime)
 
 void CTestGameObj::Late_Tick(FLOAT fDeltaTime)
 {
+	CGameObject::Late_Tick(fDeltaTime);
 }
 
 void CTestGameObj::Render()
 {
-	m_pRenderer->Render_MeshObject_External(m_pMeshObj);
+	m_pRenderer->Render_MeshObject_External(m_pMeshObj, m_pTransform.WorldMatrix());
 }

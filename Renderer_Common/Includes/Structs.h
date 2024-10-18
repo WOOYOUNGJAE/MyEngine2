@@ -1,7 +1,18 @@
 #pragma once
 
+struct CAMERA_DESC
+{
+	FLOAT fFovY;
+	FLOAT fAspectRatio;
+	FLOAT fNear;
+	FLOAT fFar;
+	
+};
+
 namespace Renderer_Common
 {
+
+
 	// Vertex(Position, Normal, Color, Texcoord), Index(uint16)
 	struct MESH_DESC_BASIC
 	{

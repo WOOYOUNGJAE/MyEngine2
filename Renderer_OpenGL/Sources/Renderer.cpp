@@ -5,6 +5,7 @@
 #include "Viewer.h"
 #include "ShaderManager.h"
 #include "enums.h"
+#include "Util_Funcs.h"
 
 IMPL_COM_FUNC(CRenderer)
 
@@ -92,13 +93,28 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
     {
         GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
         glUseProgram(curShaderProgram); // Bind Shader Program
+        
+        if (eShaderType == Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE)
+        {
+            GLuint uniformViewProj = glGetUniformLocation(curShaderProgram, "g_ViewProj");
+            glUniformMatrix4fv(uniformViewProj, 1, GL_TRUE/*row to col*/, glm::value_ptr(m_matViewProj));
+        }
+
         for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
         {
             glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
-            CHECK_GL_ERROR
             glDrawElements(GL_TRIANGLES, (GLsizei)iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
-            CHECK_GL_ERROR
             glBindVertexArray(0); // Unbind VAO
+
+            
+            GLuint uniformModel = glGetUniformLocation(curShaderProgram, "g_Model");
+            glm::mat4x4 curModelMatrix{};
+            memcpy_s(&curModelMatrix, sizeof(mat4x4), &iterMeshObj->WorldMat(), sizeof(XMFLOAT4X4));
+
+            //glUniformMatrix4fv(uniformModel, 1, GL_TRUE/*row to col*/, glm::value_ptr(curModelMatrix));
+            glUniformMatrix4fv(uniformModel, 1, GL_FALSE/*row to col*/, glm::value_ptr(curModelMatrix));
+
+
             CHECK_GL_ERROR
         }
         m_RenderQueueArr[eShaderType].clear();
@@ -108,14 +124,28 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
     return !glfwWindowShouldClose(m_pWindow);
 }
 
+void CRenderer::Update_CameraInfo(XMFLOAT4X4& matCameraWorld, CAMERA_DESC& cameraDesc)
+{
+    ::Convert_Matrix_DXtoGL(matCameraWorld);
+
+    memcpy_s(&m_matCameraWorld, sizeof(mat4x4), &matCameraWorld, sizeof(XMFLOAT4X4));
+    
+    m_matView = glm::inverse(m_matCameraWorld);
+    m_matProj = glm::perspectiveLH(cameraDesc.fFovY, cameraDesc.fAspectRatio, cameraDesc.fNear, cameraDesc.fFar);
+    m_matViewProj = m_matView * m_matProj;
+
+}
+
 void CRenderer::BeginRender()
 {
     m_pViewer->BeginRender();
 }
 
-void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj)
+void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj, XMFLOAT4X4& matWorld)
 {
     CMeshObject* pCastedMeshObj = static_cast<CMeshObject*>(pMeshObj);
+    ::Convert_Matrix_DXtoGL(matWorld);
+    pCastedMeshObj->Set_WorldMat(matWorld);
     m_RenderQueueArr[pCastedMeshObj->ShaderType()].push_back(pCastedMeshObj);
 }
 
