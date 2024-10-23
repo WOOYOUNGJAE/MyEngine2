@@ -20,5 +20,8 @@ public:
 
 public:
 	CAMERA_DESC m_CamDesc{};
+protected:
+	FLOAT m_fMoveSpeed = 1.f;
+	FLOAT m_fRotSpeed = 1.f;
 };
 

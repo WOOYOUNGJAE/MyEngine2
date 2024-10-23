@@ -48,7 +48,7 @@ interface RENDERERCOMMON_DLL IRenderer : public IUnknown
 	/**
 	 * Called from External Renderer
 	 */
-	virtual void Render_MeshObject_External(IMeshObject* pMeshObj, const XMFLOAT4X4& matWorld) = 0;
+	virtual void Render_MeshObject_External(IMeshObject* pMeshObj, XMFLOAT4X4& matWorld) = 0;
 	virtual void MainRender() = 0;
 	virtual void EndRender() = 0;
 

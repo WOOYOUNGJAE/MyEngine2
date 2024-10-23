@@ -11,10 +11,15 @@ class ENGINECORE_DLL CTransform
 {
 public:
 	void Set_Position(FLOAT x, FLOAT y, FLOAT z);
+	void Set_Position(const Vector3& vNewPos);
 	void Set_Rotation(UINT axis, FLOAT fAngle);
 	void Update_Transform();
-	Vector3 Get_Look_DX(); // Get Look(Forward)
+	Vector3 Right() { return m_matRotation.Right(); }
+	Vector3 Up() { return m_matRotation.Up(); }
+	Vector3 Look(); // Get Look(Forward)
+	Vector3 Forward() { return Look(); }; // Get Look(Forward)
 	Vector3 Get_Look_GL();
+	Vector3 Position() { return m_vPosition; }
 	Matrix WorldMatrix() { return m_matWorld; }
 	Matrix WorldMatrix_GL();
 

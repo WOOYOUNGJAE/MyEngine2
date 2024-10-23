@@ -5,6 +5,7 @@ interface IRenderer;
 interface IMeshObject;
 class CGameObject;
 class CGameObjectManager;
+class CInputManager;
 class CCamera;
 class ENGINECORE_DLL CEngine_Core : public IUnknown
 {
@@ -26,8 +27,12 @@ public:
 	IRenderer* m_pRenderer = nullptr;
 private:
 	CGameObjectManager* m_pGameObjManager = nullptr;
+	CInputManager* m_pInputManager = nullptr;
 private: // pointer
 	CCamera* m_pCamera = nullptr;
+private: // Windows Pointer
+	HWND* m_pHwnd = nullptr;
+	GLFWwindow* m_pGLWin = nullptr;
 
 };
 

@@ -26,6 +26,9 @@ inline void Copy_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexA
 	}
 }
 
+/**
+ * @brief Change z direction, memory row to col
+ */
 inline void Convert_Matrix_DXtoGL(XMFLOAT4X4& mat)
 {
 	// Convert Look Direction
@@ -36,4 +39,13 @@ inline void Convert_Matrix_DXtoGL(XMFLOAT4X4& mat)
 
 	// Convert Position Z
 	mat._43 *= -1;
+
+	// Reorder the matrix to match OpenGL's column-major order
+
+	XMFLOAT4X4 temp = mat; // Temporary copy to reorder
+	mat._11 = temp._11; mat._21 = temp._12; mat._31 = temp._13; mat._41 = temp._14; // 1st column
+	mat._12 = temp._21; mat._22 = temp._22; mat._32 = temp._23; mat._42 = temp._24; // 2nd column
+	mat._13 = temp._31; mat._23 = temp._32; mat._33 = temp._33; mat._43 = temp._34; // 3rd column
+	mat._14 = temp._41; mat._24 = temp._42; mat._34 = temp._43; mat._44 = temp._44; // 4th column
+
 }

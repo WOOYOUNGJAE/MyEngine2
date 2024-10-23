@@ -22,22 +22,31 @@
     <ClCompile Include="Sources\Camera.cpp" />
     <ClCompile Include="Sources\dllmain.cpp" />
     <ClCompile Include="Sources\Engine_Core.cpp" />
+    <ClCompile Include="Sources\Camera_Free.cpp" />
     <ClCompile Include="Sources\GameObject.cpp" />
     <ClCompile Include="Sources\GameObjectManager.cpp" />
+    <ClCompile Include="Sources\InputManager.cpp" />
     <ClCompile Include="Sources\pch.cpp" />
     <ClCompile Include="Sources\Transform.cpp" />
+    <ClCompile Include="Sources\Util_Funcs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Camera.h" />
+    <ClInclude Include="Includes\Colors.h" />
+    <ClInclude Include="Includes\CommonInclude.h" />
     <ClInclude Include="Includes\EngineConfig.h" />
     <ClInclude Include="Includes\Engine_Core.h" />
     <ClInclude Include="Includes\Enums.h" />
     <ClInclude Include="Includes\framework.h" />
+    <ClInclude Include="Includes\Camera_Free.h" />
     <ClInclude Include="Includes\GameObject.h" />
     <ClInclude Include="Includes\GameObjectManager.h" />
+    <ClInclude Include="Includes\InputManager.h" />
+    <ClInclude Include="Includes\Macros.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\Structs.h" />
     <ClInclude Include="Includes\Transform.h" />
+    <ClInclude Include="Includes\Util_Funcs.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -153,8 +162,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\GLFW\glfw3.lib;.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
@@ -182,8 +191,8 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\GLFW\glfw3.lib;.\Renderer_Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Renderer_Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"

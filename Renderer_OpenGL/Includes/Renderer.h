@@ -13,12 +13,30 @@ class CMeshObject;
  */
 class RENDEREROPENGL_DLL CRenderer final : public IRenderer
 {
+	/**
+	 * Manage Keys under Windows VK Key Standard
+	 */
+	struct GLFW_KeyManager
+	{
+		enum KEY_STATE { KEY_NONE, KEY_DOWN, KEY_UP, KEY_PRESSING, KEY_STATE_NUM };
+		static constexpr int VK_MAX = 0xff;
+
+		std::pair<bool, KEY_STATE> m_keyStateArr[VK_MAX]{};
+
+	public:
+		void Update_KeyStates(GLFWwindow* pWin);
+		bool Key_Pressing(int inKey);
+		bool Key_Down(int inKey);
+		bool Key_Up(int inKey);
+	private:
+		int ConvertVkToGlfwKey(int vkKey);
+	};
 	COM_BASE
 public:
 	CRenderer() = delete;
-	CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle);
+	CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle, GLFWwindow ** ppOutGLWin);
 	~CRenderer();
-public:
+public: // Interface Overrides
 	void Initialize(void*) override;
 	/**
 	 * @return If WindowShouldClose
@@ -38,6 +56,11 @@ public:
 	
 	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
+public:
+	bool Key_Pressing(int inKey) { return m_KeyManager.Key_Pressing(inKey); }
+	bool Key_Down(int inKey) { return m_KeyManager.Key_Down(inKey); }
+	bool Key_Up(int inKey) { return m_KeyManager.Key_Up(inKey); }
+
 private:
 	GLFWwindow* m_pWindow = nullptr;
 	CViewer* m_pViewer = nullptr;
@@ -53,5 +76,7 @@ private:
 	mat4x4 m_matView;
 	mat4x4 m_matProj;
 	mat4x4 m_matViewProj;
-
+private:
+	GLFW_KeyManager m_KeyManager;
 };
+

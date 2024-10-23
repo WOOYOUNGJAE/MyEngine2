@@ -31,6 +31,12 @@
     <Filter Include="Transform">
       <UniqueIdentifier>{3344b392-650f-4afc-8fd4-3fb4f28100d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Camera\FreeCamera">
+      <UniqueIdentifier>{7b1143e9-842a-41d1-bc9d-f6ab6438b46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Input">
+      <UniqueIdentifier>{65a826e9-4222-4012-a121-58615c7ae0d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\dllmain.cpp">
@@ -53,6 +59,15 @@
     </ClCompile>
     <ClCompile Include="Sources\Transform.cpp">
       <Filter>Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Camera_Free.cpp">
+      <Filter>GameObject\Camera\FreeCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\InputManager.cpp">
+      <Filter>Managers\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Util_Funcs.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +99,24 @@
       <Filter>Transform</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CommonInclude.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Camera_Free.h">
+      <Filter>GameObject\Camera\FreeCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\InputManager.h">
+      <Filter>Managers\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Util_Funcs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

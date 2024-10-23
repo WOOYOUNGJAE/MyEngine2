@@ -7,6 +7,12 @@ void CTransform::Set_Position(FLOAT x, FLOAT y, FLOAT z)
 	m_bTransformDirty = true;
 }
 
+void CTransform::Set_Position(const Vector3& vNewPos)
+{
+    m_vPosition = vNewPos;
+	m_bTransformDirty = true;
+}
+
 void CTransform::Set_Rotation(UINT axis, FLOAT fAngle)
 {
     switch (axis)
@@ -35,14 +41,14 @@ void CTransform::Update_Transform()
     m_bTransformDirty = false;
 }
 
-Vector3 CTransform::Get_Look_DX()
+Vector3 CTransform::Look()
 {
-	return -m_matWorld.Forward(); // Forward() is towarding to Screen
+	return -m_matRotation.Forward(); // Forward() is towarding to Screen
 }
 
 Vector3 CTransform::Get_Look_GL()
 {
-	return m_matWorld.Forward(); // Forward() is towarding to Screen
+	return m_matRotation.Forward(); // Forward() is towarding to Screen
 }
 
 Matrix CTransform::WorldMatrix_GL()

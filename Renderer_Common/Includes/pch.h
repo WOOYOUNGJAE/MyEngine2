@@ -46,8 +46,7 @@ using namespace DirectX;
 //using namespace DirectX::SimpleMath;
 
 
-// Renderer Common
-#include "Macros.h"
-#include "Colors.h"
+// Engine Common
+#include "Engine_Core/Includes/CommonInclude.h"
 
 #endif //RENDERERCOMMON_PCH_H

@@ -13,9 +13,9 @@ uniform mat4 g_ViewProj;                              // View * Proj
 
 void main()
 {
-    gl_Position = g_ViewProj * g_Model * vec4(position, 1.0); // Transform vertex position
     gl_Position = vec4(position, 1.0); // Transform vertex position
     gl_Position = g_Model * vec4(position, 1.0); // Transform vertex position
+    gl_Position = g_ViewProj * g_Model * vec4(position, 1.0); // Transform vertex position
     fragColor = color;                          // Pass color to fragment shader
     fragTexCoord = texCoord;                   // Pass texture coordinate to fragment shader
 }
