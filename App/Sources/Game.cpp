@@ -36,13 +36,15 @@ HRESULT CGame::Initialize(std::string& strTitle)
 	// Camera
 	CCamera* pCamera = new CCamera_Free();
 	pCamera->m_CamDesc = { XMConvertToRadians(60.f), uiWinX / (FLOAT)uiWinY , 0.2f, 300.f };
+	pCamera->m_pTransform.Set_Position(0.f, 0.f, -2.f);
 	m_pEngine->Add_GameObj(Engine_Core::GAME_OBJ_LIST_TYPE::CAMERA, pCamera);
 	m_pEngine->Activate_Camera(pCamera);
 
 	// Init Scene (Temp)
 	pTestObj = new CTestGameObj();
 	pTestObj->Initialize(m_pEngine);
-	pTestObj->m_pTransform.Set_Position(0, 0, -1.5f);
+	pTestObj->m_pTransform.Set_Position(0, 0, 3.f);
+	pTestObj->m_pTransform.Set_Position(0, 0, 0.f);
 
 	m_pEngine->Add_GameObj(Engine_Core::GAME_OBJ_LIST_TYPE::DEFAULT, pTestObj);
 	return hr;

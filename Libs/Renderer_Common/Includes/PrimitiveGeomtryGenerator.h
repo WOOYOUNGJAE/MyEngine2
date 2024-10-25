@@ -178,7 +178,6 @@ inline void Fill_BasicMesh_Cube(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
 
 inline void Fill_BasicMesh_Quad(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
 {
-	// TODO: GL Convention
 	using namespace Renderer_Common;
 
 	UINT uiNumVertices = 4;

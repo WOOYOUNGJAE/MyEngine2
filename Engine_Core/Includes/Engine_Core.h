@@ -35,4 +35,3 @@ private: // Windows Pointer
 	GLFWwindow* m_pGLWin = nullptr;
 
 };
-

@@ -81,7 +81,8 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
         return FALSE;
     }
 
-    if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    //if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (m_KeyManager.Key_Down(VK_ESCAPE))
     {
         glfwSetWindowShouldClose(m_pWindow, TRUE);
         glfwTerminate();
@@ -95,7 +96,7 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
         if (eShaderType == Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE)
         {
             GLuint uniformViewProj = glGetUniformLocation(curShaderProgram, "g_ViewProj");
-            glUniformMatrix4fv(uniformViewProj, 1, GL_TRUE/*row to col*/, glm::value_ptr(m_matViewProj));
+            glUniformMatrix4fv(uniformViewProj, 1, GL_FALSE/*row to col*/, glm::value_ptr(m_matViewProj));
         }
 
         for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
@@ -126,13 +127,11 @@ void CRenderer::Update_CameraInfo(XMFLOAT4X4& matCameraWorld, CAMERA_DESC& camer
 {
     ::Convert_Matrix_DXtoGL(matCameraWorld);
 
-    memcpy_s(&m_matCameraWorld, sizeof(mat4x4), &matCameraWorld, sizeof(XMFLOAT4X4));
-    
+    m_matCameraWorld = *reinterpret_cast<mat4x4*>(&matCameraWorld);
     m_matView = glm::inverse(m_matCameraWorld);
-    m_matProj = glm::perspectiveLH(cameraDesc.fFovY, cameraDesc.fAspectRatio, cameraDesc.fNear, cameraDesc.fFar);
-    m_matViewProj = m_matView * m_matProj;
 
-
+    m_matProj = glm::perspective(cameraDesc.fFovY, cameraDesc.fAspectRatio, cameraDesc.fNear, cameraDesc.fFar);
+    m_matViewProj = m_matProj * m_matView;
 }
 
 void CRenderer::BeginRender()
@@ -149,25 +148,13 @@ void CRenderer::BeginRender()
 void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj, XMFLOAT4X4& matWorld)
 {
     CMeshObject* pCastedMeshObj = static_cast<CMeshObject*>(pMeshObj);
-    ::Convert_Matrix_DXtoGL(matWorld);
+    //::Convert_Matrix_DXtoGL(matWorld);
     pCastedMeshObj->Set_WorldMat(matWorld);
     m_RenderQueueArr[pCastedMeshObj->ShaderType()].push_back(pCastedMeshObj);
 }
 
 void CRenderer::MainRender()
 {
-    //for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
-    //{
-    //    GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
-    //    glUseProgram(curShaderProgram); // Bind Shader Program
-    //    for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
-    //    {
-    //        glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
-    //        glDrawElements(GL_TRIANGLES, iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
-    //        glBindVertexArray(0); // Unbind VAO
-    //    }
-    //    m_RenderQueueArr[eShaderType].clear();
-    //}
 }
 
 void CRenderer::EndRender()

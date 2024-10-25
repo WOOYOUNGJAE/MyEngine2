@@ -51,9 +51,6 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{88b25efd-c9a3-4f21-99fc-91801a43434e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Util\GLFW_Input">
-      <UniqueIdentifier>{fd4e2656-232d-4c76-bb0f-9e91bebc203d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\RendererConfig.h">
@@ -104,9 +101,6 @@
     <ClInclude Include="Includes\enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\GLFW_Input.h">
-      <Filter>Util\GLFW_Input</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Viewer.cpp">
@@ -144,9 +138,6 @@
     </ClCompile>
     <ClCompile Include="Sources\ShaderManager.cpp">
       <Filter>Util\Shader_Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\GLFW_Input.cpp">
-      <Filter>Util\GLFW_Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

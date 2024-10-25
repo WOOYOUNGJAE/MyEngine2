@@ -62,9 +62,6 @@ BOOL CEngine_Core::Run()
 	{
 		m_pInputManager->Tick(m_pHwnd);
 	}
-	else if (m_pGLWin)
-	{
-	}
 
 	m_pGameObjManager->Render();
 

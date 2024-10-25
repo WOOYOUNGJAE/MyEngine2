@@ -32,11 +32,11 @@ void CCamera_Free::Tick(FLOAT fDeltaTime)
 	}
 	if (g_Input->Key_Pressing('Q'))
 	{
-		m_pTransform.Set_Position(m_pTransform.m_vPosition + m_pTransform.Up() * fCurMoveSpeed * fDeltaTime);
+		m_pTransform.Set_Position(m_pTransform.m_vPosition + m_pTransform.Up() * -fCurMoveSpeed * fDeltaTime);
 	}
 	if (g_Input->Key_Pressing('E'))
 	{
-		m_pTransform.Set_Position(m_pTransform.m_vPosition + m_pTransform.Up() * -fCurMoveSpeed * fDeltaTime);
+		m_pTransform.Set_Position(m_pTransform.m_vPosition + m_pTransform.Up() * fCurMoveSpeed * fDeltaTime);
 	}
 
 	//if (g_Input->Key_Pressing(VK_RBUTTON))

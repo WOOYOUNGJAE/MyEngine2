@@ -5,7 +5,7 @@
 class ENGINECORE_DLL CCamera : public CGameObject
 {
 public:
-	CCamera() { m_pTransform.Set_Position(1, 1, 1); }
+	CCamera() {}
 	~CCamera() override = default;
 
 public:
