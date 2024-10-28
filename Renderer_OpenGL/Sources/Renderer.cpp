@@ -92,7 +92,17 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
     {
         GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
         glUseProgram(curShaderProgram); // Bind Shader Program
-        
+
+        // Culling
+        glEnable(GL_CULL_FACE);
+        glFrontFace(GL_CW);
+        glCullFace(GL_BACK);
+
+        // Depth Testing
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
+
+
         if (eShaderType == Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE)
         {
             GLuint uniformViewProj = glGetUniformLocation(curShaderProgram, "g_ViewProj");
@@ -108,13 +118,14 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
             
             GLuint uniformModel = glGetUniformLocation(curShaderProgram, "g_Model");
             glm::mat4x4 curModelMatrix{};
-            memcpy_s(&curModelMatrix, sizeof(mat4x4), &iterMeshObj->WorldMat(), sizeof(XMFLOAT4X4));
+            curModelMatrix = ::Get_Converted_Matrix_DXtoGL(iterMeshObj->WorldMat());
+            memcpy_s(&curModelMatrix, sizeof(mat4x4), &curModelMatrix, sizeof(XMFLOAT4X4));
 
             //glUniformMatrix4fv(uniformModel, 1, GL_TRUE/*row to col*/, glm::value_ptr(curModelMatrix));
             glUniformMatrix4fv(uniformModel, 1, GL_FALSE/*row to col*/, glm::value_ptr(curModelMatrix));
-
-
             CHECK_GL_ERROR
+
+
         }
         m_RenderQueueArr[eShaderType].clear();
     }
@@ -125,10 +136,18 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
 
 void CRenderer::Update_CameraInfo(XMFLOAT4X4& matCameraWorld, CAMERA_DESC& cameraDesc)
 {
-    ::Convert_Matrix_DXtoGL(matCameraWorld);
+    //::Convert_Matrix_DXtoGL(matCameraWorld);
 
-    m_matCameraWorld = *reinterpret_cast<mat4x4*>(&matCameraWorld);
+    //m_matCameraWorld = *reinterpret_cast<mat4x4*>(&matCameraWorld);
+    m_matCameraWorld = ::Get_Converted_Matrix_DXtoGL(matCameraWorld);
+
+    glm::vec3 camPos = m_matCameraWorld[3];
+    glm::vec3 camFront = glm::normalize(m_matCameraWorld[2]);
+    glm::vec3 camUp = glm::normalize(m_matCameraWorld[1]);
+
+    //m_matCameraWorld[2].z *= -1; // Look Z Direction Should not be Converted
     m_matView = glm::inverse(m_matCameraWorld);
+    m_matView = glm::lookAt(camPos, camPos + camFront, camUp);
 
     m_matProj = glm::perspective(cameraDesc.fFovY, cameraDesc.fAspectRatio, cameraDesc.fNear, cameraDesc.fFar);
     m_matViewProj = m_matProj * m_matView;
@@ -138,8 +157,13 @@ void CRenderer::BeginRender()
 {
     glfwPollEvents();
 
+    // Reset Depth
+    glClearDepth(1.0f);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     // Update Key Inputs
-    m_KeyManager.Update_KeyStates(m_pWindow);
+    m_KeyManager.Update_InputStates(m_pWindow);
 
 
     m_pViewer->BeginRender();
@@ -172,56 +196,68 @@ IMeshObject* CRenderer::Create_EmptyColoredMesh(void* pData)
     return nullptr;
 }
 
-void CRenderer::GLFW_KeyManager::Update_KeyStates(GLFWwindow* pWin)
+void CRenderer::GLFW_KeyManager::Update_InputStates(GLFWwindow* pWin)
 {
-    for (INT keyChecking = 0; keyChecking < VK_MAX; ++keyChecking)
+    // Keyboard
+    for (INT keyChecking = 0 /*After Mouse, From Keyboard*/ ; keyChecking < VK_MAX; ++keyChecking)
     {
         int glfwKey = ConvertVkToGlfwKey(keyChecking);
-        int glfwState = glfwGetKey(pWin, glfwKey);
-        if (glfwState)
+        int glfwState = 0;
+        // If Mouse
+        if (glfwKey < GLFW_MOUSE_BUTTON_LAST)
         {
-            int a = 1;
+            glfwState = glfwGetMouseButton(pWin, glfwKey);
         }
+        else
+        {
+			glfwState = glfwGetKey(pWin, glfwKey);	        
+        }
+
         if (glfwState == GLFW_PRESS || glfwState == GLFW_REPEAT) // If Pressed
         {
-            if (m_keyStateArr[keyChecking].first) // and Also Pressed Before
+            if (keyStateArr[keyChecking].first) // and Also Pressed Before
             {
-                m_keyStateArr[keyChecking].second = KEY_PRESSING; // Pressing
+                keyStateArr[keyChecking].second = KEY_PRESSING; // Pressing
             }
             else
             {
-                m_keyStateArr[keyChecking].first = true;
-                m_keyStateArr[keyChecking].second = KEY_DOWN; // Pressed this tick
+                keyStateArr[keyChecking].first = true;
+                keyStateArr[keyChecking].second = KEY_DOWN; // Pressed this tick
             }
         }
         else if (glfwState == GLFW_RELEASE) // Not Pressed
         {
-            if (m_keyStateArr[keyChecking].first) // but Pressed Before
+            if (keyStateArr[keyChecking].first) // but Pressed Before
             {
-                m_keyStateArr[keyChecking].first = false;
-                m_keyStateArr[keyChecking].second = KEY_UP;
+                keyStateArr[keyChecking].first = false;
+                keyStateArr[keyChecking].second = KEY_UP;
             }
             else
             {
-                m_keyStateArr[keyChecking].second = KEY_NONE;
+                keyStateArr[keyChecking].second = KEY_NONE;
             }
         }
     }
+
+    // prev = cur
+    memcpy_s(prevMousePosXY, sizeof(double) * 2, curMousePosXY, sizeof(double) * 2);
+    glfwGetCursorPos(pWin, &curMousePosXY[0], &curMousePosXY[1]);
+    std::cout << "x: " << curMousePosXY[0] << " \ty" << curMousePosXY[1] << std::endl;
 }
 
 bool CRenderer::GLFW_KeyManager::Key_Pressing(int inKey)
 {
-    return m_keyStateArr[inKey].second == KEY_PRESSING;
+    return keyStateArr[inKey].second == KEY_PRESSING;
 }
 
 bool CRenderer::GLFW_KeyManager::Key_Down(int inKey)
 {
-    return m_keyStateArr[inKey].second == KEY_DOWN;
+    return keyStateArr[inKey].second == KEY_DOWN;
 }
 
 bool CRenderer::GLFW_KeyManager::Key_Up(int inKey)
 {
-    return m_keyStateArr[inKey].second == KEY_UP;
+    return keyStateArr[inKey].second == KEY_UP;
 }
 
 int CRenderer::GLFW_KeyManager::ConvertVkToGlfwKey(int vkKey)

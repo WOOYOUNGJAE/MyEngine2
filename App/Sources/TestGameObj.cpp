@@ -39,7 +39,12 @@ void CTestGameObj::Initialize(CEngine_Core* pEngine)
 
 void CTestGameObj::Tick(FLOAT fDeltaTime)
 {
-
+	static float fAccAngle = 0.f;
+	fAccAngle = fDeltaTime * 0.07f;
+	Quaternion rot;
+	rot = Quaternion::CreateFromAxisAngle(Vector3::Up, fAccAngle);
+	rot = Quaternion::CreateFromAxisAngle(Vector3::Right, fAccAngle);
+	//m_pTransform.Multiple_Rotation(Matrix::CreateFromQuaternion(rot));;
 }
 
 void CTestGameObj::Late_Tick(FLOAT fDeltaTime)

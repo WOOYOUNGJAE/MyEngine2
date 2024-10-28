@@ -32,7 +32,30 @@ inline void Copy_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexA
 inline void Convert_Matrix_DXtoGL(XMFLOAT4X4& srcMat)
 {
 	// Convert Z Direction
+	//srcMat._13 *= -1;
+	//srcMat._23 *= -1;
+	//srcMat._33 *= -1;
+
+	srcMat._31 *= -1;
+	srcMat._32 *= -1;
+	srcMat._33 *= -1;
+
+	srcMat._43 *= -1;
+}
+inline glm::mat4x4 Get_Converted_Matrix_DXtoGL(XMFLOAT4X4& srcMat)
+{
+	// Convert Z Direction
+	//srcMat._31 *= -1;
+	//srcMat._32 *= -1;
+
 	srcMat._13 *= -1;
 	srcMat._23 *= -1;
 	srcMat._33 *= -1;
+
+	srcMat._43 *= -1;
+
+	glm::mat4x4 mat;
+	mat = *reinterpret_cast<glm::mat4x4*>(&srcMat);
+
+	return mat;
 }

@@ -95,5 +95,18 @@ bool CInputManager::Key_Up(int inKey)
 
 Vector2 CInputManager::Get_MouseDirPrevToCur()
 {
-	return Vector2((m_curMousePos.x - m_prevMousePos.x), (m_curMousePos.y - m_prevMousePos.y));
+	if (m_pHwnd)
+	{
+		return Vector2((m_curMousePos.x - m_prevMousePos.x), (m_curMousePos.y - m_prevMousePos.y));;
+	}
+
+	if (m_pGLRenderer)
+	{
+		return Vector2(
+			FLOAT(m_pGLRenderer->m_KeyManager.curMousePosXY[0] - m_pGLRenderer->m_KeyManager.prevMousePosXY[0]),
+			FLOAT(m_pGLRenderer->m_KeyManager.curMousePosXY[1] - m_pGLRenderer->m_KeyManager.prevMousePosXY[1])
+			);
+	}
+
+	return Vector2();
 }

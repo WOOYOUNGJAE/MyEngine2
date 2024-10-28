@@ -21,10 +21,11 @@ class RENDEREROPENGL_DLL CRenderer final : public IRenderer
 		enum KEY_STATE { KEY_NONE, KEY_DOWN, KEY_UP, KEY_PRESSING, KEY_STATE_NUM };
 		static constexpr int VK_MAX = 0xff;
 
-		std::pair<bool, KEY_STATE> m_keyStateArr[VK_MAX]{};
-
+		std::pair<bool, KEY_STATE> keyStateArr[VK_MAX]{};
+		double prevMousePosXY[2]{};
+		double curMousePosXY[2]{};
 	public:
-		void Update_KeyStates(GLFWwindow* pWin);
+		void Update_InputStates(GLFWwindow* pWin);
 		bool Key_Pressing(int inKey);
 		bool Key_Down(int inKey);
 		bool Key_Up(int inKey);
@@ -56,10 +57,6 @@ public: // Interface Overrides
 	
 	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
 	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
-public:
-	bool Key_Pressing(int inKey) { return m_KeyManager.Key_Pressing(inKey); }
-	bool Key_Down(int inKey) { return m_KeyManager.Key_Down(inKey); }
-	bool Key_Up(int inKey) { return m_KeyManager.Key_Up(inKey); }
 
 private:
 	GLFWwindow* m_pWindow = nullptr;
@@ -76,7 +73,13 @@ private:
 	mat4x4 m_matView;
 	mat4x4 m_matProj;
 	mat4x4 m_matViewProj;
-private:
+
+// Input Manager
+public:
 	GLFW_KeyManager m_KeyManager;
+public:
+	bool Key_Pressing(int inKey) { return m_KeyManager.Key_Pressing(inKey); }
+	bool Key_Down(int inKey) { return m_KeyManager.Key_Down(inKey); }
+	bool Key_Up(int inKey) { return m_KeyManager.Key_Up(inKey); }
 };
 

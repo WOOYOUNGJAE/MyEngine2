@@ -12,7 +12,9 @@ class ENGINECORE_DLL CTransform
 public:
 	void Set_Position(FLOAT x, FLOAT y, FLOAT z);
 	void Set_Position(const Vector3& vNewPos);
+	void Set_Rotation(const Matrix& matRot) { m_matRotation = matRot; m_bTransformDirty = true; }
 	void Set_Rotation(UINT axis, FLOAT fAngle);
+	void Multiple_Rotation(const Matrix& matRot);
 	void Update_Transform();
 	Vector3 Right() { return m_matRotation.Right(); }
 	Vector3 Up() { return m_matRotation.Up(); }

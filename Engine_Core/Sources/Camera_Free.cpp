@@ -2,6 +2,9 @@
 #include "Camera_Free.h"
 #include "InputManager.h"
 
+
+static Vector3 vStartPos = Vector3(0, 0, -2);
+static Matrix matStartRotation;
 void CCamera_Free::Tick(FLOAT fDeltaTime)
 {
 	FLOAT fCurMoveSpeed = m_fMoveSpeed;
@@ -39,20 +42,26 @@ void CCamera_Free::Tick(FLOAT fDeltaTime)
 		m_pTransform.Set_Position(m_pTransform.m_vPosition + m_pTransform.Up() * fCurMoveSpeed * fDeltaTime);
 	}
 
-	//if (g_Input->Key_Pressing(VK_RBUTTON))
-	//{
-	//	const Vector2& vChangedDir = g_Input->Get_MouseDirPrevToCur();
+	if (g_Input->Key_Pressing(VK_RBUTTON))
+	{
+		const Vector2& vChangedDir = g_Input->Get_MouseDirPrevToCur();
 
-	//	// 먼저 절대적인 y축을 기준으로 회전 해야 함
-	//	m_pTransformCom->Rotate(Vector3::Up, vChangedDir.x * fRotRotSpeed * fDeltaTime);
-	//	m_pTransformCom->Rotate(m_pTransformCom->WorldMatrix().Right(), vChangedDir.y * fRotRotSpeed * fDeltaTime);
+		Quaternion rotationX = Quaternion::CreateFromAxisAngle(Vector3::Up, vChangedDir.x * m_fRotSpeed * fDeltaTime);
+		m_pTransform.Multiple_Rotation(Matrix::CreateFromQuaternion(rotationX));
+		Quaternion rotationY = Quaternion::CreateFromAxisAngle(m_pTransform.m_matRotation.Right(), vChangedDir.y * m_fRotSpeed * fDeltaTime);
+		m_pTransform.Multiple_Rotation(Matrix::CreateFromQuaternion(rotationY));
+		
+	}
+	static float fAccAngle = 0.f;
+	fAccAngle = fDeltaTime * 0.07f;
+	Quaternion rot = Quaternion::CreateFromAxisAngle(Vector3::Up, fAccAngle);
+	//Quaternion rot = Quaternion::CreateFromAxisAngle(Vector3::Right, fAccAngle);
+	//m_pTransform.Multiple_Rotation(Matrix::CreateFromQuaternion(rot));
 
-	//}
 
-
-
-	//if (g_Input->Key_Down('X')) // 카메라 회전 되돌리기
-	//{
-	//	m_pTransformCom->Set_Look(Vector3(0.f, 0.f, 1.f));
-	//}
+	if (g_Input->Key_Down('X')) // 카메라 원위치
+	{
+		m_pTransform.Set_Position(vStartPos);
+		m_pTransform.Set_Rotation(matStartRotation);
+	}
 }

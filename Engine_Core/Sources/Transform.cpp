@@ -32,6 +32,12 @@ void CTransform::Set_Rotation(UINT axis, FLOAT fAngle)
     m_bTransformDirty = true;
 }
 
+void CTransform::Multiple_Rotation(const Matrix& matRot)
+{
+    m_matRotation *= matRot;
+    m_bTransformDirty = true;
+}
+
 void CTransform::Update_Transform()
 {
     Matrix matTranslation = Matrix::CreateTranslation(m_vPosition);
