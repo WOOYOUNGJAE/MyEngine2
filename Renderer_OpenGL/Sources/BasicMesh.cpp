@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "BasicMesh.h"
-#include "Renderer_Common/Includes/Structs.h"
+#include "Common/Includes/Structs.h"
 #include "Util_Funcs.h"
 
 
@@ -11,7 +11,7 @@ CBasicMesh::CBasicMesh()
 
 void CBasicMesh::Begin_CreateMesh(void* pData)
 {
-	using namespace Renderer_Common;
+	using namespace Common;
 
 	CREATE_MESHES_DESC* pCastedData = reinterpret_cast<CREATE_MESHES_DESC*>(pData);
 	MESH_DESC_BASIC* pMeshDataArr = *(pCastedData->pBasicMeshDataArrPtr);
@@ -31,7 +31,7 @@ void CBasicMesh::Begin_CreateMesh(void* pData)
 
 	// VBO
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-	glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)sizeof(GL::VertexPositionNormalColorTexture) * refCurMeshData.uiNumVertices, m_pVertexArr, GL_STATIC_DRAW); // ¸Þ¸ð¸® ÇÒ´ç°ú ÀúÀå
+	glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)sizeof(GL::VertexPositionNormalColorTexture) * refCurMeshData.uiNumVertices, m_pVertexArr, GL_STATIC_DRAW); // ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CHECK_GL_ERROR;
 
 

@@ -9,7 +9,7 @@ struct CAMERA_DESC
 	
 };
 
-namespace Renderer_Common
+namespace Common
 {
 
 

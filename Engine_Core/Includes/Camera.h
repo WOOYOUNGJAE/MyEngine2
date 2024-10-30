@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "Renderer_Common/Includes/RendererInterface.h"
+#include "Common/Includes/RendererInterface.h"
 
 class ENGINECORE_DLL CCamera : public CGameObject
 {

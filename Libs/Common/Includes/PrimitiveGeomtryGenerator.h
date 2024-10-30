@@ -1,7 +1,9 @@
 #pragma once
 #include "Structs.h"
-
+#include "RendererConfig.h"
 // DX Standard. Should be converted if OpenGL
+
+void COMMON_DLL Test();
 
 inline void Fill_BasicMesh_Cube(Common::MESH_DESC_BASIC& refMeshDesc)
 {

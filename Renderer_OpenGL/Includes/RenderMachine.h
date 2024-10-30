@@ -1,5 +1,5 @@
 #pragma once
-#include "Renderer_Common/Includes/RendererInterface.h"
+#include "Common/Includes/RendererInterface.h"
 //
 //class CRenderMachine : public IRenderMachine
 //{

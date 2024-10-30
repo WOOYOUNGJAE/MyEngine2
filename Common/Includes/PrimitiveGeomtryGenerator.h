@@ -1,11 +1,13 @@
 #pragma once
 #include "Structs.h"
-
+#include "RendererConfig.h"
 // DX Standard. Should be converted if OpenGL
 
-inline void Fill_BasicMesh_Cube(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
+void COMMON_DLL Test();
+
+inline void Fill_BasicMesh_Cube(Common::MESH_DESC_BASIC& refMeshDesc)
 {
-	using namespace Renderer_Common;
+	using namespace Common;
 
 	UINT uiNumVertices = 24;
 	refMeshDesc.uiNumVertices = uiNumVertices;
@@ -176,9 +178,9 @@ inline void Fill_BasicMesh_Cube(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
 	};
 }
 
-inline void Fill_BasicMesh_Quad(Renderer_Common::MESH_DESC_BASIC& refMeshDesc)
+inline void Fill_BasicMesh_Quad(Common::MESH_DESC_BASIC& refMeshDesc)
 {
-	using namespace Renderer_Common;
+	using namespace Common;
 
 	UINT uiNumVertices = 4;
 	refMeshDesc.uiNumVertices = uiNumVertices;

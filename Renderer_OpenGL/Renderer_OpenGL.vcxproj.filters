@@ -62,9 +62,6 @@
     <ClInclude Include="Includes\Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\MeshObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -100,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Includes\enums.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\MeshObject.h">
+      <Filter>Objects\MeshObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

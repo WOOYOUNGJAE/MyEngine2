@@ -2,9 +2,9 @@
 #include "Engine_Core.h"
 
 #include "Camera.h"
-#include "Renderer_Common/Includes/PrimitiveGeomtryGenerator.h"
-#include "Renderer_Common/Includes/Structs.h"
-#include "Renderer_Common/Includes/RendererInterface.h"
+#include "Common/Includes/PrimitiveGeomtryGenerator.h"
+#include "Common/Includes/Structs.h"
+#include "Common/Includes/RendererInterface.h"
 
 #include "Renderer_OpenGL/Includes/Renderer.h"
 

@@ -1,13 +1,13 @@
 #pragma once
-#include "Renderer_Common/Includes/Structs.h"
+#include "Common/Includes/Structs.h"
 
-namespace Renderer_Common
+namespace Common
 {
 	struct MESH_DESC_BASIC;
 }
 
 
-inline void Copy_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexArr, Renderer_Common::MESH_DESC_BASIC* pMeshDesc)
+inline void Copy_MeshDesc_Basic(GL::VertexPositionNormalColorTexture* dstVertexArr, Common::MESH_DESC_BASIC* pMeshDesc)
 {
 	UINT uiNumVertices = pMeshDesc->uiNumVertices;
 	size_t ullVertexSize = sizeof(GL::VertexPositionNormalColorTexture);
@@ -45,13 +45,9 @@ inline void Convert_Matrix_DXtoGL(XMFLOAT4X4& srcMat)
 inline glm::mat4x4 Get_Converted_Matrix_DXtoGL(XMFLOAT4X4& srcMat)
 {
 	// Convert Z Direction
-	//srcMat._31 *= -1;
-	//srcMat._32 *= -1;
-
 	srcMat._13 *= -1;
 	srcMat._23 *= -1;
 	srcMat._33 *= -1;
-
 	srcMat._43 *= -1;
 
 	glm::mat4x4 mat;

@@ -2,10 +2,10 @@
 #include "RendererConfig.h"
 #include "Structs.h"
 
-interface RENDERERCOMMON_DLL IVertex {};
+interface COMMON_DLL IVertex {};
 
 
-interface RENDERERCOMMON_DLL IMeshObject : public IUnknown
+interface COMMON_DLL IMeshObject : public IUnknown
 {
 	IMeshObject() = default;
 	virtual ~IMeshObject() = default;
@@ -20,7 +20,7 @@ protected:
 
 };
 
-//interface RENDERERCOMMON_DLL IRenderMachine : public IUnknown
+//interface COMMON_DLL IRenderMachine : public IUnknown
 //{
 //	IRenderMachine() = default;
 //	virtual ~IRenderMachine() = default;
@@ -30,7 +30,7 @@ protected:
 //	virtual void EndRender() = 0;
 //};
 
-interface RENDERERCOMMON_DLL IRenderer : public IUnknown
+interface COMMON_DLL IRenderer : public IUnknown
 {
 	IRenderer() = default;
 	virtual ~IRenderer() = default;

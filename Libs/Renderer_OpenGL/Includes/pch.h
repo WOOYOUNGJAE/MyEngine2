@@ -11,8 +11,8 @@
 #include "framework.h"
 
 // Renderer Common
-#include "Renderer_Common/Includes/pch.h"
-#include "Renderer_Common/Includes/Macros.h"
+#include "Common/Includes/pch.h"
+#include "Common/Includes/Macros.h"
 
 // OpenGL
 //#pragma comment(lib, "../Libs/GLFW/glfw3.lib")
@@ -29,5 +29,5 @@
 // My
 #include "Renderer_OpenGL/Includes/Macros.h"
 
-//#pragma comment(lib, "Renderer_Common_x64_Debug.lib")
+//#pragma comment(lib, "Common_x64_Debug.lib")
 #endif //RendererOPENGLPCH_H

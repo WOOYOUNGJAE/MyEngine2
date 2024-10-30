@@ -1,6 +1,6 @@
 #pragma once
 #include "RendererConfig.h"
-#include "Renderer_Common/Includes/RendererInterface.h"
+#include "Common/Includes/RendererInterface.h"
 #include "Viewer.h"
 #include "enums.h"
 

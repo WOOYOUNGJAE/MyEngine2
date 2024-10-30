@@ -4,8 +4,8 @@
 // However, files listed here are ALL re-compiled if any one of them is updated between builds.
 // Do not add files here that you will be updating frequently as this negates the performance advantage.
 
-#ifndef RENDERERCOMMON_PCH_H
-#define RENDERERCOMMON_PCH_H
+#ifndef COMMON_PCH_H
+#define COMMON_PCH_H
 
 // add headers that you want to pre-compile here
 #include "framework.h"
@@ -49,4 +49,4 @@ using namespace DirectX;
 // Engine Common
 #include "Engine_Core/Includes/CommonInclude.h"
 
-#endif //RENDERERCOMMON_PCH_H
+#endif //COMMON_PCH_H

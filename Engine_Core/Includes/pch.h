@@ -7,7 +7,7 @@
 #ifndef ENGINECORE_PCH_H
 #define ENGINECORE_PCH_H
 
-#include "Renderer_Common/Includes/pch.h"
+#include "Common/Includes/pch.h"
 #include "Renderer_OpenGL/Includes/pch.h"
 
 // add headers that you want to pre-compile here
