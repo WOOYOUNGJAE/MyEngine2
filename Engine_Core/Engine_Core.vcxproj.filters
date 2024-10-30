@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="GameObject">
       <UniqueIdentifier>{b914d283-1c02-44c7-a962-621f28f7793e}</UniqueIdentifier>
     </Filter>
@@ -36,6 +32,15 @@
     </Filter>
     <Filter Include="Managers\Input">
       <UniqueIdentifier>{65a826e9-4222-4012-a121-58615c7ae0d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{d6bc65ff-23ed-4cfa-8fc3-7d6b9ca66eba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\ply">
+      <UniqueIdentifier>{55cb7af1-dd14-4080-aefa-637fa0210895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Asset">
+      <UniqueIdentifier>{7ad1f6ac-8e74-450b-b344-898b2e7e52bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +72,15 @@
       <Filter>Managers\Input</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Util_Funcs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Asset.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Asset_ply.cpp">
+      <Filter>Assets\ply</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,12 +115,6 @@
     <ClInclude Include="Includes\Structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Macros.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\Colors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\CommonInclude.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -117,6 +125,15 @@
       <Filter>Managers\Input</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Util_Funcs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Asset.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Asset_ply.h">
+      <Filter>Assets\ply</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

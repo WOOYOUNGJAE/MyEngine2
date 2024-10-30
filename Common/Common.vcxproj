@@ -177,6 +177,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Includes\Colors.h" />
     <ClInclude Include="Includes\Structs.h" />
     <ClInclude Include="Includes\RendererConfig.h" />
     <ClInclude Include="Includes\RendererInterface.h" />

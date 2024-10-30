@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Asset.cpp" />
+    <ClCompile Include="Sources\AssetManager.cpp" />
+    <ClCompile Include="Sources\Asset_ply.cpp" />
     <ClCompile Include="Sources\Camera.cpp" />
     <ClCompile Include="Sources\dllmain.cpp" />
     <ClCompile Include="Sources\Engine_Core.cpp" />
@@ -31,8 +34,10 @@
     <ClCompile Include="Sources\Util_Funcs.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Includes\Asset.h" />
+    <ClInclude Include="Includes\AssetManager.h" />
+    <ClInclude Include="Includes\Asset_ply.h" />
     <ClInclude Include="Includes\Camera.h" />
-    <ClInclude Include="Includes\Colors.h" />
     <ClInclude Include="Includes\CommonInclude.h" />
     <ClInclude Include="Includes\EngineConfig.h" />
     <ClInclude Include="Includes\Engine_Core.h" />
@@ -42,7 +47,6 @@
     <ClInclude Include="Includes\GameObject.h" />
     <ClInclude Include="Includes\GameObjectManager.h" />
     <ClInclude Include="Includes\InputManager.h" />
-    <ClInclude Include="Includes\Macros.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\Structs.h" />
     <ClInclude Include="Includes\Transform.h" />

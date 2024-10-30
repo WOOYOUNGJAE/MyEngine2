@@ -29,12 +29,13 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+
 
 // STL
 #include <vector>
 #include <list>
-using std::vector;
-using std::list;
+#include <map>
 
 
 // DirectX for Common
@@ -46,7 +47,9 @@ using namespace DirectX;
 //using namespace DirectX::SimpleMath;
 
 
-// Engine Common
-#include "Engine_Core/Includes/CommonInclude.h"
+// Common
+#include "Macros.h"
+#include "Colors.h"
+//#include "Engine_Core/Includes/CommonInclude.h"
 
 #endif //COMMON_PCH_H

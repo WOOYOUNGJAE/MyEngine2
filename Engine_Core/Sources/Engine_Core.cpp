@@ -10,10 +10,13 @@
 
 #include "GameObjectManager.h"
 #include "InputManager.h"
+#include "AssetManager.h"
+
 IMPL_COM_FUNC(CEngine_Core)
 
 CEngine_Core::~CEngine_Core()
 {
+	RELEASE_INSTANCE(m_pAssetManager);
 	RELEASE_INSTANCE(m_pInputManager);
 	RELEASE_INSTANCE(m_pGameObjManager);
 	RELEASE_INSTANCE(m_pRenderer);
@@ -42,10 +45,13 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 	m_pRenderer->Initialize();
 #pragma endregion
 
+	// Create Managers
 	m_pGameObjManager = new CGameObjectManager();
+
 	m_pInputManager = CInputManager::Get_Instance();
 	m_pInputManager->Initialize(m_pHwnd, m_pRenderer);
-	
+
+	m_pAssetManager = new CAssetManager();
 }
 
 BOOL CEngine_Core::Run()
@@ -90,4 +96,14 @@ void CEngine_Core::Activate_Camera(const std::string& cameraTag)
 void CEngine_Core::Activate_Camera(CGameObject* pCameraInstance)
 {
 	m_pCamera = m_pGameObjManager->Activate_Camera(pCameraInstance);
+}
+
+void CEngine_Core::Add_Ply(const wchar_t* wszPath, CAsset* pAssetInstance)
+{
+	m_pAssetManager->Add_Ply(wszPath, pAssetInstance);
+}
+
+CAsset_ply* CEngine_Core::Get_Ply(const wchar_t* wszPath)
+{
+	return m_pAssetManager->Get_Ply(wszPath);
 }

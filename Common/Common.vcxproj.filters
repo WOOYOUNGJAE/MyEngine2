@@ -43,5 +43,8 @@
     <ClInclude Include="Includes\PrimitiveGeomtryGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,6 +29,9 @@
     <ClCompile Include="Sources\dllmain.cpp" />
     <ClCompile Include="Sources\pch.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -140,7 +143,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>.\Common_$(Platform)_$(Configuration).lib;.\Engine_Core_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -169,7 +172,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>.\Common_$(Platform)_$(Configuration).lib;.\Engine_Core_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -181,5 +184,12 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets" Condition="Exists('..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets'))" />
+  </Target>
 </Project>

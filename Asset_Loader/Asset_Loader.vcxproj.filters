@@ -20,11 +20,11 @@
     <ClInclude Include="Includes\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Asset_Loader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\AssetLoaderConfig.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Asset_Loader.h">
+      <Filter>Asset_Loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +35,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Asset_Loader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Asset_Loader</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
