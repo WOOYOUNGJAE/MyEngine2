@@ -33,7 +33,7 @@ HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 	std::vector<XMFLOAT3>& refVecNormal = pPlyInstance->m_vecNormal;
 	XMFLOAT3& refMin = pPlyInstance->m_vMin;
 	XMFLOAT3& refMax = pPlyInstance->m_vMax;
-
+	UINT& refNumPoints = pPlyInstance->m_iNumPoints;
 
 	std::ifstream infile(wszPath, std::ios_base::binary);
 
@@ -109,7 +109,7 @@ HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 	for (int i = 0; i < count; i++)
 	{
 		Vector3 rel = (points[i].pos - refMin) / (refMax - refMin);
-		Vector3 scaled = ((float((1 << 21) - 1)) * rel); // 2.14345.. -> 214345...
+		Vector3 scaled = ((float((1 << 21) - 1)) * rel);
 
 		int iXYZ[3]{ (int)scaled.x, (int)scaled.y, (int)scaled.z };
 
@@ -125,9 +125,11 @@ HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 		mapp[i].first = motornCode;
 		mapp[i].second = i;
 	}
-	auto sorter = [](const std::pair < uint64_t, int>& a, const std::pair < uint64_t, int>& b) {
+	
+	auto sorter = [](const std::pair < uint64_t, int>& a, const std::pair < uint64_t, int>& b)
+	{
 		return a.first < b.first;
-		};
+	};
 	std::sort(mapp.begin(), mapp.end(), sorter);
 
 	// Move data from AoS to SoA
@@ -183,7 +185,7 @@ HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 		
 	}
 
-
+	refNumPoints = (UINT)count;
 
 
 

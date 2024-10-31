@@ -47,6 +47,8 @@ HRESULT CGame::Initialize(std::string& strTitle)
 	CAsset_Loader* pAssetLoader = new CAsset_Loader(m_pEngine); // Release on this block
 	ADDREF_INSTANCE(m_pEngine); // Release on Destructor
 	pAssetLoader->Load_Ply(L"C:\\Users\\azn2w\\Git\\MyEngine2\\Assets\\ply\\point_cloud.ply");
+	// .. Load plys
+	m_pEngine->EndSign_LoadingAllPlys();
 
 	// Init Scene (Temp)
 	pTestObj = new CTestGameObj();

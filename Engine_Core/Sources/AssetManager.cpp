@@ -20,7 +20,7 @@ void CAssetManager::Add_Ply(const wchar_t* wszPath, CAsset* pAssetInstance)
 		__debugbreak();
 	}
 
-	m_mapPlys.emplace(std::wstring(wszPath), pAssetInstance);
+	m_mapPlys.emplace(std::wstring(wszPath), dynamic_cast<CAsset_ply*>(pAssetInstance));
 }
 
 CAsset_ply* CAssetManager::Get_Ply(const wchar_t* wszPath)

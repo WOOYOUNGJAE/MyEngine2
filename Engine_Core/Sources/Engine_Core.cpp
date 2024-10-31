@@ -8,9 +8,13 @@
 
 #include "Renderer_OpenGL/Includes/Renderer.h"
 
+#include "CUDA_Core/Includes/CUDA_Core.h"
+
 #include "GameObjectManager.h"
 #include "InputManager.h"
 #include "AssetManager.h"
+
+#include "Asset_ply.h"
 
 IMPL_COM_FUNC(CEngine_Core)
 
@@ -19,6 +23,7 @@ CEngine_Core::~CEngine_Core()
 	RELEASE_INSTANCE(m_pAssetManager);
 	RELEASE_INSTANCE(m_pInputManager);
 	RELEASE_INSTANCE(m_pGameObjManager);
+	RELEASE_INSTANCE(m_pCudaCore);
 	RELEASE_INSTANCE(m_pRenderer);
 }
 
@@ -44,6 +49,9 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 	}
 	m_pRenderer->Initialize();
 #pragma endregion
+
+	// Cuda
+	m_pCudaCore = new CCUDA_Core();
 
 	// Create Managers
 	m_pGameObjManager = new CGameObjectManager();
@@ -101,9 +109,30 @@ void CEngine_Core::Activate_Camera(CGameObject* pCameraInstance)
 void CEngine_Core::Add_Ply(const wchar_t* wszPath, CAsset* pAssetInstance)
 {
 	m_pAssetManager->Add_Ply(wszPath, pAssetInstance);
+
 }
 
 CAsset_ply* CEngine_Core::Get_Ply(const wchar_t* wszPath)
 {
 	return m_pAssetManager->Get_Ply(wszPath);
+}
+
+void CEngine_Core::EndSign_LoadingAllPlys()
+{
+	// All Loaded ply Asset
+	std::map<std::wstring, CAsset_ply*> plyMap = m_pAssetManager->Get_PlyMap();
+
+	UINT iNumAssets = plyMap.size();
+	CAsset_ply** pAssetArr = new CAsset_ply*[iNumAssets];
+
+	UINT iArrayIndex = 0;
+	for (auto& iterAsset : plyMap)
+	{
+		pAssetArr[iArrayIndex++] = iterAsset.second;
+	}
+
+
+	m_pCudaCore->Create_CudaResource_GS(pAssetArr, iNumAssets);
+
+	DELETE_ARRAY(pAssetArr);
 }

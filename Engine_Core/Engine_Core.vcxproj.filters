@@ -81,7 +81,7 @@
       <Filter>Assets\ply</Filter>
     </ClCompile>
     <ClCompile Include="Sources\AssetManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Managers\Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,11 +133,11 @@
     <ClInclude Include="Includes\Asset_ply.h">
       <Filter>Assets\ply</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\AssetManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\IncludeLibs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\AssetManager.h">
+      <Filter>Managers\Asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

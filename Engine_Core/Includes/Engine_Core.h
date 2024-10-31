@@ -10,6 +10,7 @@ class CAssetManager;
 class CCamera;
 class CAsset;
 class CAsset_ply;
+class CCUDA_Core;
 class ENGINECORE_DLL CEngine_Core : public IUnknown
 {
 	COM_BASE
@@ -28,6 +29,8 @@ public: // Manger Funcs
 	void Activate_Camera(CGameObject* pCameraInstance); // Activate Directly
 	void Add_Ply(const wchar_t* wszPath, CAsset* pAssetInstance);
 	CAsset_ply* Get_Ply(const wchar_t* wszPath);
+public: // Cuda Core
+	void EndSign_LoadingAllPlys();
 public:
 	IRenderer* m_pRenderer = nullptr;
 private: // Managers
@@ -39,5 +42,6 @@ private: // pointer
 private: // Windows Pointer
 	HWND* m_pHwnd = nullptr;
 	GLFWwindow* m_pGLWin = nullptr;
-
+private: // CUDA
+	CCUDA_Core* m_pCudaCore = nullptr;
 };
