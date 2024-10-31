@@ -101,6 +101,9 @@
     <ClInclude Include="Includes\MeshObject.h">
       <Filter>Objects\MeshObject</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\IncludeLibs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Viewer.cpp">

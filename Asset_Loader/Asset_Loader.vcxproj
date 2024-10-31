@@ -22,6 +22,7 @@
     <ClInclude Include="Includes\AssetLoaderConfig.h" />
     <ClInclude Include="Includes\Asset_Loader.h" />
     <ClInclude Include="Includes\framework.h" />
+    <ClInclude Include="Includes\IncludeLibs.h" />
     <ClInclude Include="Includes\pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +144,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>.\Common_$(Platform)_$(Configuration).lib;.\Engine_Core_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
@@ -172,8 +174,9 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Engine_Core\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>.\Common_$(Platform)_$(Configuration).lib;.\Engine_Core_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"

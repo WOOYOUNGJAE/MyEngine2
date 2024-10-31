@@ -5,6 +5,8 @@
 #include "Engine_Core/Includes/Enums.h"
 #include "Engine_Core/Includes/Camera_Free.h"
 
+#include "Asset_Loader/Includes/Asset_Loader.h"
+
 #include "TestGameObj.h"
 
 IMPL_COM_FUNC(CGame)
@@ -14,6 +16,7 @@ UINT uiWinX = 1280, uiWinY = 720;
 
 CGame::~CGame()
 {
+	RELEASE_INSTANCE(m_pEngine);
 	RELEASE_INSTANCE(m_pEngine);
 }
 
@@ -40,6 +43,11 @@ HRESULT CGame::Initialize(std::string& strTitle)
 	m_pEngine->Add_GameObj(Engine_Core::GAME_OBJ_LIST_TYPE::CAMERA, pCamera);
 	m_pEngine->Activate_Camera(pCamera);
 
+	// Loader
+	CAsset_Loader* pAssetLoader = new CAsset_Loader(m_pEngine); // Release on this block
+	ADDREF_INSTANCE(m_pEngine); // Release on Destructor
+	pAssetLoader->Load_Ply(L"C:\\Users\\azn2w\\Git\\MyEngine2\\Assets\\ply\\point_cloud.ply");
+
 	// Init Scene (Temp)
 	pTestObj = new CTestGameObj();
 	pTestObj->Initialize(m_pEngine);
@@ -47,6 +55,8 @@ HRESULT CGame::Initialize(std::string& strTitle)
 	pTestObj->m_pTransform.Set_Position(0, 0, 3.f);
 
 	m_pEngine->Add_GameObj(Engine_Core::GAME_OBJ_LIST_TYPE::DEFAULT, pTestObj);
+
+	RELEASE_INSTANCE(pAssetLoader);
 	return hr;
 }
 

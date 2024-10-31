@@ -7,8 +7,12 @@
 #ifndef ENGINECORE_PCH_H
 #define ENGINECORE_PCH_H
 
-#include "Common/Includes/pch.h"
-#include "Renderer_OpenGL/Includes/pch.h"
+// Linking
+#include "IncludeLibs.h"
+
+//#include "Common/Includes/pch.h"
+//#include "Renderer_OpenGL/Includes/pch.h"
+
 
 // Math Lib : Engine Core Uses SimpleMath(Vector3), Renderer Uses DirectXMath(FLOAT3)
 #include <SimpleMath.h>

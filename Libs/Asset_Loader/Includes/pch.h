@@ -7,11 +7,13 @@
 #ifndef ASSETLOADER_PCH_H
 #define ASSETLOADER_PCH_H
 
+#include "IncludeLibs.h"
+
 // add headers that you want to pre-compile here
 #include "framework.h"
 
-#include "Common/Includes/pch.h"
 
-
+#include <SimpleMath.h>
+using namespace DirectX::SimpleMath;
 
 #endif ASSETLOADER_PCH_H

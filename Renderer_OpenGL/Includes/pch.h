@@ -10,24 +10,20 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
+// Linking
+#include "IncludeLibs.h"
+
 // Renderer Common
-#include "Common/Includes/pch.h"
 #include "Common/Includes/Macros.h"
 
 // OpenGL
 //#pragma comment(lib, "../Libs/GLFW/glfw3.lib")
-#include "Libs/glad/glad.h"
-#include "Libs/GLFW/glfw3.h"
-#include "Libs/glm/glm.hpp"
-#include "Libs/glm/gtc/matrix_transform.hpp"
-#include <Libs/glm/gtc/type_ptr.hpp>
 
 // My
 #include "Renderer_OpenGL/Includes/Macros.h"
 #include "Renderer_OpenGL/Includes/Typedefs.h"
 
-// My
-#include "Renderer_OpenGL/Includes/Macros.h"
+
 
 //#pragma comment(lib, "Common_x64_Debug.lib")
 #endif //RendererOPENGLPCH_H

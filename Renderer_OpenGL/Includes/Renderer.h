@@ -69,10 +69,10 @@ private:
 	 */
 	std::list<CMeshObject*> m_RenderQueueArr[Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM]{};
 private:
-	mat4x4 m_matCameraWorld;
-	mat4x4 m_matView;
-	mat4x4 m_matProj;
-	mat4x4 m_matViewProj;
+	glm::mat4x4 m_matCameraWorld;
+	glm::mat4x4 m_matView;
+	glm::mat4x4 m_matProj;
+	glm::mat4x4 m_matViewProj;
 
 // Input Manager
 public:

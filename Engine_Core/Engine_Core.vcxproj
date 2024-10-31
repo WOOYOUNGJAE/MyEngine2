@@ -47,6 +47,7 @@
     <ClInclude Include="Includes\GameObject.h" />
     <ClInclude Include="Includes\GameObjectManager.h" />
     <ClInclude Include="Includes\InputManager.h" />
+    <ClInclude Include="Includes\IncludeLibs.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\Structs.h" />
     <ClInclude Include="Includes\Transform.h" />
@@ -166,8 +167,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>.\GLFW\glfw3.lib;.\Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
@@ -195,8 +196,8 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>.\GLFW\glfw3.lib;.\Common_$(Platform)_$(Configuration).lib;.\Renderer_OpenGL_$(Platform)_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs\Common\bin\;$(SolutionDir)Libs\Renderer_OpenGL\bin\;$(SolutionDir)Libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"

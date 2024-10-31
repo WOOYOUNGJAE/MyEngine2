@@ -242,7 +242,6 @@ void CRenderer::GLFW_KeyManager::Update_InputStates(GLFWwindow* pWin)
     // prev = cur
     memcpy_s(prevMousePosXY, sizeof(double) * 2, curMousePosXY, sizeof(double) * 2);
     glfwGetCursorPos(pWin, &curMousePosXY[0], &curMousePosXY[1]);
-    std::cout << "x: " << curMousePosXY[0] << " \ty" << curMousePosXY[1] << std::endl;
 }
 
 bool CRenderer::GLFW_KeyManager::Key_Pressing(int inKey)

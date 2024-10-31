@@ -7,11 +7,11 @@ struct SHs
 	float shs[(D + 1) * (D + 1) * 3];
 };
 
-class CAsset_ply : public CAsset
+class ENGINECORE_DLL CAsset_ply : public CAsset
 {
 public:
 	CAsset_ply() = default;
-	~CAsset_ply();
+	~CAsset_ply() override;
 public:
 
 public:

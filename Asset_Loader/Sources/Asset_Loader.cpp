@@ -13,17 +13,17 @@
 
 IMPL_COM_FUNC(CAsset_Loader)
 
-//CAsset_Loader::CAsset_Loader(CEngine_Core* pEngine_Core) : m_pEngine_Core(pEngine_Core)
-//{
-//
-//}
+CAsset_Loader::CAsset_Loader(CEngine_Core* pEngine_Core) : m_pEngine_Core(pEngine_Core)
+{
+
+}
 
 HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 {
 	HRESULT hr = S_OK;
 
 	CAsset_ply* pPlyInstance = new CAsset_ply();
-	pPlyInstance->m_wszPath = std::wstring(wszPath);
+	pPlyInstance->m_wszPath = wszPath;
 
 	std::vector<XMFLOAT3>& refVecPos = pPlyInstance->m_vecPos;
 	std::vector<XMFLOAT4>& refVecRot = pPlyInstance->m_vecRot;
@@ -92,8 +92,16 @@ HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 
 	for (int i = 0; i < count; i++)
 	{
-		refMax = XMMax(Vector3(refMax), points[i].pos);
-		refMin = XMMin(Vector3(refMin), points[i].pos);
+		refMax = XMFLOAT3(
+			XMMax(Vector3(refMax).x, points[i].pos.x),
+			XMMax(Vector3(refMax).y, points[i].pos.y),
+			XMMax(Vector3(refMax).z, points[i].pos.z)
+			) ;
+		refMin = XMFLOAT3(
+			XMMin(Vector3(refMin).x, points[i].pos.x),
+			XMMin(Vector3(refMin).y, points[i].pos.y),
+			XMMin(Vector3(refMin).z, points[i].pos.z)
+			) ;
 	}
 
 
@@ -180,7 +188,7 @@ HRESULT CAsset_Loader::Load_Ply(const wchar_t* wszPath)
 
 
 
-	//m_pEngine_Core->Add_Ply(wszPath, pPlyInstance);
+	m_pEngine_Core->Add_Ply(wszPath, pPlyInstance);
 
 	return hr;
 }

@@ -75,5 +75,8 @@
     <ClInclude Include="Includes\TestGameObj.h">
       <Filter>Game\GameObject\Test</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\IncludeLibs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

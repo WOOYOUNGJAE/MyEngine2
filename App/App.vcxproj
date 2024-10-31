@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="Includes\App.h" />
     <ClInclude Include="Includes\Game.h" />
+    <ClInclude Include="Includes\IncludeLibs.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\Resource.h" />
     <ClInclude Include="Includes\targetver.h" />

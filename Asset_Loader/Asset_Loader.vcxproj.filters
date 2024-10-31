@@ -26,6 +26,9 @@
     <ClInclude Include="Includes\Asset_Loader.h">
       <Filter>Asset_Loader</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\IncludeLibs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\dllmain.cpp">
