@@ -1,27 +1,19 @@
 #pragma once
 
-using std::string;
+
 class CShaderObject : public IUnknown
 {
 	COM_BASE
-
 public:
-	/**
-	 * @param strName Name of This Shader
-	 * @param str_VSCode Loaded Vertex Shader Code
-	 * @param str_PSCode Loaded Frag Shader Code
-	 * @return Result
-	 */
-	INT Initialize(const string& strName,
-	               const string& str_VSCode,
-	               const string& str_PSCode);
+	CShaderObject() = delete;
+	CShaderObject(GLuint shaderProgram, const char* szShaderName);
+	~CShaderObject() = default;
 public: // getter
-	GLuint Shader() { return m_Shader; }
-
+	GLuint Shader() { return m_ShaderProgram; }
+	void Bind();
 
 private:
-	GLuint      m_Shader = 0;
+	GLuint      m_ShaderProgram = 0;
 	std::string m_strName = "";
-	bool        m_bActive = false;
+	//bool        m_bActive = false;
 };
-

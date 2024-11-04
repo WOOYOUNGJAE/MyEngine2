@@ -1,12 +1,12 @@
 #pragma once
 #include "RendererConfig.h"
 #include "Common/Includes/RendererInterface.h"
-#include "Viewer.h"
 #include "enums.h"
 
 struct GLFWwindow;
 class CViewer;
 class CShaderManager;
+class CBufferManager;
 class CMeshObject;
 /**
  * @brief Top-level class. All GL-Dependant Classes should be in this project
@@ -38,7 +38,7 @@ public:
 	CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle, GLFWwindow ** ppOutGLWin);
 	~CRenderer();
 public: // Interface Overrides
-	void Initialize(void*) override;
+	void Initialize(void* pArg) override;
 	/**
 	 * @return If WindowShouldClose
 	 */
@@ -54,15 +54,17 @@ public: // Interface Overrides
 
 	// getter
 	//IRenderMachine* Get_RenderMachine() override;
-	
+	void* Get_ImageBuffer() override;
+
 	IMeshObject* Create_EmptyBasicMesh(void* pData) override;
-	IMeshObject* Create_EmptyColoredMesh(void* pData) override;
 
 private:
+	UINT m_uiWinX = 0;
+	UINT m_uiWinY = 0;
 	GLFWwindow* m_pWindow = nullptr;
-	CViewer* m_pViewer = nullptr;
 private: //Managers
 	CShaderManager* m_pShaderManager = nullptr;
+	CBufferManager* m_pBufferManager = nullptr;
 private:
 	/**
 	 * @brief RenderQueue List Distributed by Shader Type

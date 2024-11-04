@@ -9,11 +9,13 @@ namespace Cuda_Core
 
 class CCudaResource;
 class CAsset_ply;
+interface IRenderer;
 class CUDACORE_DLL CCUDA_Core : public IUnknown
 {
 	COM_BASE
 public:
-	CCUDA_Core();
+	CCUDA_Core() = delete;
+	CCUDA_Core(IRenderer* pRenderer);
 	virtual ~CCUDA_Core();
 
 public:
@@ -23,5 +25,7 @@ public:
 private:
 	CCudaResource* m_pCudaResourceArr[Cuda_Core::CUDA_RESOURCE_TYPE_NUM]{};
 	INT m_iDeviceNum = 0;
+private: // pointer
+	IRenderer* m_pRenderer = nullptr;
 };
 

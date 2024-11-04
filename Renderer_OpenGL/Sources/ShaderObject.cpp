@@ -3,18 +3,14 @@
 
 IMPL_COM_FUNC(CShaderObject)
 GLuint      m_Shader = 0;
-INT CShaderObject::Initialize(const string& strName, const string& str_VSCode/*loaded String code*/, const string& str_PSCode)
+
+CShaderObject::CShaderObject(GLuint shaderProgram, const char* szShaderName) : m_ShaderProgram(shaderProgram), m_strName(std::string(szShaderName))
 {
-	INT iResult = 0; // OK
+}
 
-	m_strName = strName;
-
-	// Compile Shaders
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+void CShaderObject::Bind()
+{
+	glUseProgram(m_ShaderProgram); // Bind Shader Program
 
 
-
-
-	return iResult;
 }

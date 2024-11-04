@@ -3,6 +3,7 @@
 
 #include "Engine_Core/Includes/Asset_ply.h"
 
+
 CCudaResource_GS::CCudaResource_GS(int iDeviceIndex) : CCudaResource(iDeviceIndex)
 {
 	
@@ -20,7 +21,11 @@ CCudaResource_GS::~CCudaResource_GS()
 		DELETE_INSTANCE(iterUniformData);
 	}
 	m_pUniformCudaDataList.clear();
-
+	for (auto& iterGraphicsResource : m_pCudaGraphicsResourceList)
+	{
+		DELETE_INSTANCE(iterGraphicsResource);
+	}
+	m_pCudaGraphicsResourceList.clear();
 }
 
 void CCudaResource_GS::Create_GaussianCudaData(CAsset_ply* pLoadedPly)
@@ -52,7 +57,7 @@ void CCudaResource_GS::Create_GaussianCudaData(CAsset_ply* pLoadedPly)
 	CUDA_SAFE_CALL_ALWAYS(cudaMemcpy(pGaussianData->bg_colorXYZ, bgXYZ, 3 * sizeof(float), cudaMemcpyHostToDevice));
 
 	m_pGaussianCudaDataList.push_back(pGaussianData);
-
+	
 	GS::UNIFORM_CUDA_DATA* pUniformCudaData = new GS::UNIFORM_CUDA_DATA();
 	// Create space for view parameters
 	CUDA_SAFE_CALL_ALWAYS(cudaMalloc((void**)&pUniformCudaData->viewMat4X4, sizeof(XMFLOAT4X4)));
@@ -60,4 +65,20 @@ void CCudaResource_GS::Create_GaussianCudaData(CAsset_ply* pLoadedPly)
 	CUDA_SAFE_CALL_ALWAYS(cudaMalloc((void**)&pUniformCudaData->camPosXYZ, 3 * sizeof(FLOAT)));
 
 	m_pUniformCudaDataList.push_back(pUniformCudaData);
+}
+
+void CCudaResource_GS::Register_GraphicResource_OpenGL(GLuint imageBuffer)
+{
+
+
+	GS::CUDA_GRAPHICS_RESOURCE_OpenGL* pResourceInstance = new GS::CUDA_GRAPHICS_RESOURCE_OpenGL();
+	cudaGraphicsGLRegisterBuffer(&pResourceInstance->imageBuffer, imageBuffer, cudaGraphicsRegisterFlagsWriteDiscard);
+
+
+	if (cudaPeekAtLastError() != cudaSuccess)
+	{
+		std::cerr << "A CUDA error occurred in setup:" << cudaGetErrorString(cudaGetLastError()) << ". Please rerun in Debug to find the exact line!";
+	}
+
+	m_pCudaGraphicsResourceList.push_back(pResourceInstance);
 }

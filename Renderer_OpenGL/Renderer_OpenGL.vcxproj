@@ -181,7 +181,9 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Libs\glad\glad.h" />
     <ClInclude Include="Includes\BasicMesh.h" />
+    <ClInclude Include="Includes\BufferManager.h" />
     <ClInclude Include="Includes\ColoredMesh.h" />
     <ClInclude Include="Includes\enums.h" />
     <ClInclude Include="Includes\IncludeLibs.h" />
@@ -194,16 +196,16 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <ClInclude Include="Includes\RenderTarget.h" />
     <ClInclude Include="Includes\ShaderManager.h" />
     <ClInclude Include="Includes\ShaderObject.h" />
+    <ClInclude Include="Includes\Structs.h" />
     <ClInclude Include="Includes\Typedefs.h" />
     <ClInclude Include="Includes\Util_Funcs.h" />
-    <ClInclude Include="Includes\Viewer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Libs\glad\glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Sources\BasicMesh.cpp" />
+    <ClCompile Include="Sources\BufferManager.cpp" />
     <ClCompile Include="Sources\ColoredMesh.cpp" />
     <ClCompile Include="Sources\Renderer.cpp" />
     <ClCompile Include="Sources\MeshObject.cpp" />
@@ -211,7 +213,6 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <ClCompile Include="Sources\ShaderManager.cpp" />
     <ClCompile Include="Sources\ShaderObject.cpp" />
     <ClCompile Include="Sources\Util_Funcs.cpp" />
-    <ClCompile Include="Sources\Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

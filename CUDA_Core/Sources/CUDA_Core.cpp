@@ -5,10 +5,15 @@
 
 #include "Engine_Core/Includes/Asset_ply.h"
 
+#include "Common/Includes/RendererInterface.h"
+#include "Renderer_OpenGL/Includes/Renderer.h"
+
+
 IMPL_COM_FUNC(CCUDA_Core)
 
-CCUDA_Core::CCUDA_Core()
+CCUDA_Core::CCUDA_Core(IRenderer* pRenderer) : m_pRenderer(pRenderer)
 {
+	ADDREF_INSTANCE(m_pRenderer)
 	CUDA_SAFE_CALL_ALWAYS(cudaGetDeviceCount(&m_iDeviceNum));
 
 	if (m_iDeviceNum <= 0)
@@ -26,6 +31,8 @@ CCUDA_Core::~CCUDA_Core()
 	{
 		RELEASE_INSTANCE(iterResource);
 	}
+
+	RELEASE_INSTANCE(m_pRenderer);
 }
 
 void CCUDA_Core::Create_CudaResource_GS(CAsset_ply* pLoadedPly)
@@ -47,9 +54,15 @@ void CCUDA_Core::Create_CudaResource_GS(CAsset_ply** pLoadedPlyArr, UINT iNum)
 	CUDA_SAFE_CALL_ALWAYS(cudaSetDevice(iCurDeviceIndex));
 
 
-	m_pCudaResourceArr[Cuda_Core::GS] = pResourceInstance;
 	for (UINT i = 0; i < iNum; ++i)
 	{
 		pResourceInstance->Create_GaussianCudaData(pLoadedPlyArr[i]);		
 	}
+
+	if (m_pRenderer->m_eGraphics == Graphics_API::OpenGL)
+	{
+		pResourceInstance->Register_GraphicResource_OpenGL(*(GLuint*)m_pRenderer->Get_ImageBuffer());
+	}
+
+	m_pCudaResourceArr[Cuda_Core::GS] = pResourceInstance;
 }

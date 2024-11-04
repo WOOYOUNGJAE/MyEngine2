@@ -1,11 +1,14 @@
 #include "pch.h"
 #include "Renderer.h"
 
+#include <execution>
+
 #include "BasicMesh.h"
-#include "Viewer.h"
 #include "ShaderManager.h"
+#include "BufferManager.h"
 #include "enums.h"
 #include "Util_Funcs.h"
+#include "ShaderObject.h"
 
 IMPL_COM_FUNC(CRenderer)
 
@@ -15,14 +18,11 @@ void On_Resize_Window(GLFWwindow* pWindow, INT winX, INT winY);
 void On_Resize_Window(GLFWwindow* pWindow, INT winX, INT winY)
 {
     glViewport(0, 0, winX, winY);
-    if (g_pViewer)
-    {
-		g_pViewer->On_Resize_Window((UINT)winX, (UINT)winY);	    
-    }
 }
 
 CRenderer::CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, const char* szTitle, GLFWwindow ** ppOutGLWin)
 {
+    m_eGraphics = Graphics_API::OpenGL;
     // Init GL
     if (!glfwInit())
     {
@@ -31,8 +31,10 @@ CRenderer::CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, con
     }
 
 	// Create a GLFW window with OpenGL context
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);  // Request OpenGL 3.3
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);  // Request OpenGL 3.3
+    //glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);  // Request OpenGL 3.3
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE); // Double Buffering
 
@@ -48,38 +50,39 @@ CRenderer::CRenderer(IRenderer::OpenGL identifier, UINT uiWinX, UINT uiWinY, con
     }
 
     // Create Viewer
-    m_pViewer = new CViewer(uiWinX, uiWinY, this);
-    g_pViewer = m_pViewer;
+    m_uiWinX = uiWinX;
+    m_uiWinY = uiWinY;
 
     // Register Callback win Resizing Func
     glfwSetFramebufferSizeCallback(m_pWindow, On_Resize_Window);
 
     // Create Manager
     m_pShaderManager = new CShaderManager();
+    m_pBufferManager = new CBufferManager();
 
     *ppOutGLWin = m_pWindow;
 }
 
 CRenderer::~CRenderer()
 {
+    RELEASE_INSTANCE(m_pBufferManager);
     RELEASE_INSTANCE(m_pShaderManager);
-    DELETE_INSTANCE(m_pViewer);
 }
 
-void CRenderer::Initialize(void*)
+void CRenderer::Initialize(void* pArg)
 {
+    if (*(bool*)pArg == true)
+    {
+        m_pBufferManager->Generate_Buffer_CudaImage(m_uiWinX, m_uiWinY);
+    }
+
+    // Default Shaders
     m_pShaderManager->Load_Shader(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE, "Simple");
+    m_pShaderManager->Load_Shader(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::IMAGE_COPY, "Image_Copy");
 }
 
 int32 CRenderer::MainRender(FLOAT fDeltaTime)
 {
-
-    if (m_pViewer == nullptr)
-    {
-        ERROR_BOX("Viewer is Null");
-        __debugbreak();
-        return FALSE;
-    }
 
     //if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     if (m_KeyManager.Key_Down(VK_ESCAPE))
@@ -90,7 +93,8 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
     }
     for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
     {
-        GLuint curShaderProgram = m_pShaderManager->m_ShaderPrograms[eShaderType];
+        CShaderObject* pShaderObject = m_pShaderManager->m_mapShaderObjects[eShaderType];
+        GLuint curShaderProgram = pShaderObject->Shader();
         glUseProgram(curShaderProgram); // Bind Shader Program
 
         // Culling
@@ -121,7 +125,6 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
             curModelMatrix = ::Get_Converted_Matrix_DXtoGL(iterMeshObj->WorldMat());
             memcpy_s(&curModelMatrix, sizeof(mat4x4), &curModelMatrix, sizeof(XMFLOAT4X4));
 
-            //glUniformMatrix4fv(uniformModel, 1, GL_TRUE/*row to col*/, glm::value_ptr(curModelMatrix));
             glUniformMatrix4fv(uniformModel, 1, GL_FALSE/*row to col*/, glm::value_ptr(curModelMatrix));
             CHECK_GL_ERROR
 
@@ -166,7 +169,10 @@ void CRenderer::BeginRender()
     m_KeyManager.Update_InputStates(m_pWindow);
 
 
-    m_pViewer->BeginRender();
+    glViewport(0, 0, (UINT)m_uiWinX, (UINT)m_uiWinY);
+
+    glClearColor(37.f / 255.f, 37.f / 255.f, 38.f / 255.f, 1.f);
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj, XMFLOAT4X4& matWorld)
@@ -183,17 +189,17 @@ void CRenderer::MainRender()
 
 void CRenderer::EndRender()
 {
-    m_pViewer->EndRender(m_pWindow);
+    glfwSwapBuffers(m_pWindow);
+}
+
+void* CRenderer::Get_ImageBuffer()
+{
+    return (void*)m_pBufferManager->Get_ImageBuffer();
 }
 
 IMeshObject* CRenderer::Create_EmptyBasicMesh(void* pData)
 {
     return new CBasicMesh;
-}
-
-IMeshObject* CRenderer::Create_EmptyColoredMesh(void* pData)
-{
-    return nullptr;
 }
 
 void CRenderer::GLFW_KeyManager::Update_InputStates(GLFWwindow* pWin)

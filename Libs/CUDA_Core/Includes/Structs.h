@@ -1,7 +1,10 @@
 #pragma once
-
+//#include ""
 namespace GS
 {
+	/**
+	 * Data for Gaussians
+	 */
 	struct GAUSSIANS_CUDA_DATA
 	{
 		GAUSSIANS_CUDA_DATA() = default;
@@ -27,6 +30,9 @@ namespace GS
 		float* bg_colorXYZ;
 	};
 
+	/**
+	 * Data for Uniform Buffer
+	 */
 	struct UNIFORM_CUDA_DATA
 	{
 		UNIFORM_CUDA_DATA() = default;
@@ -39,5 +45,18 @@ namespace GS
 		float* viewMat4X4;
 		float* projMat4X4;
 		float* camPosXYZ;
+	};
+
+	/**
+	 * Data for OpenGL Buffer, 
+	 */
+	struct CUDA_GRAPHICS_RESOURCE_OpenGL
+	{
+		CUDA_GRAPHICS_RESOURCE_OpenGL() = default;
+		~CUDA_GRAPHICS_RESOURCE_OpenGL()
+		{
+			cudaGraphicsUnregisterResource(imageBuffer);
+		}
+		cudaGraphicsResource_t imageBuffer;
 	};
 }

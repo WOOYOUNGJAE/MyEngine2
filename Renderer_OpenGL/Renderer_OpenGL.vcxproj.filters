@@ -15,9 +15,6 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{248f02ce-aaa4-4486-9ab7-b301e64d72e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer\Viewer">
-      <UniqueIdentifier>{a3e7a4de-d03b-40b8-8d94-f7ac6e6a2867}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{6d6d2659-a1c8-49ae-9e04-88cdb7e4f3d7}</UniqueIdentifier>
     </Filter>
@@ -45,11 +42,20 @@
     <Filter Include="Util">
       <UniqueIdentifier>{b042bbf4-ad26-40f9-97d2-09857d8bd18e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Util\Shader_Loader">
-      <UniqueIdentifier>{8fbed46b-94e9-4721-a1a2-26faaa9c1f8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{88b25efd-c9a3-4f21-99fc-91801a43434e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Resource">
+      <UniqueIdentifier>{a3e7a4de-d03b-40b8-8d94-f7ac6e6a2867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Resource\Buffer">
+      <UniqueIdentifier>{6e46cbe3-48df-4f02-8e4d-9509a070084e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Resource\Shader">
+      <UniqueIdentifier>{2c416eee-6adf-4eaa-9241-a79f9f984e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\ShaderObject">
+      <UniqueIdentifier>{b635a632-c3de-4d9e-9115-0a3bfc9e1c61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +77,6 @@
     <ClInclude Include="Includes\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Viewer.h">
-      <Filter>Renderer\Viewer</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\Renderer.h">
       <Filter>Renderer\Renderer</Filter>
     </ClInclude>
@@ -92,9 +95,6 @@
     <ClInclude Include="Includes\Util_Funcs.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\ShaderManager.h">
-      <Filter>Util\Shader_Loader</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,11 +104,20 @@
     <ClInclude Include="Includes\IncludeLibs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Libs\glad\glad.h">
+      <Filter>Extlibs</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\BufferManager.h">
+      <Filter>Renderer\Resource\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\ShaderManager.h">
+      <Filter>Renderer\Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Viewer.cpp">
-      <Filter>Renderer\Viewer</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\RenderTarget.cpp">
       <Filter>Graphics\RenderTarget</Filter>
     </ClCompile>
@@ -124,9 +133,6 @@
     <ClCompile Include="Sources\ColoredMesh.cpp">
       <Filter>Objects\MeshObject\ColoredMesh</Filter>
     </ClCompile>
-    <ClCompile Include="..\Libs\glad\glad.c">
-      <Filter>Extlibs</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -139,8 +145,14 @@
     <ClCompile Include="Sources\Util_Funcs.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\Libs\glad\glad.c">
+      <Filter>Extlibs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BufferManager.cpp">
+      <Filter>Renderer\Resource\Buffer</Filter>
+    </ClCompile>
     <ClCompile Include="Sources\ShaderManager.cpp">
-      <Filter>Util\Shader_Loader</Filter>
+      <Filter>Renderer\Resource\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

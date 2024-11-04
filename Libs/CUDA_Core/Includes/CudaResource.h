@@ -1,6 +1,9 @@
 #pragma once
 
-class CCudaResource : public IUnknown
+/**
+ * Acting like Resource Manager
+ */
+class CCudaResource abstract : public IUnknown
 {
 	COM_BASE
 public:

@@ -2,7 +2,7 @@
 #include "ShaderManager.h"
 #include "filesystem"
 #include "RendererConfig.h"
-
+#include "ShaderObject.h"
 IMPL_COM_FUNC(CShaderManager)
 
 const char* CShaderManager::szShaderAssetPath = "..\\Libs\\Renderer_OpenGL\\Shaders\\";
@@ -32,6 +32,14 @@ char* CShaderManager::readShaderSource(const char* szFilePath)
 	return buf;
 }
 
+
+CShaderManager::~CShaderManager()
+{
+	for (auto& iterShaderObject : m_mapShaderObjects)
+	{
+		RELEASE_INSTANCE(iterShaderObject.second);
+	}
+}
 
 bool CShaderManager::Load_Shader(UINT eShaderProgramType, const char* szShaderName)
 {
@@ -105,7 +113,9 @@ bool CShaderManager::Load_Shader(UINT eShaderProgramType, const char* szShaderNa
 		return FALSE;
 	}
 
-	m_ShaderPrograms[(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE)eShaderProgramType] = program;
+	CShaderObject* pShaderObject = new CShaderObject(program, szShaderName);
+
+	m_mapShaderObjects.emplace(eShaderProgramType, pShaderObject);
 
 	return TRUE;
 }

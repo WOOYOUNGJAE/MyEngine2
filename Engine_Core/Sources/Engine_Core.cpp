@@ -18,6 +18,10 @@
 
 IMPL_COM_FUNC(CEngine_Core)
 
+Graphics_API g_eGraphicsApi = Graphics_API::Num;
+UINT g_uiWinX = 1280, g_uiWinY = 720;
+bool g_bReadyCudaCore = true;
+
 CEngine_Core::~CEngine_Core()
 {
 	RELEASE_INSTANCE(m_pAssetManager);
@@ -31,11 +35,11 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 {
 
 #pragma region Create_Renderer
-	// Select Graphics Api
-	enum Graphics { DirectX12, OpenGL, Vulkan, Num };
+	// Select Graphics_API Api
 	iGraphics = OpenGL;
+	g_eGraphicsApi = (Graphics_API)iGraphics;
 
-	UINT uiWinX = 1280, uiWinY = 720;
+	UINT uiWinX = g_uiWinX, uiWinY = g_uiWinY;
 
 
 	if (iGraphics == OpenGL)
@@ -43,15 +47,19 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 		strTitle += " - OpenGL";
 		m_pRenderer = new CRenderer(IRenderer::OpenGL(), uiWinX, uiWinY, strTitle.c_str(), &m_pGLWin);
 	}
-	else if (iGraphics >= Graphics::Num)
+	else if (iGraphics >= Graphics_API::Num)
 	{
 		return;
 	}
-	m_pRenderer->Initialize();
+	bool bReadyCudaCore = g_bReadyCudaCore;
+	m_pRenderer->Initialize(&bReadyCudaCore);
 #pragma endregion
 
 	// Cuda
-	m_pCudaCore = new CCUDA_Core();
+	if (bReadyCudaCore)
+	{
+		m_pCudaCore = new CCUDA_Core(m_pRenderer);		
+	}
 
 	// Create Managers
 	m_pGameObjManager = new CGameObjectManager();
@@ -117,6 +125,7 @@ CAsset_ply* CEngine_Core::Get_Ply(const wchar_t* wszPath)
 	return m_pAssetManager->Get_Ply(wszPath);
 }
 
+
 void CEngine_Core::EndSign_LoadingAllPlys()
 {
 	// All Loaded ply Asset
@@ -133,6 +142,7 @@ void CEngine_Core::EndSign_LoadingAllPlys()
 
 
 	m_pCudaCore->Create_CudaResource_GS(pAssetArr, iNumAssets);
+
 
 	DELETE_ARRAY(pAssetArr);
 }
