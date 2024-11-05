@@ -54,9 +54,6 @@
     <Filter Include="Renderer\Resource\Shader">
       <UniqueIdentifier>{2c416eee-6adf-4eaa-9241-a79f9f984e6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\ShaderObject">
-      <UniqueIdentifier>{b635a632-c3de-4d9e-9115-0a3bfc9e1c61}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\RendererConfig.h">

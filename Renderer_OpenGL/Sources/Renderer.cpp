@@ -78,7 +78,7 @@ void CRenderer::Initialize(void* pArg)
 
     // Default Shaders
     m_pShaderManager->Load_Shader(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE, "Simple");
-    m_pShaderManager->Load_Shader(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::IMAGE_COPY, "Image_Copy");
+    //m_pShaderManager->Load_Shader(Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::IMAGE_COPY, "Image_Copy");
 }
 
 int32 CRenderer::MainRender(FLOAT fDeltaTime)
@@ -93,10 +93,14 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
     }
     for (UINT eShaderType = 0; eShaderType < Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::NUM; ++eShaderType)
     {
-        CShaderObject* pShaderObject = m_pShaderManager->m_mapShaderObjects[eShaderType];
-        GLuint curShaderProgram = pShaderObject->Shader();
-        glUseProgram(curShaderProgram); // Bind Shader Program
+        CShaderObjectBase* pShaderObject = m_pShaderManager->m_mapShaderObjects[eShaderType];
+        if (pShaderObject == nullptr)
+        {
+            continue;
+        }
 
+        pShaderObject->Bind();
+        
         // Culling
         glEnable(GL_CULL_FACE);
         glFrontFace(GL_CW);
@@ -109,28 +113,26 @@ int32 CRenderer::MainRender(FLOAT fDeltaTime)
 
         if (eShaderType == Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE)
         {
-            GLuint uniformViewProj = glGetUniformLocation(curShaderProgram, "g_ViewProj");
-            glUniformMatrix4fv(uniformViewProj, 1, GL_FALSE/*row to col*/, glm::value_ptr(m_matViewProj));
-        }
+            CShaderObject_Simple* pCastedShader = dynamic_cast<CShaderObject_Simple*>(pShaderObject);
+            pCastedShader->Set_UniformValue(CShaderObject_Simple::ViewProj, m_matViewProj);
 
-        for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
-        {
-            glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
-            glDrawElements(GL_TRIANGLES, (GLsizei)iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
-            glBindVertexArray(0); // Unbind VAO
+            for (auto& iterMeshObj : m_RenderQueueArr[eShaderType])
+            {
+                glBindVertexArray(iterMeshObj->VAO()); // Bind VAO
+                glDrawElements(GL_TRIANGLES, (GLsizei)iterMeshObj->NumIndices(), GL_UNSIGNED_INT, nullptr);
+                glBindVertexArray(0); // Unbind VAO
 
-            
-            GLuint uniformModel = glGetUniformLocation(curShaderProgram, "g_Model");
-            glm::mat4x4 curModelMatrix{};
-            curModelMatrix = ::Get_Converted_Matrix_DXtoGL(iterMeshObj->WorldMat());
-            memcpy_s(&curModelMatrix, sizeof(mat4x4), &curModelMatrix, sizeof(XMFLOAT4X4));
+                glm::mat4x4 curModelMatrix{};
+                curModelMatrix = ::Get_Converted_Matrix_DXtoGL(iterMeshObj->WorldMat());
 
-            glUniformMatrix4fv(uniformModel, 1, GL_FALSE/*row to col*/, glm::value_ptr(curModelMatrix));
-            CHECK_GL_ERROR
+                pCastedShader->Set_UniformValue(CShaderObject_Simple::Model, curModelMatrix);
+                CHECK_GL_ERROR
 
 
+            }
         }
         m_RenderQueueArr[eShaderType].clear();
+        pShaderObject->UnBind();
     }
 
 

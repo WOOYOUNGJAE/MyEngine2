@@ -43,21 +43,18 @@
     <ClCompile Include="Sources\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\TestGameObj.cpp">
       <Filter>Game\GameObject\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\App.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\pch.h">
@@ -77,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="Includes\IncludeLibs.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Game.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

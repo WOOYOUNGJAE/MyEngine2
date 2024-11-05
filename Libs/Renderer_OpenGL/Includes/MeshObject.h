@@ -3,7 +3,7 @@
 #include "RendererConfig.h"
 #include "enums.h"
 
-class CShaderObject;
+class CShaderObjectBase;
 class CRenderer;
 using std::string;
 
