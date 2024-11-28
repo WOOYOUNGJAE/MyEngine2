@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{99A9F884-2BDF-4A34-9BC8-8B2CA0AD7A47}</ProjectGuid>
-    <RootNamespace>CUDA_Core</RootNamespace>
+    <ProjectGuid>{84132780-DAC2-4792-81D2-22E5879184D6}</ProjectGuid>
+    <RootNamespace>CUDA</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>CUDA_Core</ProjectName>
+    <ProjectName>CUDA</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -56,11 +56,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;CUDACORE_EXPORTS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;CUDA_EXPORTS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)\;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\include;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -69,8 +69,8 @@
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
-      <Include>$(ProjectDir)Includes\;$(SolutionDir)\</Include>
-      <Defines>_DEBUG;CUDACORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</Defines>
+      <Include>$(ProjectDir)Includes\;$(SolutionDir)\;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\include;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;%(AdditionalIncludeDirectories)</Include>
+      <Defines>_DEBUG;CUDA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</Defines>
     </CudaCompile>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
@@ -89,7 +89,7 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Includes\;$(SolutionDir)\;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\include;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -100,8 +100,8 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
-      <Include>$(ProjectDir)Includes\</Include>
-      <Defines>NDEBUG;CUDACORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</Defines>
+      <Include>$(ProjectDir)Includes\;$(SolutionDir)\;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\include;$(ProgramData)\NVIDIA Corporation\OptiX SDK 8.1.0\SDK;%(AdditionalIncludeDirectories)</Include>
+      <Defines>NDEBUG;CUDA_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</Defines>
     </CudaCompile>
     <PostBuildEvent>
       <Command>xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)Libs\$(ProjectName)\bin\"
@@ -111,12 +111,14 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="kernel.cu" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="Includes\sutil.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Sources\CudaResource.cpp" />
     <ClCompile Include="Sources\CudaResource_GS.cpp" />
     <ClCompile Include="Sources\CUDA_Core.cpp" />
+    <ClCompile Include="Sources\Optix_Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Config.h" />
@@ -124,22 +126,35 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <ClInclude Include="Includes\CudaResource_GS.h" />
     <ClInclude Include="Includes\IncludeLibs.h" />
     <ClInclude Include="Includes\Macros.h" />
+    <ClInclude Include="Includes\OptixException.h" />
+    <ClInclude Include="Includes\Optix_Engine.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\CUDA_Core.h" />
     <ClInclude Include="Includes\Structs.h" />
+    <ClInclude Include="Includes\sutil.h" />
+    <ClInclude Include="Includes\TempTypedef.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Sources\optixTriangle.cu">
+      <FileType>Document</FileType>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 11.8.targets" />
     <Import Project="..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets" Condition="Exists('..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets')" />
+    <Import Project="..\packages\glfw.3.4.0\build\native\glfw.targets" Condition="Exists('..\packages\glfw.3.4.0\build\native\glfw.targets')" />
+    <Import Project="..\packages\glm.1.0.1\build\native\glm.targets" Condition="Exists('..\packages\glm.1.0.1\build\native\glm.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk12_desktop_2019.2024.9.5.1\build\native\directxtk12_desktop_2019.targets'))" />
+    <Error Condition="!Exists('..\packages\glfw.3.4.0\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glfw.3.4.0\build\native\glfw.targets'))" />
+    <Error Condition="!Exists('..\packages\glm.1.0.1\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.1.0.1\build\native\glm.targets'))" />
   </Target>
 </Project>

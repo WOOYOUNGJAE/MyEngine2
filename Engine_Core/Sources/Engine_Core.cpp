@@ -8,7 +8,7 @@
 
 #include "Renderer_OpenGL/Includes/Renderer.h"
 
-#include "CUDA_Core/Includes/CUDA_Core.h"
+#include "CUDA/Includes/CUDA_Core.h"
 
 #include "GameObjectManager.h"
 #include "InputManager.h"
@@ -58,7 +58,7 @@ void CEngine_Core::Initialize(INT iGraphics, std::string& strTitle)
 	// Cuda
 	if (bReadyCudaCore)
 	{
-		m_pCudaCore = new CCUDA_Core(m_pRenderer);		
+		m_pCudaCore = new CCUDA_Core(m_pRenderer, uiWinX, uiWinY);		
 	}
 
 	// Create Managers

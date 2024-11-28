@@ -87,6 +87,9 @@ CShaderObjectBase* CShaderFactory::Create_Shader(UINT eShaderProgramType, const 
 	case Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::SIMPLE:
 		pShaderObject = new CShaderObject_Simple(program, szShaderName);
 		break;
+	case Renderer_OpenGL::GL_SHADER_PROGRAM_TYPE::IMAGE_COPY:
+		pShaderObject = new CShaderObject_ImageCopy(program, szShaderName);
+		break;
 	}
 
 	return pShaderObject;

@@ -16,7 +16,7 @@ public: // getter
 	 * @param iUniformIndex Which index Uniform in the shader
 	 * @param m Matrix
 	 */
-	virtual void Set_UniformValue(UINT iUniformIndex, const glm::mat4x4& m) = 0;
+	virtual void Set_UniformValue(UINT iUniformIndex, const glm::mat4x4& m) {}
 protected:
 	GLuint      m_ShaderProgram = 0;
 	std::string m_strName = "";
@@ -26,11 +26,14 @@ protected:
 
 class CShaderObject_Simple : public CShaderObjectBase
 {
-public: enum UniformEnum { ViewProj, Model, Num};
 public:
-	CShaderObject_Simple() = delete;
-	CShaderObject_Simple(GLuint shaderProgram, const char* szShaderName);
-	~CShaderObject_Simple() override;
-public:
+	enum UniformEnum { ViewProj, Model, Num};
+	CShaderObject_Simple(GLuint shaderProgram, const char* szShaderName):CShaderObjectBase(shaderProgram, szShaderName){}
 	void Set_UniformValue(UINT iUniformIndex, const glm::mat4x4& m) override;
+};
+class CShaderObject_ImageCopy : public CShaderObjectBase
+{
+public:
+	enum UniformEnum { ViewProj, Model, Num};
+	CShaderObject_ImageCopy(GLuint shaderProgram, const char* szShaderName):CShaderObjectBase(shaderProgram, szShaderName){}
 };

@@ -10,15 +10,8 @@ CShaderObjectBase::CShaderObjectBase(GLuint shaderProgram, const char* szShaderN
 
 CShaderObjectBase::~CShaderObjectBase()
 {
+	glDeleteProgram(m_ShaderProgram);
 }
-CShaderObject_Simple::CShaderObject_Simple(GLuint shaderProgram, const char* szShaderName) : CShaderObjectBase(shaderProgram, szShaderName)
-{
-}
-
-CShaderObject_Simple::~CShaderObject_Simple()
-{
-}
-
 void CShaderObject_Simple::Set_UniformValue(UINT iUniformIndex, const glm::mat4x4& m)
 {
 	GLuint uniformModel = 0;

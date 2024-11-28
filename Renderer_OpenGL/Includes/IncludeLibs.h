@@ -1,7 +1,7 @@
 #ifndef RENDEREROPENGLINCLUDELIBS_H
 #define RENDEREROPENGLINCLUDELIBS_H
 
-#pragma comment(lib, "../Libs/GLFW/glfw3.lib") // GLFW
+//#pragma comment(lib, "../Libs/GLFW/glfw3.lib") // GLFW
 
 
 
@@ -25,10 +25,18 @@
 
 
 #include "../../Libs/glad/glad.h"
+
+
+
+#include "GLFW/glfw3.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+/*
 #include "../../Libs/GLFW/glfw3.h"
 #include "../../Libs/glm/glm.hpp"
 #include "../../Libs/glm/gtc/matrix_transform.hpp"
-#include "../../Libs/glm/gtc/type_ptr.hpp"
+#include "../../Libs/glm/gtc/type_ptr.hpp"*/
 
 
 #endif

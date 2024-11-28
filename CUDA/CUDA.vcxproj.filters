@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CudaCompile Include="kernel.cu" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Headers">
       <UniqueIdentifier>{1344a290-c1da-4d06-bf98-8d877923a021}</UniqueIdentifier>
     </Filter>
@@ -16,11 +13,14 @@
     <Filter Include="Core\CudaResources\GaussianSplatting">
       <UniqueIdentifier>{d7dded2c-0348-47fa-9fb7-6f54659217ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Optix">
+      <UniqueIdentifier>{4aad66f4-36ba-445f-8cf4-041be2635930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Optix\sutil">
+      <UniqueIdentifier>{b5cd2f05-eb4c-4d9f-b0aa-24c9b7205162}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\CUDA_Core.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\pch.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -42,19 +42,43 @@
     <ClInclude Include="Includes\Structs.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\CUDA_Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Optix_Engine.h">
+      <Filter>Optix</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\OptixException.h">
+      <Filter>Optix\sutil</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\sutil.h">
+      <Filter>Optix\sutil</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\TempTypedef.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\CUDA_Core.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\CudaResource.cpp">
       <Filter>Core\CudaResources</Filter>
     </ClCompile>
     <ClCompile Include="Sources\CudaResource_GS.cpp">
       <Filter>Core\CudaResources\GaussianSplatting</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\CUDA_Core.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Optix_Engine.cpp">
+      <Filter>Optix</Filter>
+    </ClCompile>
+    <ClCompile Include="Includes\sutil.cpp">
+      <Filter>Optix\sutil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Sources\optixTriangle.cu" />
   </ItemGroup>
 </Project>

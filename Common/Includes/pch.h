@@ -36,6 +36,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <array>
 
 
 // DirectX for Common

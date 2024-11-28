@@ -179,8 +179,8 @@ void CRenderer::BeginRender()
 
 void CRenderer::Render_MeshObject_External(IMeshObject* pMeshObj, XMFLOAT4X4& matWorld)
 {
-    CMeshObject* pCastedMeshObj = static_cast<CMeshObject*>(pMeshObj);
-    //::Convert_Matrix_DXtoGL(matWorld);
+    // Cast From Interface to Specified Class
+    CMeshObject* pCastedMeshObj = reinterpret_cast<CMeshObject*>(pMeshObj);
     pCastedMeshObj->Set_WorldMat(matWorld);
     m_RenderQueueArr[pCastedMeshObj->ShaderType()].push_back(pCastedMeshObj);
 }

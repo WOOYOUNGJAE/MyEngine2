@@ -2,7 +2,7 @@
 #include "CUDA_Core.h"
 #include "CudaResource.h"
 #include "CudaResource_GS.h"
-
+#include "Optix_Engine.h"
 #include "Engine_Core/Includes/Asset_ply.h"
 
 #include "Common/Includes/RendererInterface.h"
@@ -11,7 +11,7 @@
 
 IMPL_COM_FUNC(CCUDA_Core)
 
-CCUDA_Core::CCUDA_Core(IRenderer* pRenderer) : m_pRenderer(pRenderer)
+CCUDA_Core::CCUDA_Core(IRenderer* pRenderer, UINT uiWinX, UINT uiWinY) : m_pRenderer(pRenderer)
 {
 	ADDREF_INSTANCE(m_pRenderer)
 	CUDA_SAFE_CALL_ALWAYS(cudaGetDeviceCount(&m_iDeviceNum));
@@ -22,7 +22,8 @@ CCUDA_Core::CCUDA_Core(IRenderer* pRenderer) : m_pRenderer(pRenderer)
 		return;
 	}
 
-
+	// TODO Temp
+	COptix_Engine* pOptix = new COptix_Engine(uiWinX, uiWinY);
 }
 
 CCUDA_Core::~CCUDA_Core()

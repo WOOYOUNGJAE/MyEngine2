@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Config.h"
-
 namespace Cuda_Core
 {
 	enum CUDA_RESOURCE_TYPE {GS, CUDA_RESOURCE_TYPE_NUM};
@@ -10,12 +9,12 @@ namespace Cuda_Core
 class CCudaResource;
 class CAsset_ply;
 interface IRenderer;
-class CUDACORE_DLL CCUDA_Core : public IUnknown
+class CUDA_DLL CCUDA_Core : public IUnknown
 {
 	COM_BASE
 public:
 	CCUDA_Core() = delete;
-	CCUDA_Core(IRenderer* pRenderer);
+	CCUDA_Core(IRenderer* pRenderer, UINT uiWinX, UINT uiWinY);
 	virtual ~CCUDA_Core();
 
 public:
