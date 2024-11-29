@@ -1,7 +1,7 @@
 ## How To Build
 1. Run the .sln file.
 2. Right-click on the solution and select "Restore NuGet Packages."
-3. Build Common -> Renderer_OpenGL -> CUDA_Core -> Engine_Core -> Asset_Loader
+3. Build Projects, Common -> Renderer_OpenGL -> CUDA -> Engine_Core -> Asset_Loader
 4. Build and Run App
 
 ## Directory Structure
