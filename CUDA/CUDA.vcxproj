@@ -111,14 +111,9 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Includes\sutil.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Sources\CudaResource.cpp" />
     <ClCompile Include="Sources\CudaResource_GS.cpp" />
     <ClCompile Include="Sources\CUDA_Core.cpp" />
-    <ClCompile Include="Sources\Optix_Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Config.h" />
@@ -126,21 +121,13 @@ xcopy /y "$(OutDir)$(TargetName).dll" "$(SolutionDir)App\bin\output\"</Command>
     <ClInclude Include="Includes\CudaResource_GS.h" />
     <ClInclude Include="Includes\IncludeLibs.h" />
     <ClInclude Include="Includes\Macros.h" />
-    <ClInclude Include="Includes\OptixException.h" />
-    <ClInclude Include="Includes\Optix_Engine.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\CUDA_Core.h" />
     <ClInclude Include="Includes\Structs.h" />
-    <ClInclude Include="Includes\sutil.h" />
     <ClInclude Include="Includes\TempTypedef.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Sources\optixTriangle.cu">
-      <FileType>Document</FileType>
-    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

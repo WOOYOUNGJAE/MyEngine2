@@ -24,9 +24,6 @@
     <Filter Include="Graphics\RenderTarget">
       <UniqueIdentifier>{11f0f81e-042b-416d-a62c-baabd5c76a8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\ShaderObject">
-      <UniqueIdentifier>{2a74e530-2b19-4e70-ae25-ad5730de22f7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer\Renderer">
       <UniqueIdentifier>{68425b72-4fec-4116-9a28-952636716dac}</UniqueIdentifier>
     </Filter>
@@ -42,9 +39,6 @@
     <Filter Include="Util">
       <UniqueIdentifier>{b042bbf4-ad26-40f9-97d2-09857d8bd18e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{88b25efd-c9a3-4f21-99fc-91801a43434e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer\Resource">
       <UniqueIdentifier>{a3e7a4de-d03b-40b8-8d94-f7ac6e6a2867}</UniqueIdentifier>
     </Filter>
@@ -53,6 +47,12 @@
     </Filter>
     <Filter Include="Renderer\Resource\Shader">
       <UniqueIdentifier>{2c416eee-6adf-4eaa-9241-a79f9f984e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\ShaderObject">
+      <UniqueIdentifier>{2a74e530-2b19-4e70-ae25-ad5730de22f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders_GLSL">
+      <UniqueIdentifier>{88b25efd-c9a3-4f21-99fc-91801a43434e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +87,7 @@
       <Filter>Graphics\RenderTarget</Filter>
     </ClInclude>
     <ClInclude Include="Includes\ShaderObject.h">
-      <Filter>Graphics\ShaderObject</Filter>
+      <Filter>Objects\ShaderObject</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Util_Funcs.h">
       <Filter>Util</Filter>
@@ -119,7 +119,7 @@
       <Filter>Graphics\RenderTarget</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ShaderObject.cpp">
-      <Filter>Graphics\ShaderObject</Filter>
+      <Filter>Objects\ShaderObject</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Renderer.cpp">
       <Filter>Renderer\Renderer</Filter>
@@ -155,10 +155,10 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Shaders\VS_Simple.glsl">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders_GLSL</Filter>
     </None>
     <None Include="Shaders\FS_Simple.glsl">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders_GLSL</Filter>
     </None>
   </ItemGroup>
 </Project>

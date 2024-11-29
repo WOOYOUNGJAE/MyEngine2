@@ -13,12 +13,6 @@
     <Filter Include="Core\CudaResources\GaussianSplatting">
       <UniqueIdentifier>{d7dded2c-0348-47fa-9fb7-6f54659217ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Optix">
-      <UniqueIdentifier>{4aad66f4-36ba-445f-8cf4-041be2635930}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Optix\sutil">
-      <UniqueIdentifier>{b5cd2f05-eb4c-4d9f-b0aa-24c9b7205162}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\pch.h">
@@ -45,15 +39,6 @@
     <ClInclude Include="Includes\CUDA_Core.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Optix_Engine.h">
-      <Filter>Optix</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\OptixException.h">
-      <Filter>Optix\sutil</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\sutil.h">
-      <Filter>Optix\sutil</Filter>
-    </ClInclude>
     <ClInclude Include="Includes\TempTypedef.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -68,17 +53,8 @@
     <ClCompile Include="Sources\CUDA_Core.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Optix_Engine.cpp">
-      <Filter>Optix</Filter>
-    </ClCompile>
-    <ClCompile Include="Includes\sutil.cpp">
-      <Filter>Optix\sutil</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Sources\optixTriangle.cu" />
   </ItemGroup>
 </Project>

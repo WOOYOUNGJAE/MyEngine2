@@ -2,7 +2,6 @@
 #include "CUDA_Core.h"
 #include "CudaResource.h"
 #include "CudaResource_GS.h"
-#include "Optix_Engine.h"
 #include "Engine_Core/Includes/Asset_ply.h"
 
 #include "Common/Includes/RendererInterface.h"
@@ -23,7 +22,7 @@ CCUDA_Core::CCUDA_Core(IRenderer* pRenderer, UINT uiWinX, UINT uiWinY) : m_pRend
 	}
 
 	// TODO Temp
-	COptix_Engine* pOptix = new COptix_Engine(uiWinX, uiWinY);
+	//COptix_Engine* pOptix = new COptix_Engine(uiWinX, uiWinY);
 }
 
 CCUDA_Core::~CCUDA_Core()
